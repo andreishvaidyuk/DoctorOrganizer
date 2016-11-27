@@ -289,19 +289,10 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField13">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField13"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField14">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField14"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField15">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField15"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
