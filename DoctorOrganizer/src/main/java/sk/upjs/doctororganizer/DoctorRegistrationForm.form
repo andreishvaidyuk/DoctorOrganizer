@@ -250,7 +250,7 @@
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="DoctorOrganizer"/>
+            <Property name="text" type="java.lang.String" value="Registr&#xe1;cia lek&#xe1;ra"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>

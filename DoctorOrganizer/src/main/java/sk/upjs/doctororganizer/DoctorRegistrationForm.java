@@ -145,7 +145,7 @@ public class DoctorRegistrationForm extends javax.swing.JFrame {
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("DoctorOrganizer");
+        titleLabel.setText("Registrácia lekára");
         titleLabel.setToolTipText("");
 
         javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
