@@ -121,7 +121,9 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="changeDetailsButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="addSurgeryButton" pref="124" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="changePasswordButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -153,6 +155,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="changeDetailsButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="changePasswordButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="addSurgeryButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -207,6 +210,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changeDetailsButtonActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JButton" name="addSurgeryButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Prida&#x165; ordin&#xe1;ciu"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addSurgeryButtonActionPerformed"/>
+          </Events>
+        </Component>
         <Component class="javax.swing.JButton" name="changePasswordButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Zmeni&#x165; heslo"/>
@@ -236,7 +247,7 @@
                       <Component id="listTermsButton" alignment="1" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="changeSurgeryDetailsButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="76" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="deleteSurgeryButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -291,16 +302,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Vyp&#xed;sa&#x165; term&#xed;ny"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listTermsButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="changeSurgeryDetailsButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Zmeni&#x165; detaily ordin&#xe1;cie"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changeSurgeryDetailsButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="deleteSurgeryButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Odstr&#xe1;ni&#x165; ordin&#xe1;ciu"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteSurgeryButtonActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
