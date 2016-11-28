@@ -79,7 +79,7 @@
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Registr&#xe1;cia novej ordin&#xe1;cie"/>
+            <Property name="text" type="java.lang.String" value="Zmena &#xfa;dajov ordin&#xe1;cie"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -283,7 +283,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="registerButton" pref="360" max="32767" attributes="0"/>
-                      <Component id="jButton1" max="32767" attributes="0"/>
+                      <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -304,7 +304,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="registerButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Registr&#xe1;cia"/>
+            <Property name="text" type="java.lang.String" value="Zmeni&#x165; &#xfa;daje"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">

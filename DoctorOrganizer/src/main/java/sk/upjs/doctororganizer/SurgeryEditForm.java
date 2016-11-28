@@ -20,12 +20,12 @@ package sk.upjs.doctororganizer;
  *
  * @author acer
  */
-public class SurgeryRegistrationForm extends javax.swing.JFrame {
+public class SurgeryEditForm extends javax.swing.JFrame {
 
     /**
      * Creates new form SurgeryRegistrationForm
      */
-    public SurgeryRegistrationForm() {
+    public SurgeryEditForm() {
         initComponents();
     }
 
@@ -68,7 +68,7 @@ public class SurgeryRegistrationForm extends javax.swing.JFrame {
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("Registrácia novej ordinácie");
+        titleLabel.setText("Zmena údajov ordinácie");
 
         javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
         titlePanel.setLayout(titlePanelLayout);
@@ -187,7 +187,7 @@ public class SurgeryRegistrationForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        registerButton.setText("Registrácia");
+        registerButton.setText("Zmeniť údaje");
 
         jButton1.setText("Zrušiť");
 
@@ -255,20 +255,21 @@ public class SurgeryRegistrationForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SurgeryRegistrationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SurgeryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SurgeryRegistrationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SurgeryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SurgeryRegistrationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SurgeryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SurgeryRegistrationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SurgeryEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SurgeryRegistrationForm().setVisible(true);
+                new SurgeryEditForm().setVisible(true);
             }
         });
     }
