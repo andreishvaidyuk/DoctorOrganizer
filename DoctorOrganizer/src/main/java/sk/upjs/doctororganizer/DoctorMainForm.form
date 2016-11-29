@@ -30,6 +30,7 @@
                   <Component id="personalDetailsPanel" alignment="1" max="32767" attributes="0"/>
                   <Component id="titlePanel" alignment="1" max="32767" attributes="0"/>
                   <Component id="surgeryListPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="logoutButton" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -44,6 +45,8 @@
               <Component id="personalDetailsPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="surgeryListPanel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="logoutButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -324,5 +327,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="logoutButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Odhl&#xe1;si&#x165; sa"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutButtonActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>
