@@ -25,12 +25,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Component id="titlePanel" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="titlePanel" max="32767" attributes="0"/>
-                  <Component id="surgeryDetailPanel" alignment="0" max="32767" attributes="0"/>
-                  <Component id="buttonPanel" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="officeDetailPanel" max="32767" attributes="0"/>
+                  <Component id="buttonPanel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -39,10 +39,9 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
               <Component id="titlePanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="surgeryDetailPanel" min="-2" max="-2" attributes="0"/>
+              <Component id="officeDetailPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="buttonPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
@@ -67,7 +66,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="titleLabel" max="32767" attributes="0"/>
+                  <Component id="titleLabel" pref="28" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -80,12 +79,12 @@
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Registr&#xe1;cia novej ordin&#xe1;cie"/>
+            <Property name="text" type="java.lang.String" value="Zmena &#xfa;dajov ordin&#xe1;cie"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="surgeryDetailPanel">
+    <Container class="javax.swing.JPanel" name="officeDetailPanel">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -120,7 +119,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="specializtionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="specializationLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="phoneLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -164,7 +163,7 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="specializtionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="specializationLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="specializationTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -206,7 +205,7 @@
             <Property name="text" type="java.lang.String" value="Nemocnica:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="specializtionLabel">
+        <Component class="javax.swing.JLabel" name="specializationLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x160;pecializ&#xe1;cia ordin&#xe1;cie:"/>
           </Properties>
@@ -284,7 +283,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="registerButton" pref="360" max="32767" attributes="0"/>
-                      <Component id="cancelButton" max="32767" attributes="0"/>
+                      <Component id="cancelButton" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -305,16 +304,13 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="registerButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Registrova&#x165;"/>
+            <Property name="text" type="java.lang.String" value="Ulo&#x17e;i&#x165; zmeny"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="cancelButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Zru&#x161;i&#x165;"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelButtonActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

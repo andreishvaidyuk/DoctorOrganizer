@@ -50,14 +50,14 @@ public class DoctorMainForm extends javax.swing.JFrame {
         emailLabel = new javax.swing.JLabel();
         emailTextField = new javax.swing.JTextField();
         changeDetailsButton = new javax.swing.JButton();
-        addSurgeryButton = new javax.swing.JButton();
+        addOfficeButton = new javax.swing.JButton();
         changePasswordButton = new javax.swing.JButton();
-        surgeryListPanel = new javax.swing.JPanel();
-        ordinaryScrollPane = new javax.swing.JScrollPane();
-        surgeryList = new javax.swing.JList<>();
+        officesListPanel = new javax.swing.JPanel();
+        officesScrollPane = new javax.swing.JScrollPane();
+        officesList = new javax.swing.JList<>();
         listTermsButton = new javax.swing.JButton();
-        changeSurgeryDetailsButton = new javax.swing.JButton();
-        deleteSurgeryButton = new javax.swing.JButton();
+        changeOfficeDetailsButton = new javax.swing.JButton();
+        deleteOfficeButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -109,10 +109,10 @@ public class DoctorMainForm extends javax.swing.JFrame {
             }
         });
 
-        addSurgeryButton.setText("Pridať ordináciu");
-        addSurgeryButton.addActionListener(new java.awt.event.ActionListener() {
+        addOfficeButton.setText("Pridať ordináciu");
+        addOfficeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addSurgeryButtonActionPerformed(evt);
+                addOfficeButtonActionPerformed(evt);
             }
         });
 
@@ -149,7 +149,7 @@ public class DoctorMainForm extends javax.swing.JFrame {
                     .addGroup(personalDetailsPanelLayout.createSequentialGroup()
                         .addComponent(changeDetailsButton)
                         .addGap(18, 18, 18)
-                        .addComponent(addSurgeryButton, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                        .addComponent(addOfficeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(changePasswordButton)))
                 .addContainerGap())
@@ -175,17 +175,17 @@ public class DoctorMainForm extends javax.swing.JFrame {
                 .addGroup(personalDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(changeDetailsButton)
                     .addComponent(changePasswordButton)
-                    .addComponent(addSurgeryButton)))
+                    .addComponent(addOfficeButton)))
         );
 
-        surgeryListPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Výpis ordinácií"));
+        officesListPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Výpis ordinácií"));
 
-        surgeryList.setModel(new javax.swing.AbstractListModel<String>() {
+        officesList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        ordinaryScrollPane.setViewportView(surgeryList);
+        officesScrollPane.setViewportView(officesList);
 
         listTermsButton.setText("Vypísať termíny");
         listTermsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -194,46 +194,46 @@ public class DoctorMainForm extends javax.swing.JFrame {
             }
         });
 
-        changeSurgeryDetailsButton.setText("Zmeniť detaily ordinácie");
-        changeSurgeryDetailsButton.addActionListener(new java.awt.event.ActionListener() {
+        changeOfficeDetailsButton.setText("Zmeniť detaily ordinácie");
+        changeOfficeDetailsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changeSurgeryDetailsButtonActionPerformed(evt);
+                changeOfficeDetailsButtonActionPerformed(evt);
             }
         });
 
-        deleteSurgeryButton.setText("Odstrániť ordináciu");
-        deleteSurgeryButton.addActionListener(new java.awt.event.ActionListener() {
+        deleteOfficeButton.setText("Odstrániť ordináciu");
+        deleteOfficeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteSurgeryButtonActionPerformed(evt);
+                deleteOfficeButtonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout surgeryListPanelLayout = new javax.swing.GroupLayout(surgeryListPanel);
-        surgeryListPanel.setLayout(surgeryListPanelLayout);
-        surgeryListPanelLayout.setHorizontalGroup(
-            surgeryListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(surgeryListPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout officesListPanelLayout = new javax.swing.GroupLayout(officesListPanel);
+        officesListPanel.setLayout(officesListPanelLayout);
+        officesListPanelLayout.setHorizontalGroup(
+            officesListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(officesListPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(surgeryListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ordinaryScrollPane)
+                .addGroup(officesListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(officesScrollPane)
                     .addComponent(listTermsButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(surgeryListPanelLayout.createSequentialGroup()
-                        .addComponent(changeSurgeryDetailsButton)
+                    .addGroup(officesListPanelLayout.createSequentialGroup()
+                        .addComponent(changeOfficeDetailsButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(deleteSurgeryButton)))
+                        .addComponent(deleteOfficeButton)))
                 .addContainerGap())
         );
-        surgeryListPanelLayout.setVerticalGroup(
-            surgeryListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(surgeryListPanelLayout.createSequentialGroup()
+        officesListPanelLayout.setVerticalGroup(
+            officesListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(officesListPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ordinaryScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(officesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(listTermsButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(surgeryListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(changeSurgeryDetailsButton)
-                    .addComponent(deleteSurgeryButton))
+                .addGroup(officesListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(changeOfficeDetailsButton)
+                    .addComponent(deleteOfficeButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -253,7 +253,7 @@ public class DoctorMainForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(personalDetailsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(titlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(surgeryListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(officesListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -265,7 +265,7 @@ public class DoctorMainForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(personalDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(surgeryListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(officesListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(logoutButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -301,18 +301,18 @@ public class DoctorMainForm extends javax.swing.JFrame {
         DoctorTermForm.main(surgeryID);
     }//GEN-LAST:event_listTermsButtonActionPerformed
 
-    private void changeSurgeryDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeSurgeryDetailsButtonActionPerformed
+    private void changeOfficeDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeOfficeDetailsButtonActionPerformed
         String[] surgeryID = {"selectedSurgeryID"};        
-        SurgeryEditForm.main(surgeryID);
-    }//GEN-LAST:event_changeSurgeryDetailsButtonActionPerformed
+        OfficeEditForm.main(surgeryID);
+    }//GEN-LAST:event_changeOfficeDetailsButtonActionPerformed
 
-    private void deleteSurgeryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSurgeryButtonActionPerformed
+    private void deleteOfficeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteOfficeButtonActionPerformed
         //TODO: new Dialog -> Odstranit ordinaciu XYZ??? 
-    }//GEN-LAST:event_deleteSurgeryButtonActionPerformed
+    }//GEN-LAST:event_deleteOfficeButtonActionPerformed
 
-    private void addSurgeryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSurgeryButtonActionPerformed
-        SurgeryRegistrationForm.main(null);
-    }//GEN-LAST:event_addSurgeryButtonActionPerformed
+    private void addOfficeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOfficeButtonActionPerformed
+        OfficeRegistrationForm.main(null);
+    }//GEN-LAST:event_addOfficeButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         this.dispose();
@@ -355,11 +355,11 @@ public class DoctorMainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addSurgeryButton;
+    private javax.swing.JButton addOfficeButton;
     private javax.swing.JButton changeDetailsButton;
+    private javax.swing.JButton changeOfficeDetailsButton;
     private javax.swing.JButton changePasswordButton;
-    private javax.swing.JButton changeSurgeryDetailsButton;
-    private javax.swing.JButton deleteSurgeryButton;
+    private javax.swing.JButton deleteOfficeButton;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel lastNameLabel;
@@ -368,12 +368,12 @@ public class DoctorMainForm extends javax.swing.JFrame {
     private javax.swing.JButton logoutButton;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
-    private javax.swing.JScrollPane ordinaryScrollPane;
+    private javax.swing.JList<String> officesList;
+    private javax.swing.JPanel officesListPanel;
+    private javax.swing.JScrollPane officesScrollPane;
     private javax.swing.JPanel personalDetailsPanel;
     private javax.swing.JLabel personalTitleLabel;
     private javax.swing.JTextField personalTitleTextField;
-    private javax.swing.JList<String> surgeryList;
-    private javax.swing.JPanel surgeryListPanel;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanel;
     // End of variables declaration//GEN-END:variables

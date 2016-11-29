@@ -203,7 +203,7 @@ public class PacientMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_editTermButtonActionPerformed
 
     private void createTermButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTermButtonActionPerformed
-        SurgerySearchForm.main(null);
+        OfficeSearchForm.main(null);
     }//GEN-LAST:event_createTermButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed

@@ -29,7 +29,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="termDetailsPanel" alignment="1" max="32767" attributes="0"/>
                   <Component id="titlePanel" alignment="0" max="32767" attributes="0"/>
-                  <Component id="selectedSurgeryPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="selectedOfficePanel" alignment="0" max="32767" attributes="0"/>
                   <Component id="buttonsPanel" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -42,7 +42,7 @@
               <EmptySpace max="32767" attributes="0"/>
               <Component id="titlePanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="selectedSurgeryPanel" min="-2" max="-2" attributes="0"/>
+              <Component id="selectedOfficePanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="termDetailsPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -86,7 +86,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="selectedSurgeryPanel">
+    <Container class="javax.swing.JPanel" name="selectedOfficePanel">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -178,6 +178,66 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
+        <Component class="javax.swing.JLabel" name="placeLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Mesto/Obec:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="placeTextField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="streetLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ulica:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="streetTextField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="numberLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Popisn&#xe9; &#x10d;.:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="numberTextField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="specializationLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x160;pecializ&#xe1;cia:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="specializationTextField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="hospitalLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nemocnica:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="hospitalTextField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="phoneLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Telef&#xf3;n:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="phoneTextField">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
         <Container class="javax.swing.JPanel" name="doctorDetailsPanel">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -246,66 +306,6 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="placeLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Mesto/Obec:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="placeTextField">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="streetLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ulica:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="streetTextField">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="numberLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Popisn&#xe9; &#x10d;.:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="numberTextField">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="specializationLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&#x160;pecializ&#xe1;cia:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="specializationTextField">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="hospitalLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Nemocnica:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="hospitalTextField">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="phoneLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Telef&#xf3;n:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="phoneTextField">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="termDetailsPanel">

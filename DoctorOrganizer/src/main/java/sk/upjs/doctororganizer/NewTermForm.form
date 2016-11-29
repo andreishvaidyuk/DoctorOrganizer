@@ -29,7 +29,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="termDetailsPanel" alignment="1" max="32767" attributes="0"/>
                   <Component id="titlePanel" alignment="0" max="32767" attributes="0"/>
-                  <Component id="surgeryDetailsPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="officeDetailsPanel" alignment="0" max="32767" attributes="0"/>
                   <Component id="buttonsPanel" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -42,7 +42,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="titlePanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="surgeryDetailsPanel" min="-2" max="-2" attributes="0"/>
+              <Component id="officeDetailsPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="termDetailsPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -87,7 +87,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="surgeryDetailsPanel">
+    <Container class="javax.swing.JPanel" name="officeDetailsPanel">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">

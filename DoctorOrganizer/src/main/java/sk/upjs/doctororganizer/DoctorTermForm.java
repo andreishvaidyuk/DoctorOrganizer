@@ -40,7 +40,7 @@ public class DoctorTermForm extends javax.swing.JFrame {
 
         titlePanel = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
-        surgeryDetailPanel = new javax.swing.JPanel();
+        officeDetailPanel = new javax.swing.JPanel();
         placeLabel = new javax.swing.JLabel();
         streetLabel = new javax.swing.JLabel();
         placeNumberLabel = new javax.swing.JLabel();
@@ -97,7 +97,7 @@ public class DoctorTermForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        surgeryDetailPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Detaily ordinácie"));
+        officeDetailPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Detaily ordinácie"));
 
         placeLabel.setText("Mesto / Obec:");
 
@@ -133,14 +133,14 @@ public class DoctorTermForm extends javax.swing.JFrame {
 
         toTextField.setEditable(false);
 
-        javax.swing.GroupLayout surgeryDetailPanelLayout = new javax.swing.GroupLayout(surgeryDetailPanel);
-        surgeryDetailPanel.setLayout(surgeryDetailPanelLayout);
-        surgeryDetailPanelLayout.setHorizontalGroup(
-            surgeryDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(surgeryDetailPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout officeDetailPanelLayout = new javax.swing.GroupLayout(officeDetailPanel);
+        officeDetailPanel.setLayout(officeDetailPanelLayout);
+        officeDetailPanelLayout.setHorizontalGroup(
+            officeDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(officeDetailPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(surgeryDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, surgeryDetailPanelLayout.createSequentialGroup()
+                .addGroup(officeDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, officeDetailPanelLayout.createSequentialGroup()
                         .addComponent(placeLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(townTextField)
@@ -148,15 +148,15 @@ public class DoctorTermForm extends javax.swing.JFrame {
                         .addComponent(streetLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(streetTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(surgeryDetailPanelLayout.createSequentialGroup()
-                        .addGroup(surgeryDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(officeDetailPanelLayout.createSequentialGroup()
+                        .addGroup(officeDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(specializationLabel)
                             .addComponent(phoneNumberLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(surgeryDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(officeDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(phoneTextField)
                             .addComponent(specializationTextField)))
-                    .addGroup(surgeryDetailPanelLayout.createSequentialGroup()
+                    .addGroup(officeDetailPanelLayout.createSequentialGroup()
                         .addComponent(openTimesLabel)
                         .addGap(21, 21, 21)
                         .addComponent(fromLabel)
@@ -167,7 +167,7 @@ public class DoctorTermForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(toTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(surgeryDetailPanelLayout.createSequentialGroup()
+                    .addGroup(officeDetailPanelLayout.createSequentialGroup()
                         .addComponent(placeNumberLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(descriptionNumberTextField)
@@ -177,31 +177,31 @@ public class DoctorTermForm extends javax.swing.JFrame {
                         .addComponent(hospotialTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        surgeryDetailPanelLayout.setVerticalGroup(
-            surgeryDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(surgeryDetailPanelLayout.createSequentialGroup()
+        officeDetailPanelLayout.setVerticalGroup(
+            officeDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(officeDetailPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(surgeryDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(officeDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(placeLabel)
                     .addComponent(townTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(streetLabel)
                     .addComponent(streetTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(surgeryDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(officeDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(placeNumberLabel)
                     .addComponent(descriptionNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hospitalLabel)
                     .addComponent(hospotialTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(surgeryDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(officeDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(specializationLabel)
                     .addComponent(specializationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(surgeryDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(officeDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(phoneNumberLabel)
                     .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(surgeryDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(officeDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(openTimesLabel)
                     .addComponent(fromLabel)
                     .addComponent(toLabel)
@@ -330,7 +330,7 @@ public class DoctorTermForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(surgeryDetailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(officeDetailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(filterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(termsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -342,7 +342,7 @@ public class DoctorTermForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(surgeryDetailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(officeDetailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(filterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -407,6 +407,7 @@ public class DoctorTermForm extends javax.swing.JFrame {
     private javax.swing.JLabel hospitalLabel;
     private javax.swing.JTextField hospotialTextField;
     private javax.swing.JComboBox<String> monthComboBox;
+    private javax.swing.JPanel officeDetailPanel;
     private javax.swing.JLabel openTimesLabel;
     private javax.swing.JLabel phoneNumberLabel;
     private javax.swing.JTextField phoneTextField;
@@ -417,7 +418,6 @@ public class DoctorTermForm extends javax.swing.JFrame {
     private javax.swing.JTextField specializationTextField;
     private javax.swing.JLabel streetLabel;
     private javax.swing.JTextField streetTextField;
-    private javax.swing.JPanel surgeryDetailPanel;
     private javax.swing.JComboBox<String> termStatusComboBox;
     private javax.swing.JLabel termStatusLabel;
     private javax.swing.JList<String> termsList;

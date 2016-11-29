@@ -29,7 +29,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="personalDetailsPanel" alignment="1" max="32767" attributes="0"/>
                   <Component id="titlePanel" alignment="1" max="32767" attributes="0"/>
-                  <Component id="surgeryListPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="officesListPanel" alignment="0" max="32767" attributes="0"/>
                   <Component id="logoutButton" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -44,7 +44,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="personalDetailsPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="surgeryListPanel" min="-2" max="-2" attributes="0"/>
+              <Component id="officesListPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="logoutButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
@@ -125,7 +125,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="changeDetailsButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="addSurgeryButton" pref="124" max="32767" attributes="0"/>
+                          <Component id="addOfficeButton" pref="124" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="changePasswordButton" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -158,7 +158,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="changeDetailsButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="changePasswordButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addSurgeryButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="addOfficeButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -213,12 +213,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changeDetailsButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="addSurgeryButton">
+        <Component class="javax.swing.JButton" name="addOfficeButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Prida&#x165; ordin&#xe1;ciu"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addSurgeryButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addOfficeButtonActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="changePasswordButton">
@@ -231,7 +231,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="surgeryListPanel">
+    <Container class="javax.swing.JPanel" name="officesListPanel">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -246,12 +246,12 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="ordinaryScrollPane" max="32767" attributes="0"/>
+                      <Component id="officesScrollPane" max="32767" attributes="0"/>
                       <Component id="listTermsButton" alignment="1" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="changeSurgeryDetailsButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="changeOfficeDetailsButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="deleteSurgeryButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="deleteOfficeButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -262,13 +262,13 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="ordinaryScrollPane" min="-2" pref="86" max="-2" attributes="0"/>
+                  <Component id="officesScrollPane" min="-2" pref="86" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="listTermsButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="changeSurgeryDetailsButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="deleteSurgeryButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="changeOfficeDetailsButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteOfficeButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -276,14 +276,14 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="ordinaryScrollPane">
+        <Container class="javax.swing.JScrollPane" name="officesScrollPane">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JList" name="surgeryList">
+            <Component class="javax.swing.JList" name="officesList">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                   <StringArray count="5">
@@ -309,20 +309,20 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listTermsButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="changeSurgeryDetailsButton">
+        <Component class="javax.swing.JButton" name="changeOfficeDetailsButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Zmeni&#x165; detaily ordin&#xe1;cie"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changeSurgeryDetailsButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changeOfficeDetailsButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="deleteSurgeryButton">
+        <Component class="javax.swing.JButton" name="deleteOfficeButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Odstr&#xe1;ni&#x165; ordin&#xe1;ciu"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteSurgeryButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteOfficeButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -20,12 +20,12 @@ package sk.upjs.doctororganizer;
  *
  * @author acer
  */
-public class SurgerySearchForm extends javax.swing.JFrame {
+public class OfficeSearchForm extends javax.swing.JFrame {
 
     /**
      * Creates new form PacienMainForm
      */
-    public SurgerySearchForm() {
+    public OfficeSearchForm() {
         initComponents();
     }
 
@@ -53,7 +53,7 @@ public class SurgerySearchForm extends javax.swing.JFrame {
         searchButton = new javax.swing.JButton();
         listPanel = new javax.swing.JPanel();
         listScrollPane = new javax.swing.JScrollPane();
-        surgeryList = new javax.swing.JList<>();
+        officesList = new javax.swing.JList<>();
         reserveItPanel = new javax.swing.JPanel();
         reserveButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
@@ -158,12 +158,12 @@ public class SurgerySearchForm extends javax.swing.JFrame {
 
         listPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Výsledky vyhľadávania - výber ordinácie"));
 
-        surgeryList.setModel(new javax.swing.AbstractListModel<String>() {
+        officesList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        listScrollPane.setViewportView(surgeryList);
+        listScrollPane.setViewportView(officesList);
 
         javax.swing.GroupLayout listPanelLayout = new javax.swing.GroupLayout(listPanel);
         listPanel.setLayout(listPanelLayout);
@@ -275,14 +275,18 @@ public class SurgerySearchForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SurgerySearchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OfficeSearchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SurgerySearchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OfficeSearchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SurgerySearchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OfficeSearchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SurgerySearchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OfficeSearchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -291,7 +295,7 @@ public class SurgerySearchForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SurgerySearchForm().setVisible(true);
+                new OfficeSearchForm().setVisible(true);
             }
         });
     }
@@ -302,6 +306,7 @@ public class SurgerySearchForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane listScrollPane;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
+    private javax.swing.JList<String> officesList;
     private javax.swing.JLabel placeLabel;
     private javax.swing.JTextField placeTextField;
     private javax.swing.JButton reserveButton;
@@ -311,7 +316,6 @@ public class SurgerySearchForm extends javax.swing.JFrame {
     private javax.swing.JPanel searchPanel;
     private javax.swing.JLabel specializationLabel;
     private javax.swing.JTextField specializationTextField;
-    private javax.swing.JList<String> surgeryList;
     private javax.swing.JLabel surnameLabel;
     private javax.swing.JTextField surnameTextField;
     private javax.swing.JLabel titleLabel;
