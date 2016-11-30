@@ -1,5 +1,6 @@
 package sk.upjs.doctororganizer.Entities;
 
+import java.math.BigInteger;
 import java.util.Date;
 
 public class Patient {
@@ -8,9 +9,9 @@ public class Patient {
     private String surname;
     private String adress;
     private Date date_of_birth;
-    private String id_number;
+    private BigInteger id_number;
     private String insured_at;
-    private String phone_number;
+    private BigInteger phone_number;
     private String email; 
     private String password;
 
@@ -54,11 +55,11 @@ public class Patient {
         this.date_of_birth = date_of_birth;
     }
 
-    public String getId_number() {
+    public BigInteger getId_number() {
         return id_number;
     }
 
-    public void setId_number(String id_number) {
+    public void setId_number(BigInteger id_number) {
         this.id_number = id_number;
     }
 
@@ -70,11 +71,11 @@ public class Patient {
         this.insured_at = insured_at;
     }
 
-    public String getPhone_number() {
+    public BigInteger getPhone_number() {
         return phone_number;
     }
 
-    public void setPhone_number(String phone_number) {
+    public void setPhone_number(BigInteger phone_number) {
         this.phone_number = phone_number;
     }
 
