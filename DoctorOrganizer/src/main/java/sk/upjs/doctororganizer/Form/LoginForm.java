@@ -16,6 +16,10 @@
  */
 package sk.upjs.doctororganizer.Form;
 
+import java.util.List;
+import sk.upjs.doctororganizer.Entities.Doctor;
+import sk.upjs.doctororganizer.Factory.DaoFactory;
+
 /**
  *
  * @author acer
@@ -169,7 +173,7 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-       PacientRegistrationForm.main(null);
+       PacientRegistrationForm.main(null); 
     }//GEN-LAST:event_registerButtonActionPerformed
 
     /**
