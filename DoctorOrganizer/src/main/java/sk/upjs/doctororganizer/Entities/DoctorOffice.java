@@ -77,7 +77,7 @@ public class DoctorOffice {
         this.phone_number = phone_number;
     }
 
-    public Long getId_doctor() {
+    public long getId_doctor() {
         return id_doctor;
     }
 

@@ -15,7 +15,7 @@ public class Patient {
     private String email; 
     private String password;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
