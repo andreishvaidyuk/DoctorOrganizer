@@ -1,18 +1,18 @@
 package sk.upjs.doctororganizer.Entities;
 
 public class Doctor {
-    private int id;
+    private long id;
     private String name;
     private String surname;
     private String academic_degree;
     private String email;
     private String password;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

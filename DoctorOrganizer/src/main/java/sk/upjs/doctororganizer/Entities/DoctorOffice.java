@@ -1,7 +1,7 @@
 package sk.upjs.doctororganizer.Entities;
 
 public class DoctorOffice {
-    private int id;
+    private Long id;
     private String city;
     private String street;
     private int house_number;
@@ -9,13 +9,13 @@ public class DoctorOffice {
     private String specialization;
     private String opening_hours;
     private String phone_number;
-    private int id_doctor;
+    private Long id_doctor;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -75,11 +75,11 @@ public class DoctorOffice {
         this.phone_number = phone_number;
     }
 
-    public int getId_doctor() {
+    public Long getId_doctor() {
         return id_doctor;
     }
 
-    public void setId_doctor(int id_doctor) {
+    public void setId_doctor(Long id_doctor) {
         this.id_doctor = id_doctor;
     }
 
