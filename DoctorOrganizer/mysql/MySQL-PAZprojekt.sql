@@ -1,4 +1,7 @@
-CREATE TABLE pazprojekt.doctor
+CREATE SCHEMA IF NOT EXISTS `doctororganizer` DEFAULT CHARACTER SET utf8 ;
+USE `doctororganizer`;
+
+CREATE TABLE IF NOT EXISTS doctororganizer.doctor
 (
 id INT NOT NULL auto_increment,
 name VARCHAR(10) NOT NULL,
@@ -10,7 +13,7 @@ PRIMARY KEY (id)
 )
 ;
 
-CREATE TABLE pazprojekt.patient
+CREATE TABLE IF NOT EXISTS doctororganizer.patient
 (
 id INT NOT NULL auto_increment,
 name VARCHAR(10) NOT NULL,
@@ -26,7 +29,7 @@ PRIMARY KEY (id)
 )
 ;
 
-CREATE TABLE pazprojekt.doctor_office
+CREATE TABLE IF NOT EXISTS doctororganizer.doctor_office
 (
 id INT NOT NULL auto_increment,
 city VARCHAR(10) NOT NULL,
@@ -41,7 +44,7 @@ PRIMARY KEY (id)
 )
 ;
 
-CREATE TABLE pazprojekt.term
+CREATE TABLE IF NOT EXISTS doctororganizer.term
 (
 id INT NOT NULL auto_increment,
 id_patient INT NOT NULL,
@@ -53,9 +56,9 @@ PRIMARY KEY (id)
 )
 ;
 
-ALTER TABLE doctor_office ADD FOREIGN KEY (id_doctor) REFERENCES doctor(id);
-ALTER TABLE term ADD FOREIGN KEY (id_doctor_office) REFERENCES doctor_office(id);
-ALTER TABLE term ADD FOREIGN KEY (id_patient) REFERENCES patient(id);
+ALTER TABLE doctor_office ADD CONSTRAINT f_doctor_office_doctor FOREIGN KEY (id_doctor) REFERENCES doctor(id) ON DELETE CASCADE;
+ALTER TABLE term ADD CONSTRAINT f_term_doctor_office FOREIGN KEY (id_doctor_office) REFERENCES doctor_office(id) ON DELETE CASCADE;
+ALTER TABLE term ADD CONSTRAINT f_term_patient FOREIGN KEY (id_patient) REFERENCES patient(id) ON DELETE CASCADE;
 
 INSERT INTO doctor
 VALUES
