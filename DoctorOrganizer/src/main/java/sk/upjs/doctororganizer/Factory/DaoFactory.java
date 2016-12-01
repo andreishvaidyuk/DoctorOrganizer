@@ -48,7 +48,7 @@ public enum DaoFactory {
     private DoctorDao getMysqlDoctorDao() {
         if (mysqlDoctorDao == null) {
             MysqlDataSource dataSource = new MysqlDataSource();
-            dataSource.setUrl("jdbc:mysql://localhost/pazprojekt?serverTimezone=Europe/Bratislava");
+            dataSource.setUrl("jdbc:mysql://localhost/doctororganizer?serverTimezone=Europe/Bratislava");
             dataSource.setUser("root");
             dataSource.setPassword("heslo");
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -60,7 +60,7 @@ public enum DaoFactory {
     private DoctorOfficeDao getMysqlDoctorOfficeDao() {
         if (mysqlDoctorOfficeDao == null) {
             MysqlDataSource dataSource = new MysqlDataSource();
-            dataSource.setUrl("jdbc:mysql://localhost/pazprojekt?serverTimezone=Europe/Bratislava");
+            dataSource.setUrl("jdbc:mysql://localhost/doctororganizer?serverTimezone=Europe/Bratislava");
             dataSource.setUser("root");
             dataSource.setPassword("heslo");
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -72,7 +72,7 @@ public enum DaoFactory {
     private PatientDao getMysqlPatienDao() {
         if (mysqlPatienDao == null) {
             MysqlDataSource dataSource = new MysqlDataSource();
-            dataSource.setUrl("jdbc:mysql://localhost/pazprojekt?serverTimezone=Europe/Bratislava");
+            dataSource.setUrl("jdbc:mysql://localhost/doctororganizer?serverTimezone=Europe/Bratislava");
             dataSource.setUser("root");
             dataSource.setPassword("heslo");
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -84,7 +84,7 @@ public enum DaoFactory {
     private TermDao getMysqlTermDao() {
         if (mysqlTermDao == null) {
             MysqlDataSource dataSource = new MysqlDataSource();
-            dataSource.setUrl("jdbc:mysql://localhost/pazprojekt?serverTimezone=Europe/Bratislava");
+            dataSource.setUrl("jdbc:mysql://localhost/doctororganizer?serverTimezone=Europe/Bratislava");
             dataSource.setUser("root");
             dataSource.setPassword("heslo");
             JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);

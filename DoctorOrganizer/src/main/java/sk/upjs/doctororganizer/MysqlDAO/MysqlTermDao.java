@@ -16,7 +16,8 @@ public class MysqlTermDao implements TermDao {
 
     @Override
     public void add(Term term) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "INSERT INTO `term` (`id_patient`, `id_doctor_office`, `date`, `reason`, `term_condition`) VALUES (?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, term.getId_patient(), term.getId_doctor_office(), term.getDate(), term.getReason(), term.getTerm_condition());
     }
 
     @Override

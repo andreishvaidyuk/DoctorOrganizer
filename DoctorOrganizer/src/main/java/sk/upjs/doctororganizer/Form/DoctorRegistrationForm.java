@@ -16,6 +16,10 @@
  */
 package sk.upjs.doctororganizer.Form;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JTextField;
+
 /**
  *
  * @author acer
@@ -43,10 +47,10 @@ public class DoctorRegistrationForm extends javax.swing.JFrame {
         typePanel = new javax.swing.JPanel();
         doctorRadioButton = new javax.swing.JRadioButton();
         pacientRadioButton = new javax.swing.JRadioButton();
-        registerDetailsPanel = new javax.swing.JPanel();
+        loginDetailsPanel = new javax.swing.JPanel();
         emailLabel = new javax.swing.JLabel();
-        pass1Label = new javax.swing.JLabel();
         passLabel = new javax.swing.JLabel();
+        passConfirmLabel = new javax.swing.JLabel();
         emailTextField = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
         jPasswordField2 = new javax.swing.JPasswordField();
@@ -115,49 +119,49 @@ public class DoctorRegistrationForm extends javax.swing.JFrame {
                 .addComponent(pacientRadioButton))
         );
 
-        registerDetailsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Registračné údaje"));
+        loginDetailsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Registračné údaje"));
 
         emailLabel.setText("E-mail:");
 
-        pass1Label.setText("Heslo:");
+        passLabel.setText("Heslo:");
 
-        passLabel.setText("Potvrdenie hesla:");
+        passConfirmLabel.setText("Potvrdenie hesla:");
 
-        javax.swing.GroupLayout registerDetailsPanelLayout = new javax.swing.GroupLayout(registerDetailsPanel);
-        registerDetailsPanel.setLayout(registerDetailsPanelLayout);
-        registerDetailsPanelLayout.setHorizontalGroup(
-            registerDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(registerDetailsPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout loginDetailsPanelLayout = new javax.swing.GroupLayout(loginDetailsPanel);
+        loginDetailsPanel.setLayout(loginDetailsPanelLayout);
+        loginDetailsPanelLayout.setHorizontalGroup(
+            loginDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loginDetailsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(registerDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(registerDetailsPanelLayout.createSequentialGroup()
-                        .addComponent(passLabel)
+                .addGroup(loginDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(loginDetailsPanelLayout.createSequentialGroup()
+                        .addComponent(passConfirmLabel)
                         .addGap(18, 18, 18)
                         .addComponent(jPasswordField2))
-                    .addGroup(registerDetailsPanelLayout.createSequentialGroup()
-                        .addGroup(registerDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(loginDetailsPanelLayout.createSequentialGroup()
+                        .addGroup(loginDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(emailLabel)
-                            .addComponent(pass1Label))
+                            .addComponent(passLabel))
                         .addGap(18, 18, 18)
-                        .addGroup(registerDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(loginDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(emailTextField)
                             .addComponent(jPasswordField1))))
                 .addContainerGap())
         );
-        registerDetailsPanelLayout.setVerticalGroup(
-            registerDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(registerDetailsPanelLayout.createSequentialGroup()
+        loginDetailsPanelLayout.setVerticalGroup(
+            loginDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loginDetailsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(registerDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(loginDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailLabel)
                     .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(registerDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pass1Label)
+                .addGroup(loginDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(passLabel)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(registerDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passLabel)
+                .addGroup(loginDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(passConfirmLabel)
                     .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
@@ -208,6 +212,11 @@ public class DoctorRegistrationForm extends javax.swing.JFrame {
         );
 
         registerButton.setText("Registácia");
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
 
         cancelButton.setText("Zrušiť");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -246,7 +255,7 @@ public class DoctorRegistrationForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(typePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(registerDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(loginDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(personalDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(buttonsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -259,7 +268,7 @@ public class DoctorRegistrationForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(typePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(registerDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loginDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(personalDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -278,6 +287,11 @@ public class DoctorRegistrationForm extends javax.swing.JFrame {
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        List<JTextField> textFieldList = new ArrayList<>();
+        textFieldList.add(jPasswordField1);
+    }//GEN-LAST:event_registerButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -324,16 +338,16 @@ public class DoctorRegistrationForm extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JLabel lastnameLabel;
     private javax.swing.JTextField lastnameTextField;
+    private javax.swing.JPanel loginDetailsPanel;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JRadioButton pacientRadioButton;
-    private javax.swing.JLabel pass1Label;
+    private javax.swing.JLabel passConfirmLabel;
     private javax.swing.JLabel passLabel;
     private javax.swing.JPanel personalDetailsPanel;
     private javax.swing.JLabel personalTitleLabel;
     private javax.swing.JTextField personalTitleTextField;
     private javax.swing.JButton registerButton;
-    private javax.swing.JPanel registerDetailsPanel;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanel;
     private javax.swing.JPanel typePanel;

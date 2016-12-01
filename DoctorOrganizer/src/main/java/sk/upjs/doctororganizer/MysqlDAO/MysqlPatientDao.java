@@ -6,18 +6,18 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import sk.upjs.doctororganizer.DAO.PatientDao;
 import sk.upjs.doctororganizer.Entities.Patient;
 
-public class MysqlPatientDao implements PatientDao{
+public class MysqlPatientDao implements PatientDao {
 
-  private JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     public MysqlPatientDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-    
-    
+
     @Override
     public void add(Patient patient) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "INSERT INTO `patient` (`name`, `surname`, `adress`, `date_of_birth`, `id_number`, `insured_at`, `phone_number`, `email`, `password`) VALUES (?,?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(sql, patient.getName(), patient.getSurname(), patient.getAdress(), patient.getDate_of_birth(), patient.getId_number(), patient.getInsured_at(), patient.getPhone_number(), patient.getEmail(), patient.getPassword());
     }
 
     @Override
@@ -29,7 +29,7 @@ public class MysqlPatientDao implements PatientDao{
 
     @Override
     public Patient getId(long id) {
-        String sql = "SELECT id, name, surname, adress, date_of_birth, id_number, insured_at, phone_number, email, password FROM patient WHERE id = "+id;
+        String sql = "SELECT id, name, surname, adress, date_of_birth, id_number, insured_at, phone_number, email, password FROM patient WHERE id = " + id;
         BeanPropertyRowMapper<Patient> bprm = new BeanPropertyRowMapper<>(Patient.class);
         return jdbcTemplate.query(sql, bprm).get(0);
     }
@@ -44,5 +44,5 @@ public class MysqlPatientDao implements PatientDao{
         String sql = "DELETE FROM patient WHERE id=?";
         jdbcTemplate.update(sql, id);
     }
-    
+
 }

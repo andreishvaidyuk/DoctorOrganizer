@@ -16,7 +16,8 @@ public class MysqlDoctorOfficeDao implements DoctorOfficeDao {
 
     @Override
     public void add(DoctorOffice office) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "INSERT INTO `office` (`city`, `street`, `house_number`, `hospital`, `specialization`, `opening_hours`, `phone_number`, `id_doctor`) VALUES (?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(sql, office.getCity(), office.getStreet(), office.getHouse_number(), office.getHospital(), office.getSpecialization(), office.getOpening_hours(), office.getPhone_number(), office.getId_doctor());
     }
 
     @Override

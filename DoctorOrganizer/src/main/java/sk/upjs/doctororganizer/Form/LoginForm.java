@@ -18,13 +18,13 @@ package sk.upjs.doctororganizer.Form;
 
 import java.util.List;
 import sk.upjs.doctororganizer.Entities.Doctor;
+import sk.upjs.doctororganizer.Entities.Patient;
 import sk.upjs.doctororganizer.Factory.DaoFactory;
 
-/**
- *
- * @author acer
- */
 public class LoginForm extends javax.swing.JFrame {
+
+    private Doctor loggedInDoc;
+    private Patient loggedInPatient;
 
     /**
      * Creates new form LoginForm
@@ -84,6 +84,11 @@ public class LoginForm extends javax.swing.JFrame {
         passwordLabel.setText("Heslo:");
 
         loginButton.setText("Prihlásiť sa");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
         loginPanel.setLayout(loginPanelLayout);
@@ -173,8 +178,44 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-       PacientRegistrationForm.main(null); 
+        PacientRegistrationForm.main(null);
     }//GEN-LAST:event_registerButtonActionPerformed
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        String email = emailTextField.getText();
+        String password = new String(jPasswordField1.getPassword());
+        List<Doctor> docList = DaoFactory.INSTANCE.getDoctorDao().getAll();
+        for (Doctor doctor : docList) {
+            if (doctor.getEmail().equals(email)) {
+                if (doctor.getPassword().equals(password)) {
+                    loggedInDoc = doctor;
+                    System.out.println("HELLO " + doctor.getName());
+                    return;
+                } else {
+                    BadPasswordDialog.main(null);
+                    System.out.println("Nespravne heslo alebo pouzivatelske meno");
+                    return;
+                }
+            }
+        }
+        if (loggedInDoc == null) {
+            List<Patient> patientList = DaoFactory.INSTANCE.getPatientDao().getAll();
+            for (Patient patient : patientList) {
+                if (patient.getEmail().equals(email)) {
+                    if (patient.getPassword().equals(password)) {
+                        loggedInPatient = patient;
+                        System.out.println("HELLO " + patient.getName());
+                        return;
+                    } else {
+                        BadPasswordDialog.main(null);
+                        return;
+                    }
+                }
+            }
+        }
+        BadPasswordDialog.main(null);
+        System.out.println("Nespravne heslo alebo pouzivatelske meno");
+    }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
      * @param args the command line arguments

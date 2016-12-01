@@ -16,7 +16,8 @@ public class MysqlDoctorDao implements DoctorDao {
 
     @Override
     public void add(Doctor doctor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "INSERT INTO `doctor` (`name`, `surname`, `academic_degree`, `email`, `password`) VALUES (?,?,?,?,?)";
+        jdbcTemplate.update(sql, doctor.getName(), doctor.getSurname(), doctor.getAcademic_degree(), doctor.getEmail(), doctor.getPassword());
     }
 
     @Override
