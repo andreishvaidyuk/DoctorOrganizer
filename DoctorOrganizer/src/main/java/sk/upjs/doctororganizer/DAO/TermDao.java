@@ -9,9 +9,9 @@ public interface TermDao {
 
     List<Term> getAll();
 
-    Term getId(Long id);
+    Term getId(long id);
 
     void upgrade(Term term);
 
-    void delete(Long id);
+    void delete(long id);
 }

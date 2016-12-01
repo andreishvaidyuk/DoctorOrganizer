@@ -9,9 +9,9 @@ public interface DoctorOfficeDao {
 
     List<DoctorOffice> getAll();
 
-    DoctorOffice getId(Long id);
+    DoctorOffice getId(long id);
 
     void upgrade(DoctorOffice office);
 
-    void delete(Long id);
+    void delete(long id);
 }
