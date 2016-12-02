@@ -3,34 +3,34 @@ package sk.upjs.doctororganizer.Entities;
 import java.time.LocalDateTime;
 
 public class Term {
-    private long id;
-    private long id_patient;
-    private long id_doctor_office;
+    private Long id;
+    private Long id_patient;
+    private Long id_doctor_office;
     private LocalDateTime date;
     private String reason;
     private String term_condition;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getId_patient() {
+    public Long getId_patient() {
         return id_patient;
     }
 
-    public void setId_patient(long id_patient) {
+    public void setId_patient(Long id_patient) {
         this.id_patient = id_patient;
     }
 
-    public long getId_doctor_office() {
+    public Long getId_doctor_office() {
         return id_doctor_office;
     }
 
-    public void setId_doctor_office(long id_doctor_office) {
+    public void setId_doctor_office(Long id_doctor_office) {
         this.id_doctor_office = id_doctor_office;
     }
 
