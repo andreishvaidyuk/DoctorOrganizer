@@ -28,7 +28,6 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="titlePanel" alignment="0" max="32767" attributes="0"/>
-                  <Component id="officeDetailPanel" alignment="0" max="32767" attributes="0"/>
                   <Component id="filterPanel" alignment="0" max="32767" attributes="0"/>
                   <Component id="termsPanel" alignment="0" max="32767" attributes="0"/>
                   <Component id="closeButton" alignment="0" max="32767" attributes="0"/>
@@ -42,8 +41,6 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="titlePanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="officeDetailPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="filterPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -90,195 +87,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="officeDetailPanel">
-      <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Detaily ordin&#xe1;cie"/>
-          </Border>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="placeLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="townTextField" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="streetLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="streetTextField" min="-2" pref="115" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="specializationLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="phoneNumberLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="phoneTextField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="specializationTextField" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="openTimesLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                          <Component id="fromLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="fromTextField" min="-2" pref="80" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="toLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="toTextField" min="-2" pref="80" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="placeNumberLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="descriptionNumberTextField" max="32767" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="hospitalLabel" min="-2" pref="55" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="hospotialTextField" min="-2" pref="186" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="placeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="townTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="streetLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="streetTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="placeNumberLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="descriptionNumberTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="hospitalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="hospotialTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="specializationLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="specializationTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="phoneNumberLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="phoneTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="openTimesLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="fromLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="toLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="fromTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="toTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JLabel" name="placeLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Mesto / Obec:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="streetLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ulica:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="placeNumberLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Popisn&#xe9; &#x10d;&#xed;slo:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="hospitalLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Nemocnica:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="specializationLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&#x160;pecializ&#xe1;cia ordin&#xe1;cie:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="phoneNumberLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Telef&#xf3;nn&#xe9; &#x10d;&#xed;slo:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="openTimesLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Otv&#xe1;racia doba:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="fromLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="od:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="toLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="do:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="townTextField">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="streetTextField">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="descriptionNumberTextField">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="hospotialTextField">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="specializationTextField">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="phoneTextField">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="fromTextField">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="toTextField">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
     <Container class="javax.swing.JPanel" name="filterPanel">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -293,23 +101,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="dateLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="termStatusLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="termStatusComboBox" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="dayComboBox" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="monthComboBox" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="yearComboBox" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="dateLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="dayComboBox" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="monthComboBox" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="yearComboBox" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -322,11 +121,7 @@
                       <Component id="monthComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="yearComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="termStatusLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="termStatusComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -368,26 +163,6 @@
           </AuxValues>
         </Component>
         <Component class="javax.swing.JComboBox" name="yearComboBox">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JLabel" name="termStatusLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Stav term&#xed;nu:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="termStatusComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
