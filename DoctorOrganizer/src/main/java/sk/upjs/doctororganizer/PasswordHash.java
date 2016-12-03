@@ -5,8 +5,8 @@ import javax.xml.bind.DatatypeConverter;
 
 public class PasswordHash {
     
-    public static String hash(String password, String salt) throws NoSuchAlgorithmException{
-        String toHash = password + salt;
+    public static String hash(String password) throws NoSuchAlgorithmException{
+        String toHash = password;
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         md.update(toHash.getBytes());
         byte[] data = md.digest();
@@ -14,7 +14,7 @@ public class PasswordHash {
         return hashString;
     }
     
-    public static boolean isExpectedPassword(String password, String salt, String hash) throws NoSuchAlgorithmException {
-        return hash.equals(PasswordHash.hash(password,salt));
+    public static boolean isExpectedPassword(String password, String hash) throws NoSuchAlgorithmException {
+        return hash.equals(PasswordHash.hash(password));
     }
 }
