@@ -56,4 +56,10 @@ public class MysqlDoctorDao implements DoctorDao {
         return null;
     }
 
+    @Override
+    public void upgradePass(Doctor doctor, String newPassword) {
+       String sql = "UPDATE doctor SET password = \'" + newPassword + "\' WHERE id = " + doctor.getId();
+        jdbcTemplate.execute(sql);
+    }
+
 }

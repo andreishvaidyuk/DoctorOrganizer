@@ -281,23 +281,28 @@ public class DoctorMainForm extends javax.swing.JFrame {
     private void changeDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeDetailsButtonActionPerformed
         
         if (!this.personalTitleTextField.isEditable()) {
+            //editMode
             this.personalTitleTextField.setEditable(true);
             this.nameTextField.setEditable(true);
             this.lastNameTextField.setEditable(true);
             this.emailTextField.setEditable(true);            
             this.changeDetailsButton.setText("Uložiť údaje");
         } else {
+            //displayMode
             this.personalTitleTextField.setEditable(false);
             this.nameTextField.setEditable(false);
             this.lastNameTextField.setEditable(false);
-            this.emailTextField.setEditable(false);            
+            this.emailTextField.setEditable(false);
+            //TODO update changes to DB            
             this.changeDetailsButton.setText("Zmeniť údaje");
         }
 
     }//GEN-LAST:event_changeDetailsButtonActionPerformed
 
     private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
-        ChangePasswordFrame.main(null);
+       ChangePasswordDialog chpd = new ChangePasswordDialog(this, true);
+       chpd.setLoggedInDoctor(loggedInDoctor);
+       chpd.setVisible(true);    
     }//GEN-LAST:event_changePasswordButtonActionPerformed
 
     private void listTermsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listTermsButtonActionPerformed

@@ -14,6 +14,8 @@ public interface PatientDao {
     Patient getPatientByEmail(String email);
 
     void upgrade(Patient patient);
+    
+    void upgradePass(Patient patient, String newPassword);
 
     void delete(long id);
 }

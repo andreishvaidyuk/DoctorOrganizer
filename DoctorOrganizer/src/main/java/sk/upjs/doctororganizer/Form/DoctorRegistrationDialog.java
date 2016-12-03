@@ -24,12 +24,13 @@ import javax.swing.JTextField;
  *
  * @author acer
  */
-public class DoctorRegistrationForm extends javax.swing.JFrame {
+public class DoctorRegistrationDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form DoctorRegistrationForm
      */
-    public DoctorRegistrationForm() {
+    public DoctorRegistrationDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -280,7 +281,7 @@ public class DoctorRegistrationForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pacientRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacientRadioButtonActionPerformed
-        PatientRegistrationForm.main(null);
+        PatientRegistrationDialog.main(null);
         this.dispose();
     }//GEN-LAST:event_pacientRadioButtonActionPerformed
 
@@ -310,20 +311,20 @@ public class DoctorRegistrationForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DoctorRegistrationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoctorRegistrationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DoctorRegistrationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoctorRegistrationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DoctorRegistrationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoctorRegistrationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DoctorRegistrationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoctorRegistrationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DoctorRegistrationForm().setVisible(true);
             }
         });
     }

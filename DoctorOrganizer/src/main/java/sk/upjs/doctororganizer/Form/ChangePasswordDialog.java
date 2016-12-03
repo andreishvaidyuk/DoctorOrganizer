@@ -16,16 +16,31 @@
  */
 package sk.upjs.doctororganizer.Form;
 
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import sk.upjs.doctororganizer.Entities.Doctor;
+import sk.upjs.doctororganizer.Entities.Patient;
+import sk.upjs.doctororganizer.Factory.DaoFactory;
+import sk.upjs.doctororganizer.PasswordHash;
+
 /**
  *
  * @author acer
  */
-public class ChangePasswordFrame extends javax.swing.JFrame {
+public class ChangePasswordDialog extends javax.swing.JDialog {
+
+    private Patient loggedInPatient;
+    private Doctor loggedInDoctor;
+    private final String badOldPassInfoText = "Zadané staré heslo je nesprávne";
+    private final String newPasswordsNotEqualInfoText = "Zadané nové heslá sa nezhodujú";
+    private final String passChangedInfoText = "Heslo bolo úspešne zmenené";
 
     /**
      * Creates new form ChangePasswordFrame
      */
-    public ChangePasswordFrame() {
+    public ChangePasswordDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -48,6 +63,8 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
         oldPasswordField = new javax.swing.JPasswordField();
         new1PasswordField = new javax.swing.JPasswordField();
         new2PasswordField = new javax.swing.JPasswordField();
+        infoPanel = new javax.swing.JPanel();
+        infoTextLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("DoctorOrganizer 1.0");
@@ -62,7 +79,7 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(titlePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         titlePanelLayout.setVerticalGroup(
@@ -80,6 +97,11 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
         newPass2Label.setText("Potvrdenie hesla:");
 
         changePasswordButton.setText("Zmeniť heslo");
+        changePasswordButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePasswordButtonActionPerformed(evt);
+            }
+        });
 
         cancelButton.setText("Zrušiť");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +110,26 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
             }
         });
 
+        infoTextLabel.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        infoTextLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
+        infoPanel.setLayout(infoPanelLayout);
+        infoPanelLayout.setHorizontalGroup(
+            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(infoTextLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        infoPanelLayout.setVerticalGroup(
+            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(infoTextLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,9 +137,8 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(changePasswordButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(newPass2Label)
@@ -105,9 +146,11 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
                             .addComponent(oldPassLabel))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(new2PasswordField)
+                            .addComponent(new2PasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
                             .addComponent(new1PasswordField)
-                            .addComponent(oldPasswordField))))
+                            .addComponent(oldPasswordField)))
+                    .addComponent(changePasswordButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -128,6 +171,8 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
                     .addComponent(newPass2Label)
                     .addComponent(new2PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(changePasswordButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancelButton)
@@ -140,6 +185,46 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
+
+        try {
+            String oldPass = PasswordHash.hash(new String(oldPasswordField.getPassword()));
+            if (!new1PasswordField.getPassword().equals(new2PasswordField.getPassword())) {
+                infoTextLabel.setText(newPasswordsNotEqualInfoText);
+                return;
+            }
+            if (loggedInPatient != null) {
+                if (loggedInPatient.getPassword().equals(oldPass)) {
+                    DaoFactory.INSTANCE.getPatientDao().upgradePass(loggedInPatient, PasswordHash.hash(new String(new1PasswordField.getPassword())));
+                } else {
+                    infoTextLabel.setText(badOldPassInfoText);
+                    return;
+                }
+            } else {
+                if (loggedInDoctor.getPassword().equals(oldPass)) {
+                    DaoFactory.INSTANCE.getDoctorDao().upgradePass(loggedInDoctor, PasswordHash.hash(new String(new1PasswordField.getPassword())));
+                } else {
+                    infoTextLabel.setText(badOldPassInfoText);
+                    return;
+                }
+            }
+
+            infoTextLabel.setText(passChangedInfoText);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(ChangePasswordDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_changePasswordButtonActionPerformed
+
+    public void setLoggedInPatient(Patient loggedInPatient) {
+        this.loggedInPatient = loggedInPatient;
+    }
+
+    public void setLoggedInDoctor(Doctor loggedInDoctor) {
+        this.loggedInDoctor = loggedInDoctor;
+    }
 
     /**
      * @param args the command line arguments
@@ -158,20 +243,20 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChangePasswordFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePasswordDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChangePasswordFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePasswordDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChangePasswordFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePasswordDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChangePasswordFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePasswordDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChangePasswordFrame().setVisible(true);
             }
         });
     }
@@ -179,6 +264,8 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton changePasswordButton;
+    private javax.swing.JPanel infoPanel;
+    private javax.swing.JLabel infoTextLabel;
     private javax.swing.JPasswordField new1PasswordField;
     private javax.swing.JPasswordField new2PasswordField;
     private javax.swing.JLabel newPass1Label;
