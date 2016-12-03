@@ -11,6 +11,8 @@ public interface DoctorDao {
 
     Doctor getId(long id);
 
+    Doctor getDoctorByEmail(String email);
+
     void upgrade(Doctor doctor);
 
     void delete(long id);

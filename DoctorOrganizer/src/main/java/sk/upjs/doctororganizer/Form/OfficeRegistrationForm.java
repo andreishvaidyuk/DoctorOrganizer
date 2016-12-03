@@ -16,6 +16,8 @@
  */
 package sk.upjs.doctororganizer.Form;
 
+import sk.upjs.doctororganizer.Entities.DoctorOffice;
+
 /**
  *
  * @author acer
@@ -50,7 +52,7 @@ public class OfficeRegistrationForm extends javax.swing.JFrame {
         timeLabel = new javax.swing.JLabel();
         fromLabel = new javax.swing.JLabel();
         toLabel = new javax.swing.JLabel();
-        townTextField = new javax.swing.JTextField();
+        placeTextField = new javax.swing.JTextField();
         streetTextField = new javax.swing.JTextField();
         descriptionNumberTextField = new javax.swing.JTextField();
         hospotialTextField = new javax.swing.JTextField();
@@ -121,7 +123,7 @@ public class OfficeRegistrationForm extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, officeDetailPanelLayout.createSequentialGroup()
                         .addComponent(placeLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(townTextField)
+                        .addComponent(placeTextField)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(streetLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -160,7 +162,7 @@ public class OfficeRegistrationForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(officeDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(placeLabel)
-                    .addComponent(townTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(placeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(streetLabel)
                     .addComponent(streetTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -188,6 +190,11 @@ public class OfficeRegistrationForm extends javax.swing.JFrame {
         );
 
         registerButton.setText("Registrovať");
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
 
         cancelButton.setText("Zrušiť");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -248,6 +255,17 @@ public class OfficeRegistrationForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        DoctorOffice office = new DoctorOffice();
+        office.setCity(placeTextField.getText());
+        office.setHospital(hospotialTextField.getText());
+        //TODO:
+        //office.setHouse_number(descriptionNumberTextField.getText());
+       // office.setId_doctor(/*current logged in*/);
+        
+            
+    }//GEN-LAST:event_registerButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -297,6 +315,7 @@ public class OfficeRegistrationForm extends javax.swing.JFrame {
     private javax.swing.JLabel phoneLabel;
     private javax.swing.JTextField phoneTextField;
     private javax.swing.JLabel placeLabel;
+    private javax.swing.JTextField placeTextField;
     private javax.swing.JButton registerButton;
     private javax.swing.JTextField specializationTextField;
     private javax.swing.JLabel specializtionLabel;
@@ -307,6 +326,5 @@ public class OfficeRegistrationForm extends javax.swing.JFrame {
     private javax.swing.JPanel titlePanel;
     private javax.swing.JComboBox<String> toComboBox;
     private javax.swing.JLabel toLabel;
-    private javax.swing.JTextField townTextField;
     // End of variables declaration//GEN-END:variables
 }

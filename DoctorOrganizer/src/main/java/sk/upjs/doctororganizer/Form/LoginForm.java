@@ -16,15 +16,11 @@
  */
 package sk.upjs.doctororganizer.Form;
 
-import java.util.List;
 import sk.upjs.doctororganizer.Entities.Doctor;
 import sk.upjs.doctororganizer.Entities.Patient;
 import sk.upjs.doctororganizer.Factory.DaoFactory;
 
 public class LoginForm extends javax.swing.JFrame {
-
-    private Doctor loggedInDoc;
-    private Patient loggedInPatient;
 
     /**
      * Creates new form LoginForm
@@ -178,43 +174,46 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        PacientRegistrationForm.main(null);
+        PatientRegistrationForm prg = new PatientRegistrationForm();
+        this.setEnabled(false);
+        prg.setVisible(true);
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         String email = emailTextField.getText();
         String password = new String(jPasswordField1.getPassword());
-        List<Doctor> docList = DaoFactory.INSTANCE.getDoctorDao().getAll();
-        for (Doctor doctor : docList) {
-            if (doctor.getEmail().equals(email)) {
-                if (doctor.getPassword().equals(password)) {
-                    loggedInDoc = doctor;
-                    System.out.println("HELLO " + doctor.getName());
-                    return;
+        Doctor loggedInDoctor;
+        Patient loggedInPatient;
+        loggedInDoctor = DaoFactory.INSTANCE.getDoctorDao().getDoctorByEmail(email);
+        if (loggedInDoctor == null) {
+            loggedInPatient = DaoFactory.INSTANCE.getPatientDao().getPatientByEmail(email);
+            if (loggedInPatient == null) {
+                BadPasswordDialog bpd = new BadPasswordDialog(this, true);
+                bpd.setVisible(true);
+            } else {
+                if (password.equals(loggedInPatient.getPassword())) {
+                    PatientMainForm pmf = new PatientMainForm();
+                    pmf.setLoggedInPatient(loggedInPatient);
+                    pmf.setVisible(true);
+                    this.dispose();
                 } else {
-                    BadPasswordDialog.main(null);
-                    System.out.println("Nespravne heslo alebo pouzivatelske meno");
-                    return;
+                    BadPasswordDialog bpd = new BadPasswordDialog(this, true);
+                    bpd.setVisible(true);
                 }
             }
-        }
-        if (loggedInDoc == null) {
-            List<Patient> patientList = DaoFactory.INSTANCE.getPatientDao().getAll();
-            for (Patient patient : patientList) {
-                if (patient.getEmail().equals(email)) {
-                    if (patient.getPassword().equals(password)) {
-                        loggedInPatient = patient;
-                        System.out.println("HELLO " + patient.getName());
-                        return;
-                    } else {
-                        BadPasswordDialog.main(null);
-                        return;
-                    }
-                }
+        } else {
+            if (password.equals(loggedInDoctor.getPassword())) {
+                DoctorMainForm dmf = new DoctorMainForm();
+                dmf.setLoggedInDoctor(loggedInDoctor);
+                dmf.setVisible(true);
+                this.dispose();
+
+            } else {
+                BadPasswordDialog bpd = new BadPasswordDialog(this, true);
+                bpd.setVisible(true);
             }
         }
-        BadPasswordDialog.main(null);
-        System.out.println("Nespravne heslo alebo pouzivatelske meno");
+
     }//GEN-LAST:event_loginButtonActionPerformed
 
     /**

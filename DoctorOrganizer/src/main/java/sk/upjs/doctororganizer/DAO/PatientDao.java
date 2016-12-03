@@ -10,6 +10,8 @@ public interface PatientDao {
     List<Patient> getAll();
 
     Patient getId(long id);
+    
+    Patient getPatientByEmail(String email);
 
     void upgrade(Patient patient);
 
