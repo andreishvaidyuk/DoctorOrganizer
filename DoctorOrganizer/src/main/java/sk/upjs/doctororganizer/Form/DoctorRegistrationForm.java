@@ -280,7 +280,7 @@ public class DoctorRegistrationForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pacientRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacientRadioButtonActionPerformed
-        PacientRegistrationForm.main(null);
+        PatientRegistrationForm.main(null);
         this.dispose();
     }//GEN-LAST:event_pacientRadioButtonActionPerformed
 

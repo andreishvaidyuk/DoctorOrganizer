@@ -16,11 +16,15 @@
  */
 package sk.upjs.doctororganizer.Form;
 
+import sk.upjs.doctororganizer.Entities.Doctor;
+
 /**
  *
  * @author acer
  */
 public class DoctorMainForm extends javax.swing.JFrame {
+
+    private Doctor loggedInDoctor;
 
     /**
      * Creates new form DoctorMainForm
@@ -319,6 +323,11 @@ public class DoctorMainForm extends javax.swing.JFrame {
         LoginForm.main(null);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
+    
+     void setLoggedInDoctor(Doctor loggedInDoctor) {
+       this.loggedInDoctor = loggedInDoctor;
+    }
+     
     /**
      * @param args the command line arguments
      */
@@ -377,4 +386,6 @@ public class DoctorMainForm extends javax.swing.JFrame {
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanel;
     // End of variables declaration//GEN-END:variables
+
+   
 }

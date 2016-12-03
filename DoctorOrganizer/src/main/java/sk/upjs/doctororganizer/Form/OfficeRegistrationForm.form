@@ -103,7 +103,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="placeLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="townTextField" max="32767" attributes="0"/>
+                          <Component id="placeTextField" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="streetLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -151,7 +151,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="placeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="townTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="placeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="streetLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="streetTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -231,7 +231,7 @@
             <Property name="text" type="java.lang.String" value="do:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="townTextField">
+        <Component class="javax.swing.JTextField" name="placeTextField">
         </Component>
         <Component class="javax.swing.JTextField" name="streetTextField">
         </Component>
@@ -307,6 +307,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Registrova&#x165;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registerButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="cancelButton">
           <Properties>

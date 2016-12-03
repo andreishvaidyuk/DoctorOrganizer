@@ -16,16 +16,20 @@
  */
 package sk.upjs.doctororganizer.Form;
 
+import sk.upjs.doctororganizer.Entities.Patient;
+
 /**
  *
  * @author acer
  */
-public class PacientMainForm extends javax.swing.JFrame {
+public class PatientMainForm extends javax.swing.JFrame {
+
+    private Patient loggedInPatient;
 
     /**
      * Creates new form PacientMainForm
      */
-    public PacientMainForm() {
+    public PatientMainForm() {
         initComponents();
     }
 
@@ -218,6 +222,10 @@ public class PacientMainForm extends javax.swing.JFrame {
         //dialog: ozaj chcete zrusit termin? nasledne stav terminu prepisat na zruseny pacientom
     }//GEN-LAST:event_cancelTermButtonActionPerformed
 
+    void setLoggedInPatient(Patient loggedInPatient) {
+      this.loggedInPatient = loggedInPatient;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -235,20 +243,21 @@ public class PacientMainForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PacientMainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PatientMainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PacientMainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PatientMainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PacientMainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PatientMainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PacientMainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PatientMainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PacientMainForm().setVisible(true);
+                new PatientMainForm().setVisible(true);
             }
         });
     }
@@ -266,4 +275,6 @@ public class PacientMainForm extends javax.swing.JFrame {
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanel;
     // End of variables declaration//GEN-END:variables
+
+    
 }

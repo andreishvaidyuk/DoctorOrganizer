@@ -45,4 +45,15 @@ public class MysqlDoctorDao implements DoctorDao {
         jdbcTemplate.update(sql, id);
     }
 
+    @Override
+    public Doctor getDoctorByEmail(String email) {
+        String sql = "SELECT id, name, surname, academic_degree, email, password FROM doctor WHERE email = \'" + email + "\'";
+        BeanPropertyRowMapper<Doctor> bprm = new BeanPropertyRowMapper<>(Doctor.class);
+        List<Doctor> list = jdbcTemplate.query(sql, bprm);
+        if (list != null && list.size() > 0) {
+            return list.get(0);
+        }
+        return null;
+    }
+
 }
