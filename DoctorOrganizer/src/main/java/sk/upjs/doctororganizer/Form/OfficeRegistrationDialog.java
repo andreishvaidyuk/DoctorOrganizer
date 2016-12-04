@@ -16,7 +16,9 @@
  */
 package sk.upjs.doctororganizer.Form;
 
+import java.math.BigInteger;
 import sk.upjs.doctororganizer.Entities.DoctorOffice;
+import sk.upjs.doctororganizer.Factory.DaoFactory;
 
 /**
  *
@@ -112,9 +114,9 @@ public class OfficeRegistrationDialog extends javax.swing.JDialog {
 
         toLabel.setText("do:");
 
-        fromComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        fromComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00:00", "00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "22:30", "23:00", "23:30" }));
 
-        toComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        toComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00:00", "00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "22:30", "23:00", "23:30" }));
 
         javax.swing.GroupLayout officeDetailPanelLayout = new javax.swing.GroupLayout(officeDetailPanel);
         officeDetailPanel.setLayout(officeDetailPanelLayout);
@@ -261,11 +263,15 @@ public class OfficeRegistrationDialog extends javax.swing.JDialog {
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         DoctorOffice office = new DoctorOffice();
         office.setCity(placeTextField.getText());
-        office.setHospital(hospotialTextField.getText());
+        office.setStreet(streetTextField.getText());
         office.setHouse_number(Integer.parseInt(descriptionNumberTextField.getText()));
+        office.setHospital(hospotialTextField.getText());
+        office.setSpecialization(specializationTextField.getText());
+        String time = fromComboBox.getSelectedItem().toString() + "-" + fromComboBox.getSelectedItem().toString();
+        office.setOpening_hours(time);
+        office.setPhone_number(new BigInteger(phoneTextField.getText()));
         office.setId_doctor(doctorId);
-
-
+        DaoFactory.INSTANCE.getDoctorOfficeDao().add(office);
     }//GEN-LAST:event_registerButtonActionPerformed
 
     void setDoctorId(Long id) {
