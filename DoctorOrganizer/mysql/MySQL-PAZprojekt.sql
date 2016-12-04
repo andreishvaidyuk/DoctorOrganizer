@@ -7,8 +7,8 @@ id INT NOT NULL auto_increment,
 name VARCHAR(10) NOT NULL,
 surname VARCHAR(15) NOT NULL,
 academic_degree VARCHAR(10) NOT NULL,
-email VARCHAR(15) NOT NULL,
-password VARCHAR(15) NOT NULL,
+email VARCHAR(40) NOT NULL,
+password VARCHAR(64) NOT NULL,
 PRIMARY KEY (id)
 )
 ;
@@ -21,10 +21,10 @@ surname VARCHAR(15) NOT NULL,
 adress VARCHAR(100) NOT NULL,
 date_of_birth DATE NOT NULL,
 id_number BIGINT NOT NULL,
-insured_at VARCHAR(15) NOT NULL,
-phone_number BIGINT NOT NULL,
-email VARCHAR(15) NOT NULL,
-password VARCHAR(15) NOT NULL,
+insured_at VARCHAR(40) NOT NULL,
+phone_number VARCHAR(40) NOT NULL,
+email VARCHAR(40) NOT NULL,
+password VARCHAR(64) NOT NULL,
 PRIMARY KEY (id)
 )
 ;
@@ -32,13 +32,13 @@ PRIMARY KEY (id)
 CREATE TABLE IF NOT EXISTS doctororganizer.doctor_office
 (
 id INT NOT NULL auto_increment,
-city VARCHAR(10) NOT NULL,
-street VARCHAR(15) NOT NULL,
+city VARCHAR(40) NOT NULL,
+street VARCHAR(40) NOT NULL,
 house_number INT NOT NULL,
-hospital VARCHAR(15) NOT NULL,
-specialization VARCHAR(10) NOT NULL,
-opening_hours VARCHAR(10) NOT NULL,
-phone_number BIGINT NOT NULL,
+hospital VARCHAR(40) NOT NULL,
+specialization VARCHAR(40) NOT NULL,
+opening_hours VARCHAR(40) NOT NULL,
+phone_number VARCHAR(40) NOT NULL,
 id_doctor INT NOT NULL,
 PRIMARY KEY (id)
 )
