@@ -22,11 +22,14 @@ package sk.upjs.doctororganizer.Form;
  */
 public class PatientRegistrationDialog extends javax.swing.JDialog {
 
+    java.awt.Frame parentFrame;
+
     /**
      * Creates new form PacientRegistrationForm
      */
     public PatientRegistrationDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.parentFrame = parent;
         initComponents();
     }
 
@@ -352,12 +355,13 @@ public class PatientRegistrationDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void doctorRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorRadioButtonActionPerformed
-        DoctorRegistrationDialog.main(null);
+        DoctorRegistrationDialog drd = new DoctorRegistrationDialog(parentFrame, true);
         this.dispose();
+        drd.setVisible(true);
     }//GEN-LAST:event_doctorRadioButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        
+
     }//GEN-LAST:event_registerButtonActionPerformed
 
     /**
@@ -394,7 +398,7 @@ public class PatientRegistrationDialog extends javax.swing.JDialog {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               
+
             }
         });
     }

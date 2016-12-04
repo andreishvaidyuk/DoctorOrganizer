@@ -269,7 +269,7 @@ public class OfficeRegistrationDialog extends javax.swing.JDialog {
         office.setSpecialization(specializationTextField.getText());
         String time = fromComboBox.getSelectedItem().toString() + "-" + fromComboBox.getSelectedItem().toString();
         office.setOpening_hours(time);
-        office.setPhone_number(new BigInteger(phoneTextField.getText()));
+        office.setPhone_number(phoneTextField.getText());
         office.setId_doctor(doctorId);
         DaoFactory.INSTANCE.getDoctorOfficeDao().add(office);
     }//GEN-LAST:event_registerButtonActionPerformed

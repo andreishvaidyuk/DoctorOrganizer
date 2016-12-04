@@ -26,11 +26,14 @@ import javax.swing.JTextField;
  */
 public class DoctorRegistrationDialog extends javax.swing.JDialog {
 
+    java.awt.Frame parentFrame;
+
     /**
      * Creates new form DoctorRegistrationForm
      */
     public DoctorRegistrationDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.parentFrame = parent;
         initComponents();
     }
 
@@ -281,8 +284,9 @@ public class DoctorRegistrationDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pacientRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacientRadioButtonActionPerformed
-        PatientRegistrationDialog.main(null);
+        PatientRegistrationDialog prd = new PatientRegistrationDialog(parentFrame, true);
         this.dispose();
+        prd.setVisible(true);
     }//GEN-LAST:event_pacientRadioButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -290,8 +294,6 @@ public class DoctorRegistrationDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        List<JTextField> textFieldList = new ArrayList<>();
-        textFieldList.add(jPasswordField1);
     }//GEN-LAST:event_registerButtonActionPerformed
 
     /**

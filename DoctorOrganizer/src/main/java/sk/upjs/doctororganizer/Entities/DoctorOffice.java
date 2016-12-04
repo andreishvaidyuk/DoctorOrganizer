@@ -1,8 +1,7 @@
 package sk.upjs.doctororganizer.Entities;
 
-import java.math.BigInteger;
-
 public class DoctorOffice {
+
     private Long id;
     private String city;
     private String street;
@@ -10,7 +9,7 @@ public class DoctorOffice {
     private String hospital;
     private String specialization;
     private String opening_hours;
-    private BigInteger phone_number;
+    private String phone_number;
     private Long id_doctor;
 
     public Long getId() {
@@ -69,11 +68,11 @@ public class DoctorOffice {
         this.opening_hours = opening_hours;
     }
 
-    public BigInteger getPhone_number() {
+    public String getPhone_number() {
         return phone_number;
     }
 
-    public void setPhone_number(BigInteger phone_number) {
+    public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
 
@@ -89,6 +88,5 @@ public class DoctorOffice {
     public String toString() {
         return "DoctorOffice{" + "id=" + id + ", city=" + city + ", street=" + street + ", house_number=" + house_number + ", hospital=" + hospital + ", specialization=" + specialization + ", opening_hours=" + opening_hours + ", phone_number=" + phone_number + ", id_doctor=" + id_doctor + '}';
     }
-    
-    
+
 }
