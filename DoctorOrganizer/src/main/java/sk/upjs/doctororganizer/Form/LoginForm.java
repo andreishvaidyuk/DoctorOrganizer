@@ -16,6 +16,7 @@
  */
 package sk.upjs.doctororganizer.Form;
 
+import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import sk.upjs.doctororganizer.Entities.Doctor;
 import sk.upjs.doctororganizer.Entities.Patient;
 import sk.upjs.doctororganizer.Factory.DaoFactory;
@@ -218,34 +219,38 @@ public class LoginForm extends javax.swing.JFrame {
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        String email = emailTextField.getText();
-        String password = new String(jPasswordField1.getPassword());
-        Doctor loggedInDoctor;
-        Patient loggedInPatient;
-        loggedInDoctor = DaoFactory.INSTANCE.getDoctorDao().getDoctorByEmail(email);
-        if (loggedInDoctor == null) {
-            loggedInPatient = DaoFactory.INSTANCE.getPatientDao().getPatientByEmail(email);
-            if (loggedInPatient == null) {
-                infoLabel.setText(badLoginInfoText);
+        try {
+            String email = emailTextField.getText();
+            String password = new String(jPasswordField1.getPassword());
+            Doctor loggedInDoctor;
+            Patient loggedInPatient;
+            loggedInDoctor = DaoFactory.INSTANCE.getDoctorDao().getDoctorByEmail(email);
+            if (loggedInDoctor == null) {
+                loggedInPatient = DaoFactory.INSTANCE.getPatientDao().getPatientByEmail(email);
+                if (loggedInPatient == null) {
+                    infoLabel.setText(badLoginInfoText);
+                } else {
+                    if (password.equals(loggedInPatient.getPassword())) {
+                        PatientMainForm pmf = new PatientMainForm();
+                        pmf.setLoggedInPatient(loggedInPatient);
+                        pmf.setVisible(true);
+                        this.dispose();
+                    } else {
+                        infoLabel.setText(badLoginInfoText);
+                    }
+                }
             } else {
-                if (password.equals(loggedInPatient.getPassword())) {
-                    PatientMainForm pmf = new PatientMainForm();
-                    pmf.setLoggedInPatient(loggedInPatient);
-                    pmf.setVisible(true);
+                if (password.equals(loggedInDoctor.getPassword())) {
+                    DoctorMainForm dmf = new DoctorMainForm();
+                    dmf.setLoggedInDoctor(loggedInDoctor);
+                    dmf.setVisible(true);
                     this.dispose();
                 } else {
                     infoLabel.setText(badLoginInfoText);
                 }
             }
-        } else {
-            if (password.equals(loggedInDoctor.getPassword())) {
-                DoctorMainForm dmf = new DoctorMainForm();
-                dmf.setLoggedInDoctor(loggedInDoctor);
-                dmf.setVisible(true);
-                this.dispose();
-            } else {
-                infoLabel.setText(badLoginInfoText);
-            }
+        }catch (CannotGetJdbcConnectionException ce){
+            infoLabel.setText("Problém s pripojením na databázu");
         }
 
     }//GEN-LAST:event_loginButtonActionPerformed

@@ -22,12 +22,15 @@ import sk.upjs.doctororganizer.Entities.DoctorOffice;
  *
  * @author acer
  */
-public class OfficeRegistrationForm extends javax.swing.JFrame {
+public class OfficeRegistrationDialog extends javax.swing.JDialog {
+
+    private Long doctorId;
 
     /**
      * Creates new form SurgeryRegistrationForm
      */
-    public OfficeRegistrationForm() {
+    public OfficeRegistrationDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -259,12 +262,15 @@ public class OfficeRegistrationForm extends javax.swing.JFrame {
         DoctorOffice office = new DoctorOffice();
         office.setCity(placeTextField.getText());
         office.setHospital(hospotialTextField.getText());
-        //TODO:
-        //office.setHouse_number(descriptionNumberTextField.getText());
-       // office.setId_doctor(/*current logged in*/);
-        
-            
+        office.setHouse_number(Integer.parseInt(descriptionNumberTextField.getText()));
+        office.setId_doctor(doctorId);
+
+
     }//GEN-LAST:event_registerButtonActionPerformed
+
+    void setDoctorId(Long id) {
+        this.doctorId = id;
+    }
 
     /**
      * @param args the command line arguments
@@ -283,21 +289,23 @@ public class OfficeRegistrationForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OfficeRegistrationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OfficeRegistrationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OfficeRegistrationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OfficeRegistrationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OfficeRegistrationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OfficeRegistrationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OfficeRegistrationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OfficeRegistrationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OfficeRegistrationForm().setVisible(true);
+
             }
         });
     }
@@ -327,4 +335,5 @@ public class OfficeRegistrationForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> toComboBox;
     private javax.swing.JLabel toLabel;
     // End of variables declaration//GEN-END:variables
+
 }
