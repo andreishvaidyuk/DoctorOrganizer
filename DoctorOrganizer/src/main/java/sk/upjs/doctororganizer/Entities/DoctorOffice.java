@@ -86,7 +86,7 @@ public class DoctorOffice {
 
     @Override
     public String toString() {
-        return "DoctorOffice{" + "id=" + id + ", city=" + city + ", street=" + street + ", house_number=" + house_number + ", hospital=" + hospital + ", specialization=" + specialization + ", opening_hours=" + opening_hours + ", phone_number=" + phone_number + ", id_doctor=" + id_doctor + '}';
+        return city + ", " + street + " " + house_number + ". " + hospital + ", " + specialization;
     }
 
 }

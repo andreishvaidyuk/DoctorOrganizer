@@ -29,7 +29,8 @@ public class PatientMainForm extends javax.swing.JFrame {
     /**
      * Creates new form PacientMainForm
      */
-    public PatientMainForm() {
+    public PatientMainForm(Patient loggedInPatient) {
+        this.loggedInPatient = loggedInPatient;
         initComponents();
     }
 
@@ -226,9 +227,9 @@ public class PatientMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_createTermButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        //mozne ine logout operacie?
         this.dispose();
-        LoginForm.main(null);
+        LoginForm lf = new LoginForm();
+        lf.setVisible(true);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void cancelTermButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelTermButtonActionPerformed
@@ -240,10 +241,6 @@ public class PatientMainForm extends javax.swing.JFrame {
         chpd.setLoggedInPatient(loggedInPatient);
         chpd.setVisible(true);
     }//GEN-LAST:event_changePassButtonActionPerformed
-
-    void setLoggedInPatient(Patient loggedInPatient) {
-        this.loggedInPatient = loggedInPatient;
-    }
 
     /**
      * @param args the command line arguments
@@ -276,7 +273,6 @@ public class PatientMainForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PatientMainForm().setVisible(true);
             }
         });
     }

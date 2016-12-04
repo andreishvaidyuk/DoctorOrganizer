@@ -17,6 +17,8 @@
 package sk.upjs.doctororganizer.Form;
 
 import sk.upjs.doctororganizer.Entities.Doctor;
+import sk.upjs.doctororganizer.Entities.DoctorOffice;
+import sk.upjs.doctororganizer.Models.OfficeListModel;
 
 /**
  *
@@ -25,11 +27,14 @@ import sk.upjs.doctororganizer.Entities.Doctor;
 public class DoctorMainForm extends javax.swing.JFrame {
 
     private Doctor loggedInDoctor;
+    private OfficeListModel officeListModel;
 
     /**
      * Creates new form DoctorMainForm
      */
-    public DoctorMainForm() {
+    public DoctorMainForm(Doctor loggedInDoctor) {
+        this.loggedInDoctor = loggedInDoctor;
+        officeListModel = new OfficeListModel(loggedInDoctor.getId());
         initComponents();
     }
 
@@ -184,11 +189,7 @@ public class DoctorMainForm extends javax.swing.JFrame {
 
         officesListPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Výpis ordinácií"));
 
-        officesList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        officesList.setModel(officeListModel);
         officesScrollPane.setViewportView(officesList);
 
         listTermsButton.setText("Vypísať termíny");
@@ -279,13 +280,13 @@ public class DoctorMainForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void changeDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeDetailsButtonActionPerformed
-        
+
         if (!this.personalTitleTextField.isEditable()) {
             //editMode
             this.personalTitleTextField.setEditable(true);
             this.nameTextField.setEditable(true);
             this.lastNameTextField.setEditable(true);
-            this.emailTextField.setEditable(true);            
+            this.emailTextField.setEditable(true);
             this.changeDetailsButton.setText("Uložiť údaje");
         } else {
             //displayMode
@@ -300,19 +301,18 @@ public class DoctorMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_changeDetailsButtonActionPerformed
 
     private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
-       ChangePasswordDialog chpd = new ChangePasswordDialog(this, true);
-       chpd.setLoggedInDoctor(loggedInDoctor);
-       chpd.setVisible(true);    
+        ChangePasswordDialog chpd = new ChangePasswordDialog(this, true);
+        chpd.setLoggedInDoctor(loggedInDoctor);
+        chpd.setVisible(true);
     }//GEN-LAST:event_changePasswordButtonActionPerformed
 
     private void listTermsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listTermsButtonActionPerformed
-        String[] surgeryID = {"selectedSurgeryID"};        
-        DoctorTermForm.main(surgeryID);
+
     }//GEN-LAST:event_listTermsButtonActionPerformed
 
     private void changeOfficeDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeOfficeDetailsButtonActionPerformed
-        String[] surgeryID = {"selectedSurgeryID"};        
-        OfficeEditForm.main(surgeryID);
+        OfficeEditForm oef = new OfficeEditForm(this, true, officesList.getSelectedValue());
+        oef.setVisible(true);
     }//GEN-LAST:event_changeOfficeDetailsButtonActionPerformed
 
     private void deleteOfficeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteOfficeButtonActionPerformed
@@ -327,14 +327,9 @@ public class DoctorMainForm extends javax.swing.JFrame {
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         this.dispose();
-        LoginForm.main(null);
+        LoginForm lf = new LoginForm();
+        lf.setVisible(true);
     }//GEN-LAST:event_logoutButtonActionPerformed
-
-    
-     void setLoggedInDoctor(Doctor loggedInDoctor) {
-       this.loggedInDoctor = loggedInDoctor;
-    }
-     
     /**
      * @param args the command line arguments
      */
@@ -365,7 +360,6 @@ public class DoctorMainForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DoctorMainForm().setVisible(true);
             }
         });
     }
@@ -384,7 +378,7 @@ public class DoctorMainForm extends javax.swing.JFrame {
     private javax.swing.JButton logoutButton;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
-    private javax.swing.JList<String> officesList;
+    private javax.swing.JList<DoctorOffice> officesList;
     private javax.swing.JPanel officesListPanel;
     private javax.swing.JScrollPane officesScrollPane;
     private javax.swing.JPanel personalDetailsPanel;
@@ -394,5 +388,4 @@ public class DoctorMainForm extends javax.swing.JFrame {
     private javax.swing.JPanel titlePanel;
     // End of variables declaration//GEN-END:variables
 
-   
 }

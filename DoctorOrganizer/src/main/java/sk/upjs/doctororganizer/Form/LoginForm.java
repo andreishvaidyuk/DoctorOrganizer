@@ -231,8 +231,7 @@ public class LoginForm extends javax.swing.JFrame {
                     infoLabel.setText(badLoginInfoText);
                 } else {
                     if (password.equals(loggedInPatient.getPassword())) {
-                        PatientMainForm pmf = new PatientMainForm();
-                        pmf.setLoggedInPatient(loggedInPatient);
+                        PatientMainForm pmf = new PatientMainForm(loggedInPatient);
                         pmf.setVisible(true);
                         this.dispose();
                     } else {
@@ -241,15 +240,14 @@ public class LoginForm extends javax.swing.JFrame {
                 }
             } else {
                 if (password.equals(loggedInDoctor.getPassword())) {
-                    DoctorMainForm dmf = new DoctorMainForm();
-                    dmf.setLoggedInDoctor(loggedInDoctor);
+                    DoctorMainForm dmf = new DoctorMainForm(loggedInDoctor);
                     dmf.setVisible(true);
                     this.dispose();
                 } else {
                     infoLabel.setText(badLoginInfoText);
                 }
             }
-        }catch (CannotGetJdbcConnectionException ce){
+        } catch (CannotGetJdbcConnectionException ce) {
             infoLabel.setText("Problém s pripojením na databázu");
         }
 

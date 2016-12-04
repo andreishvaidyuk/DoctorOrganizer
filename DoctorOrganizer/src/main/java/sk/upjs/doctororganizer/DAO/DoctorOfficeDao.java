@@ -9,7 +9,9 @@ public interface DoctorOfficeDao {
 
     List<DoctorOffice> getAll();
 
-    DoctorOffice getId(long id);
+    DoctorOffice getByOfficeId(Long id);
+    
+    List<DoctorOffice> getByDoctorId(Long id);
 
     void upgrade(DoctorOffice office);
 
