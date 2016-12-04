@@ -320,7 +320,9 @@ public class DoctorMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteOfficeButtonActionPerformed
 
     private void addOfficeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOfficeButtonActionPerformed
-        OfficeRegistrationForm.main(null);
+        OfficeRegistrationDialog ord = new OfficeRegistrationDialog(this, true);
+        ord.setDoctorId(loggedInDoctor.getId());
+        ord.setVisible(true);
     }//GEN-LAST:event_addOfficeButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
