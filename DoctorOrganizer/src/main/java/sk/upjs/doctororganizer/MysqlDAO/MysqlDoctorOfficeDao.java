@@ -32,7 +32,7 @@ public class MysqlDoctorOfficeDao implements DoctorOfficeDao {
         String sql = "SELECT id, city, street, house_number, hospital, specialization, opening_hours, phone_number, id_doctor FROM doctor_office WHERE id = " + id;
         BeanPropertyRowMapper<DoctorOffice> bprm = new BeanPropertyRowMapper<>(DoctorOffice.class);
 
-        if (jdbcTemplate.query(sql, bprm).size() != 0) {
+        if (!jdbcTemplate.query(sql, bprm).isEmpty()) {
             return jdbcTemplate.query(sql, bprm).get(0);
         }
         return null;
@@ -40,7 +40,7 @@ public class MysqlDoctorOfficeDao implements DoctorOfficeDao {
     }
 
     @Override
-    public void upgrade(DoctorOffice office) {
+    public void upgrade(DoctorOffice office){
         String sql = "UPDATE doctor_office SET city=?, street=?, house_number=?, hospital=?, specialization=?, opening_hours=?, phone_number=? WHERE id=?";
         jdbcTemplate.update(sql, office.getCity(), office.getStreet(), office.getHouse_number(), office.getHospital(), office.getSpecialization(), office.getOpening_hours(), office.getPhone_number(), office.getId());
     }

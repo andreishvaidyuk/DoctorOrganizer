@@ -56,7 +56,7 @@ public class PatientMainForm extends javax.swing.JFrame {
         logoutButton = new javax.swing.JButton();
         changePassButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("DoctorOrganizer 1.0");
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

@@ -69,7 +69,7 @@ public class DoctorMainForm extends javax.swing.JFrame {
         deleteOfficeButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("DoctorOrganizer 1.0");
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -313,16 +313,18 @@ public class DoctorMainForm extends javax.swing.JFrame {
     private void changeOfficeDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeOfficeDetailsButtonActionPerformed
         OfficeEditForm oef = new OfficeEditForm(this, true, officesList.getSelectedValue());
         oef.setVisible(true);
+        officeListModel.refreshList();
     }//GEN-LAST:event_changeOfficeDetailsButtonActionPerformed
 
     private void deleteOfficeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteOfficeButtonActionPerformed
-        //TODO: new Dialog -> Odstranit ordinaciu XYZ??? 
+         
     }//GEN-LAST:event_deleteOfficeButtonActionPerformed
 
     private void addOfficeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOfficeButtonActionPerformed
         OfficeRegistrationDialog ord = new OfficeRegistrationDialog(this, true);
         ord.setDoctorId(loggedInDoctor.getId());
         ord.setVisible(true);
+        officeListModel.refreshList();
     }//GEN-LAST:event_addOfficeButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed

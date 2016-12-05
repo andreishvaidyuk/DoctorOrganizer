@@ -26,23 +26,27 @@ public class OfficeListModel extends AbstractListModel<DoctorOffice> {
 
     DoctorOfficeDao dao;
     Long doctorId;
-    List<DoctorOffice> offices;
 
     public OfficeListModel(Long doctorId) {
+        this.doctorId = doctorId;
         this.dao = DaoFactory.INSTANCE.getDoctorOfficeDao();
-        offices = dao.getByDoctorId(doctorId);
     }
 
     @Override
     public int getSize() {
-        if (offices != null) {
-            return offices.size();
+        List<DoctorOffice> list = dao.getByDoctorId(doctorId);
+        if (list.isEmpty()) {
+            return 0;
         }
-        return 0;
+        return list.size();
     }
 
     @Override
     public DoctorOffice getElementAt(int index) {
-        return offices.get(index);
+        return dao.getByDoctorId(doctorId).get(index);
+    }
+
+    public void refreshList() {
+        fireContentsChanged(this, 0, getSize());
     }
 }

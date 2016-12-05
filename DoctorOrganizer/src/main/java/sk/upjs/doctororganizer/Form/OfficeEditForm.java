@@ -19,6 +19,7 @@ package sk.upjs.doctororganizer.Form;
 import java.awt.Frame;
 import sk.upjs.doctororganizer.Entities.DoctorOffice;
 import sk.upjs.doctororganizer.Factory.DaoFactory;
+import sk.upjs.doctororganizer.Models.OfficeListModel;
 
 /**
  *
@@ -87,6 +88,8 @@ public class OfficeEditForm extends javax.swing.JDialog {
         buttonPanel = new javax.swing.JPanel();
         saveButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        infoPanel = new javax.swing.JPanel();
+        infoLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("DoctorOrganizer 1.0");
@@ -234,8 +237,8 @@ public class OfficeEditForm extends javax.swing.JDialog {
             .addGroup(buttonPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(saveButton, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
-                    .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(saveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         buttonPanelLayout.setVerticalGroup(
@@ -248,6 +251,26 @@ public class OfficeEditForm extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        infoLabel.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        infoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
+        infoPanel.setLayout(infoPanelLayout);
+        infoPanelLayout.setHorizontalGroup(
+            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(infoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        infoPanelLayout.setVerticalGroup(
+            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(infoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -257,7 +280,8 @@ public class OfficeEditForm extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(officeDetailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -267,8 +291,10 @@ public class OfficeEditForm extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(officeDetailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -279,17 +305,23 @@ public class OfficeEditForm extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        DoctorOffice editedOffice = new DoctorOffice();
-        editedOffice.setId(office.getId());
-        editedOffice.setCity(townTextField.getText());
-        editedOffice.setStreet(streetTextField.getText());
-        editedOffice.setHouse_number(Integer.parseInt(descriptionNumberTextField.getText()));
-        editedOffice.setHospital(hospitalTextField.getText());
-        editedOffice.setOpening_hours(fromComboBox.getSelectedItem() + "-" + toComboBox.getSelectedItem());
-        editedOffice.setSpecialization(specializationTextField.getText());
-        editedOffice.setPhone_number(phoneTextField.getText());
-        editedOffice.setId_doctor(office.getId_doctor());
-        DaoFactory.INSTANCE.getDoctorOfficeDao().upgrade(editedOffice);
+        try {
+            DoctorOffice editedOffice = new DoctorOffice();
+            editedOffice.setId(office.getId());
+            editedOffice.setCity(townTextField.getText());
+            editedOffice.setStreet(streetTextField.getText());
+            editedOffice.setHouse_number(Integer.parseInt(descriptionNumberTextField.getText()));
+            editedOffice.setHospital(hospitalTextField.getText());
+            editedOffice.setOpening_hours(fromComboBox.getSelectedItem() + "-" + toComboBox.getSelectedItem());
+            editedOffice.setSpecialization(specializationTextField.getText());
+            editedOffice.setPhone_number(phoneTextField.getText());
+            editedOffice.setId_doctor(office.getId_doctor());
+            DaoFactory.INSTANCE.getDoctorOfficeDao().upgrade(editedOffice);
+            infoLabel.setText("Zmena údajov bola úspešná, stlačte zavrieť");
+            cancelButton.setText("Zavrieť");
+        } catch (NumberFormatException ex) {
+            infoLabel.setText("Popisné číslo musí byť číslo");
+        }
 
     }//GEN-LAST:event_saveButtonActionPerformed
 
@@ -338,6 +370,8 @@ public class OfficeEditForm extends javax.swing.JDialog {
     private javax.swing.JLabel fromLabel;
     private javax.swing.JLabel hospitalLabel;
     private javax.swing.JTextField hospitalTextField;
+    private javax.swing.JLabel infoLabel;
+    private javax.swing.JPanel infoPanel;
     private javax.swing.JLabel numberLabel;
     private javax.swing.JPanel officeDetailPanel;
     private javax.swing.JLabel phoneLabel;
