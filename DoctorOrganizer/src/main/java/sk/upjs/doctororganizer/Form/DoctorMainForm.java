@@ -98,18 +98,22 @@ public class DoctorMainForm extends javax.swing.JFrame {
         personalTitleLabel.setText("Titul:");
 
         personalTitleTextField.setEditable(false);
+        personalTitleTextField.setText(loggedInDoctor.getAcademic_degree());
 
         nameLabel.setText("Meno:");
 
         nameTextField.setEditable(false);
+        nameTextField.setText(loggedInDoctor.getName());
 
         lastNameLabel.setText("Priezvisko:");
 
         lastNameTextField.setEditable(false);
+        lastNameTextField.setText(loggedInDoctor.getSurname());
 
         emailLabel.setText("E-mail:");
 
         emailTextField.setEditable(false);
+        emailTextField.setText(loggedInDoctor.getEmail());
 
         changeDetailsButton.setText("Zmeniť údaje");
         changeDetailsButton.addActionListener(new java.awt.event.ActionListener() {

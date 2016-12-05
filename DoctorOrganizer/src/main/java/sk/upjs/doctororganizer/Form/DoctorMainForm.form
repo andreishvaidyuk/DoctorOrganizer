@@ -173,6 +173,9 @@
         <Component class="javax.swing.JTextField" name="personalTitleTextField">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="loggedInDoctor.getAcademic_degree()" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="nameLabel">
@@ -183,6 +186,9 @@
         <Component class="javax.swing.JTextField" name="nameTextField">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="loggedInDoctor.getName()" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lastNameLabel">
@@ -193,6 +199,9 @@
         <Component class="javax.swing.JTextField" name="lastNameTextField">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="loggedInDoctor.getSurname()" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="emailLabel">
@@ -203,6 +212,9 @@
         <Component class="javax.swing.JTextField" name="emailTextField">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="loggedInDoctor.getEmail()" type="code"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="changeDetailsButton">
