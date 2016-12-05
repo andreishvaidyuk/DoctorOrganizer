@@ -48,8 +48,10 @@ CREATE TABLE IF NOT EXISTS doctororganizer.term
 (
 id INT NOT NULL auto_increment,
 id_patient INT NOT NULL,
+patient VARCHAR(40) NOT NULL,
 id_doctor_office INT NOT NULL,
 date DATE NOT NULL,
+time VARCHAR(20) NOT NULL,
 reason VARCHAR(100),
 term_condition ENUM('schválený', 'neschválený', 'zrušený lekárom', 'zrušený pacientom'),
 PRIMARY KEY (id)
