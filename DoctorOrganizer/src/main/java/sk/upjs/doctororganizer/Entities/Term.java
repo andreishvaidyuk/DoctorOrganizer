@@ -1,13 +1,16 @@
 package sk.upjs.doctororganizer.Entities;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Term {
 
     private Long id;
     private Long id_patient;
+    private String patient;
     private Long id_doctor_office;
     private LocalDateTime date;
+    private String time;
     private String reason;
     private String term_condition;
 
@@ -27,6 +30,14 @@ public class Term {
         this.id_patient = id_patient;
     }
 
+    public String getPatient() {
+        return patient;
+    }
+
+    public void setPatient(String patient) {
+        this.patient = patient;
+    }
+
     public Long getId_doctor_office() {
         return id_doctor_office;
     }
@@ -41,6 +52,14 @@ public class Term {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getReason() {
@@ -61,6 +80,6 @@ public class Term {
 
     @Override
     public String toString() {
-        return "Term{" + "id=" + id + ", id_patient=" + id_patient + ", id_doctor_office=" + id_doctor_office + ", date=" + date + ", reason=" + reason + ", term_condition=" + term_condition + '}';
+        return date.format(DateTimeFormatter.ISO_LOCAL_DATE) + " " + time + " " + patient + " " + reason + " Stav termínu: " + term_condition;
     }
 }
