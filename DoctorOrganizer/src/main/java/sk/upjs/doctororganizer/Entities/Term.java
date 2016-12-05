@@ -3,6 +3,7 @@ package sk.upjs.doctororganizer.Entities;
 import java.time.LocalDateTime;
 
 public class Term {
+
     private Long id;
     private Long id_patient;
     private Long id_doctor_office;

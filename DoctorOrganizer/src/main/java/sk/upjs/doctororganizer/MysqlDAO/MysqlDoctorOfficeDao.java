@@ -36,19 +36,6 @@ public class MysqlDoctorOfficeDao implements DoctorOfficeDao {
             return jdbcTemplate.query(sql, bprm).get(0);
         }
         return null;
-
-    }
-
-    @Override
-    public void upgrade(DoctorOffice office){
-        String sql = "UPDATE doctor_office SET city=?, street=?, house_number=?, hospital=?, specialization=?, opening_hours=?, phone_number=? WHERE id=?";
-        jdbcTemplate.update(sql, office.getCity(), office.getStreet(), office.getHouse_number(), office.getHospital(), office.getSpecialization(), office.getOpening_hours(), office.getPhone_number(), office.getId());
-    }
-
-    @Override
-    public void delete(long id) {
-        String sql = "DELETE FROM doctor_office WHERE id=?";
-        jdbcTemplate.update(sql, id);
     }
 
     @Override
@@ -58,4 +45,15 @@ public class MysqlDoctorOfficeDao implements DoctorOfficeDao {
         return jdbcTemplate.query(sql, bprm);
     }
 
+    @Override
+    public void upgrade(DoctorOffice office) {
+        String sql = "UPDATE doctor_office SET city=?, street=?, house_number=?, hospital=?, specialization=?, opening_hours=?, phone_number=? WHERE id=?";
+        jdbcTemplate.update(sql, office.getCity(), office.getStreet(), office.getHouse_number(), office.getHospital(), office.getSpecialization(), office.getOpening_hours(), office.getPhone_number(), office.getId());
+    }
+
+    @Override
+    public void delete(long id) {
+        String sql = "DELETE FROM doctor_office WHERE id=?";
+        jdbcTemplate.update(sql, id);
+    }
 }

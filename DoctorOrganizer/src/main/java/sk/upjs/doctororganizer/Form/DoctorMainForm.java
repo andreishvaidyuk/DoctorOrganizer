@@ -307,7 +307,8 @@ public class DoctorMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_changePasswordButtonActionPerformed
 
     private void listTermsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listTermsButtonActionPerformed
-
+        DoctorTermDialog dtd = new DoctorTermDialog(this, true, officesList.getSelectedValue().getId());
+        dtd.setVisible(true);
     }//GEN-LAST:event_listTermsButtonActionPerformed
 
     private void changeOfficeDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeOfficeDetailsButtonActionPerformed
@@ -317,7 +318,7 @@ public class DoctorMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_changeOfficeDetailsButtonActionPerformed
 
     private void deleteOfficeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteOfficeButtonActionPerformed
-         
+
     }//GEN-LAST:event_deleteOfficeButtonActionPerformed
 
     private void addOfficeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOfficeButtonActionPerformed

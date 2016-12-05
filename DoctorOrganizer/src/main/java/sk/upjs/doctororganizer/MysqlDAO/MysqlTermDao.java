@@ -28,10 +28,17 @@ public class MysqlTermDao implements TermDao {
     }
 
     @Override
-    public Term getId(long id) {
+    public Term getTermById(long id) {
         String sql = "SELECT id, id_patient, id_doctor_office, date, reason, term_condition FROM term WHERE id = " + id;
         BeanPropertyRowMapper<Term> bprm = new BeanPropertyRowMapper<>(Term.class);
         return jdbcTemplate.query(sql, bprm).get(0);
+    }
+
+    @Override
+    public List<Term> getTermByDoctorOfficeId(Long doctorOfficeId) {
+        String sql = "SELECT id, id_patient, id_doctor_office, date, reason, term_condition FROM term WHERE id_doctor_office = " + doctorOfficeId;
+        BeanPropertyRowMapper<Term> bprm = new BeanPropertyRowMapper<>(Term.class);
+        return jdbcTemplate.query(sql, bprm);
     }
 
     @Override

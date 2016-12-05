@@ -17,32 +17,28 @@
 package sk.upjs.doctororganizer.Models;
 
 import javax.swing.AbstractListModel;
-import sk.upjs.doctororganizer.DAO.DoctorOfficeDao;
-import sk.upjs.doctororganizer.Entities.DoctorOffice;
+import sk.upjs.doctororganizer.DAO.TermDao;
+import sk.upjs.doctororganizer.Entities.Term;
 import sk.upjs.doctororganizer.Factory.DaoFactory;
 
-public class OfficeListModel extends AbstractListModel<DoctorOffice> {
+public class TermListModel extends AbstractListModel<Term> {
 
-    DoctorOfficeDao dao;
-    Long doctorId;
-
-    public OfficeListModel(Long doctorId) {
-        this.doctorId = doctorId;
-        this.dao = DaoFactory.INSTANCE.getDoctorOfficeDao();
+    TermDao dao;
+    Long doctorOfficeId;
+    
+    public TermListModel(Long doctorOfficeId) {
+        this.doctorOfficeId = doctorOfficeId;
+        dao = DaoFactory.INSTANCE.getTermDao();
     }
 
     @Override
     public int getSize() {
-        return dao.getByDoctorId(doctorId).size();
+       return dao.getTermByDoctorOfficeId(doctorOfficeId).size();
     }
 
     @Override
-    public DoctorOffice getElementAt(int index) {
-        return dao.getByDoctorId(doctorId).get(index);
-    }
-
-    public void refreshList() {
-        fireContentsChanged(this, 0, getSize());
+    public Term getElementAt(int index) {
+       return dao.getTermByDoctorOfficeId(doctorOfficeId).get(index);
     }
     
 }
