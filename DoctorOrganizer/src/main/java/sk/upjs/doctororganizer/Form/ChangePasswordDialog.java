@@ -33,8 +33,8 @@ public class ChangePasswordDialog extends javax.swing.JDialog {
     private Patient loggedInPatient;
     private Doctor loggedInDoctor;
     private final String badOldPassInfoText = "Zadané staré heslo je nesprávne";
-    private final String newPasswordsNotEqualInfoText = "Zadané nové heslá sa nezhodujú";
-    private final String passChangedInfoText = "Heslo bolo úspešne zmenené";
+    private final String newPasswordsNotEqualInfoText = "Zadané nové heslá sa nezhodujú, skúste znova";
+    private final String passChangedInfoText = "Heslo bolo úspešne zmenené, stlačte zavrieť";
 
     /**
      * Creates new form ChangePasswordFrame
@@ -187,10 +187,9 @@ public class ChangePasswordDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
-
         try {
             String oldPass = PasswordHash.hash(new String(oldPasswordField.getPassword()));
-            if (!new1PasswordField.getPassword().equals(new2PasswordField.getPassword())) {
+            if (!(new String(new1PasswordField.getPassword())).equals(new String(new2PasswordField.getPassword()))) {
                 infoTextLabel.setText(newPasswordsNotEqualInfoText);
                 return;
             }
@@ -211,11 +210,10 @@ public class ChangePasswordDialog extends javax.swing.JDialog {
             }
 
             infoTextLabel.setText(passChangedInfoText);
+            cancelButton.setText("Zavrieť");            
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(ChangePasswordDialog.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
+        } 
     }//GEN-LAST:event_changePasswordButtonActionPerformed
 
     public void setLoggedInPatient(Patient loggedInPatient) {

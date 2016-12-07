@@ -16,9 +16,15 @@
  */
 package sk.upjs.doctororganizer.Form;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTextField;
+import sk.upjs.doctororganizer.Entities.Doctor;
+import sk.upjs.doctororganizer.Factory.DaoFactory;
+import sk.upjs.doctororganizer.PasswordHash;
 
 /**
  *
@@ -62,12 +68,13 @@ public class DoctorRegistrationDialog extends javax.swing.JDialog {
         personalTitleLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
         lastnameLabel = new javax.swing.JLabel();
-        personalTitleTextField = new javax.swing.JTextField();
+        academicDegreeTextField = new javax.swing.JTextField();
         nameTextField = new javax.swing.JTextField();
-        lastnameTextField = new javax.swing.JTextField();
+        surnameTextField = new javax.swing.JTextField();
         buttonsPanel = new javax.swing.JPanel();
         registerButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        infoLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("DoctorOrganizer 1.0");
@@ -188,7 +195,7 @@ public class DoctorRegistrationDialog extends javax.swing.JDialog {
                     .addGroup(personalDetailsPanelLayout.createSequentialGroup()
                         .addComponent(personalTitleLabel)
                         .addGap(18, 18, 18)
-                        .addComponent(personalTitleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(academicDegreeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(nameLabel)
                         .addGap(18, 18, 18)
@@ -196,7 +203,7 @@ public class DoctorRegistrationDialog extends javax.swing.JDialog {
                     .addGroup(personalDetailsPanelLayout.createSequentialGroup()
                         .addComponent(lastnameLabel)
                         .addGap(18, 18, 18)
-                        .addComponent(lastnameTextField)))
+                        .addComponent(surnameTextField)))
                 .addContainerGap())
         );
         personalDetailsPanelLayout.setVerticalGroup(
@@ -207,11 +214,11 @@ public class DoctorRegistrationDialog extends javax.swing.JDialog {
                     .addComponent(nameLabel)
                     .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(personalTitleLabel)
-                    .addComponent(personalTitleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(academicDegreeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(personalDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lastnameLabel)
-                    .addComponent(lastnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(surnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -236,14 +243,16 @@ public class DoctorRegistrationDialog extends javax.swing.JDialog {
             .addGroup(buttonsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(buttonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(registerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(infoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(registerButton, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         buttonsPanelLayout.setVerticalGroup(
             buttonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buttonsPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(infoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(registerButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancelButton)
@@ -294,6 +303,23 @@ public class DoctorRegistrationDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        if (!(new String(jPasswordField1.getPassword())).equals(new String(jPasswordField2.getPassword()))) {
+            infoLabel.setText("Heslá nie sú rovnaké!");
+            return;
+        }
+        Doctor doctor = new Doctor();
+        doctor.setAcademic_degree(academicDegreeTextField.getText());
+        doctor.setName(nameTextField.getText());
+        doctor.setSurname(surnameTextField.getText());
+        doctor.setEmail(emailTextField.getText());
+        try {
+            doctor.setPassword(PasswordHash.hash(new String(jPasswordField1.getPassword())));
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(DoctorRegistrationDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DaoFactory.INSTANCE.getDoctorDao().add(doctor);
+        infoLabel.setText("Registrácia bola úspešná, stlačte zavrieť");
+        cancelButton.setText("Zavrieť");
     }//GEN-LAST:event_registerButtonActionPerformed
 
     /**
@@ -332,15 +358,16 @@ public class DoctorRegistrationDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField academicDegreeTextField;
     private javax.swing.JPanel buttonsPanel;
     private javax.swing.JButton cancelButton;
     private javax.swing.JRadioButton doctorRadioButton;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
+    private javax.swing.JLabel infoLabel;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JLabel lastnameLabel;
-    private javax.swing.JTextField lastnameTextField;
     private javax.swing.JPanel loginDetailsPanel;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
@@ -349,8 +376,8 @@ public class DoctorRegistrationDialog extends javax.swing.JDialog {
     private javax.swing.JLabel passLabel;
     private javax.swing.JPanel personalDetailsPanel;
     private javax.swing.JLabel personalTitleLabel;
-    private javax.swing.JTextField personalTitleTextField;
     private javax.swing.JButton registerButton;
+    private javax.swing.JTextField surnameTextField;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanel;
     private javax.swing.JPanel typePanel;

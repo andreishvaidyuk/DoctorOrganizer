@@ -1,14 +1,13 @@
 package sk.upjs.doctororganizer.Entities;
 
 import java.math.BigInteger;
-import java.util.Date;
 
 public class Patient {
     private Long id;
     private String name;
     private String surname;
     private String adress;
-    private Date date_of_birth;
+    private String date_of_birth;
     private BigInteger id_number;
     private String insured_at;
     private BigInteger phone_number;
@@ -47,11 +46,11 @@ public class Patient {
         this.adress = adress;
     }
 
-    public Date getDate_of_birth() {
+    public String getDate_of_birth() {
         return date_of_birth;
     }
 
-    public void setDate_of_birth(Date date_of_birth) {
+    public void setDate_of_birth(String date_of_birth) {
         this.date_of_birth = date_of_birth;
     }
 

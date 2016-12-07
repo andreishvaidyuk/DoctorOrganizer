@@ -322,7 +322,7 @@ public class DoctorMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_changeOfficeDetailsButtonActionPerformed
 
     private void deleteOfficeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteOfficeButtonActionPerformed
-
+        
     }//GEN-LAST:event_deleteOfficeButtonActionPerformed
 
     private void addOfficeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOfficeButtonActionPerformed

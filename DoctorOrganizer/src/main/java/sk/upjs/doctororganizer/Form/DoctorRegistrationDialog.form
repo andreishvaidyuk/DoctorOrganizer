@@ -240,7 +240,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="personalTitleLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="personalTitleTextField" min="-2" pref="73" max="-2" attributes="0"/>
+                          <Component id="academicDegreeTextField" min="-2" pref="73" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="nameLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -249,7 +249,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="lastnameLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="lastnameTextField" max="32767" attributes="0"/>
+                          <Component id="surnameTextField" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -264,12 +264,12 @@
                       <Component id="nameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="personalTitleLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="personalTitleTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="academicDegreeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lastnameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lastnameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="surnameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -292,11 +292,11 @@
             <Property name="text" type="java.lang.String" value="Priezvisko:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="personalTitleTextField">
+        <Component class="javax.swing.JTextField" name="academicDegreeTextField">
         </Component>
         <Component class="javax.swing.JTextField" name="nameTextField">
         </Component>
-        <Component class="javax.swing.JTextField" name="lastnameTextField">
+        <Component class="javax.swing.JTextField" name="surnameTextField">
         </Component>
       </SubComponents>
     </Container>
@@ -305,10 +305,11 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="registerButton" max="32767" attributes="0"/>
+                      <Component id="infoLabel" max="32767" attributes="0"/>
+                      <Component id="registerButton" pref="330" max="32767" attributes="0"/>
                       <Component id="cancelButton" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -318,6 +319,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <Component id="infoLabel" min="-2" pref="25" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="registerButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -343,6 +345,8 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelButtonActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="infoLabel">
         </Component>
       </SubComponents>
     </Container>

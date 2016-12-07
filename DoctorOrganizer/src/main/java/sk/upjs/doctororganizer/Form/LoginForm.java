@@ -16,10 +16,14 @@
  */
 package sk.upjs.doctororganizer.Form;
 
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import sk.upjs.doctororganizer.Entities.Doctor;
 import sk.upjs.doctororganizer.Entities.Patient;
 import sk.upjs.doctororganizer.Factory.DaoFactory;
+import sk.upjs.doctororganizer.PasswordHash;
 
 public class LoginForm extends javax.swing.JFrame {
 
@@ -230,7 +234,7 @@ public class LoginForm extends javax.swing.JFrame {
                 if (loggedInPatient == null) {
                     infoLabel.setText(badLoginInfoText);
                 } else {
-                    if (password.equals(loggedInPatient.getPassword())) {
+                    if (PasswordHash.isExpectedPassword(password, loggedInPatient.getPassword())) {
                         PatientMainForm pmf = new PatientMainForm(loggedInPatient);
                         pmf.setVisible(true);
                         this.dispose();
@@ -239,7 +243,7 @@ public class LoginForm extends javax.swing.JFrame {
                     }
                 }
             } else {
-                if (password.equals(loggedInDoctor.getPassword())) {
+                if (PasswordHash.isExpectedPassword(password, loggedInDoctor.getPassword())) {
                     DoctorMainForm dmf = new DoctorMainForm(loggedInDoctor);
                     dmf.setVisible(true);
                     this.dispose();
@@ -249,6 +253,8 @@ public class LoginForm extends javax.swing.JFrame {
             }
         } catch (CannotGetJdbcConnectionException ce) {
             infoLabel.setText("Problém s pripojením na databázu");
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_loginButtonActionPerformed

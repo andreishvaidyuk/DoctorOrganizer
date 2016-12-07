@@ -16,6 +16,15 @@
  */
 package sk.upjs.doctororganizer.Form;
 
+import java.math.BigInteger;
+import java.security.NoSuchAlgorithmException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import sk.upjs.doctororganizer.Entities.Patient;
+import sk.upjs.doctororganizer.Factory.DaoFactory;
+import sk.upjs.doctororganizer.PasswordHash;
+
 /**
  *
  * @author acer
@@ -71,7 +80,7 @@ public class PatientRegistrationDialog extends javax.swing.JDialog {
         adressTextField = new javax.swing.JTextField();
         mobilLabel = new javax.swing.JLabel();
         mobilTextField = new javax.swing.JTextField();
-        dialogLabel = new javax.swing.JLabel();
+        infoLabel = new javax.swing.JLabel();
         buttonsPanel = new javax.swing.JPanel();
         registerButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
@@ -183,19 +192,19 @@ public class PatientRegistrationDialog extends javax.swing.JDialog {
 
         surnameLabel.setText("Priezvisko:");
 
-        idNumberLabel.setText("Rodné číslo:");
+        idNumberLabel.setText("Rodné číslo (bez lomky):");
 
         insuredAtLabel.setText("Poisťovňa:");
 
-        insuredAtComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        insuredAtComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Všeobecná zdravotná poisťovňa", "DÔVERA", "Union", " ", " ", " " }));
 
         dateLabel.setText("Dátum narodenia:");
 
-        dayComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        dayComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
-        monthComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        monthComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Január", "Február", "Marec", "Apríl", "Máj", "Jún", "Júl", "August", "September", "Október", "November", "December" }));
 
-        yearComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        yearComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", " " }));
 
         adressLabel.setText("Bydlisko:");
 
@@ -223,7 +232,7 @@ public class PatientRegistrationDialog extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(personalDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(idNumberTextField)
-                            .addComponent(insuredAtComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(insuredAtComboBox, 0, 194, Short.MAX_VALUE)))
                     .addGroup(personalDetailsPanelLayout.createSequentialGroup()
                         .addComponent(dateLabel)
                         .addGap(18, 18, 18)
@@ -232,7 +241,7 @@ public class PatientRegistrationDialog extends javax.swing.JDialog {
                         .addComponent(monthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(yearComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 10, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(personalDetailsPanelLayout.createSequentialGroup()
                         .addGroup(personalDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(mobilLabel)
@@ -272,11 +281,14 @@ public class PatientRegistrationDialog extends javax.swing.JDialog {
                 .addGroup(personalDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(adressLabel)
                     .addComponent(adressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(personalDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mobilLabel)
-                    .addComponent(mobilTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(personalDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(personalDetailsPanelLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(mobilLabel))
+                    .addGroup(personalDetailsPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mobilTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         registerButton.setText("Registrácia");
@@ -321,7 +333,7 @@ public class PatientRegistrationDialog extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(dialogLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(infoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(titlePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(typePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(loginDetailsPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -341,8 +353,8 @@ public class PatientRegistrationDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(personalDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dialogLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(infoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -361,7 +373,56 @@ public class PatientRegistrationDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_doctorRadioButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-
+        if (!(new String(jPasswordField1.getPassword())).equals(new String(jPasswordField2.getPassword()))) {
+            infoLabel.setText("Heslá nie sú rovnaké!");
+            return;
+        }
+        Patient patient = new Patient();
+        patient.setName(nameTextField.getText());
+        patient.setSurname(surnameTextField.getText());
+        patient.setAdress(adressTextField.getText());
+        String monthString = "";
+        switch (monthComboBox.getSelectedItem().toString()) {
+            case "Január":  monthString = "Januára";
+                     break;
+            case "Február":  monthString = "Februára";
+                     break;
+            case "Marec":  monthString = "Marca";
+                     break;
+            case "Apríl":  monthString = "Apríla";
+                     break;
+            case "Máj":  monthString = "Májá";
+                     break;
+            case "Jún":  monthString = "Júna";
+                     break;
+            case "Júl":  monthString = "Júla";
+                     break;
+            case "August":  monthString = "Augusta";
+                     break;
+            case "September":  monthString = "Septembra";
+                     break;
+            case "Október": monthString = "Octóbra";
+                     break;
+            case "November": monthString = "Novembra";
+                     break;
+            case "December": monthString = "Decembra";
+                     break;
+        }        
+        patient.setDate_of_birth(dayComboBox.getSelectedItem().toString() 
+                + "." + monthString 
+                + " " + yearComboBox.getSelectedItem().toString());        
+        patient.setId_number(new BigInteger(idNumberTextField.getText()));
+        patient.setInsured_at(insuredAtComboBox.getSelectedItem().toString());
+        patient.setPhone_number(new BigInteger(mobilTextField.getText()));
+        patient.setEmail(emailTextField.getText());       
+        try {
+            patient.setPassword(PasswordHash.hash(new String(jPasswordField1.getPassword())));
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(DoctorRegistrationDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DaoFactory.INSTANCE.getPatientDao().add(patient);
+        infoLabel.setText("Registrácia bola úspešná, stlačte zavrieť");
+        cancelButton.setText("Zavrieť");
     }//GEN-LAST:event_registerButtonActionPerformed
 
     /**
@@ -410,12 +471,12 @@ public class PatientRegistrationDialog extends javax.swing.JDialog {
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JComboBox<String> dayComboBox;
-    private javax.swing.JLabel dialogLabel;
     private javax.swing.JRadioButton doctorRadioButton;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JLabel idNumberLabel;
     private javax.swing.JTextField idNumberTextField;
+    private javax.swing.JLabel infoLabel;
     private javax.swing.JComboBox<String> insuredAtComboBox;
     private javax.swing.JLabel insuredAtLabel;
     private javax.swing.JPasswordField jPasswordField1;

@@ -19,7 +19,7 @@ id INT NOT NULL auto_increment,
 name VARCHAR(10) NOT NULL,
 surname VARCHAR(15) NOT NULL,
 adress VARCHAR(100) NOT NULL,
-date_of_birth DATE NOT NULL,
+date_of_birth VARCHAR(15) NOT NULL,
 id_number BIGINT NOT NULL,
 insured_at VARCHAR(40) NOT NULL,
 phone_number VARCHAR(40) NOT NULL,
@@ -64,14 +64,14 @@ ALTER TABLE term ADD CONSTRAINT f_term_patient FOREIGN KEY (id_patient) REFERENC
 
 INSERT INTO doctor
 VALUES
-(1, 'Patrik', 'Rojek', 'MUDr.', 'aaa@gmail.com', '0000'),
-(2, 'Gabriel', 'Mohňanský', 'MUDr.', 'bbb@gmail.com', '1234')
+(1, 'Patrik', 'Rojek', 'MUDr.', 'aaa@gmail.com', '9AF15B336E6A9619928537DF30B2E6A2376569FCF9D7E773ECCEDE65606529A0'),
+(2, 'Gabriel', 'Mohňanský', 'MUDr.', 'bbb@gmail.com', '9AF15B336E6A9619928537DF30B2E6A2376569FCF9D7E773ECCEDE65606529A0')
 ;
 
 INSERT INTO patient
 VALUES
-(1, 'Marián', 'Babic', 'Jesenná 5, 040 01 Košice', '1985-12-12', '8512127987', 'VZP', '0911222333','ccc@gmail.com', '0000'),
-(2, 'Gabriel', 'Mohňanský', 'Jesenná 5, 040 01 Košice', '1989-12-12', '8912127864', 'VZP', '0911555666','ddd@gmail.com', '1234')
+(1, 'Marián', 'Babic', 'Jesenná 5, 040 01 Košice', '1985-12-12', '8512127987', 'VZP', '0911222333','ccc@gmail.com', '9AF15B336E6A9619928537DF30B2E6A2376569FCF9D7E773ECCEDE65606529A0'),
+(2, 'Gabriel', 'Mohňanský', 'Jesenná 5, 040 01 Košice', '1989-12-12', '8912127864', 'VZP', '0911555666','ddd@gmail.com', '9AF15B336E6A9619928537DF30B2E6A2376569FCF9D7E773ECCEDE65606529A0')
 ;
 
 INSERT INTO doctor_office
@@ -82,6 +82,6 @@ VALUES
 
 INSERT INTO term
 VALUES
-(1, 1, 2, '2016-11-27', 'bla bla bla', 'neschválený'),
-(2, 2, 1, '2016-11-28', 'bla bla bla', 'schválený')
+(1, 1,'Marián Babic' , 2, '2016-11-27', '12:00', 'bla bla bla', 'neschválený'),
+(2, 2,'Gabriel Mohňanský', 1, '2016-11-28', '12:30', 'bla bla bla', 'schválený')
 ;
