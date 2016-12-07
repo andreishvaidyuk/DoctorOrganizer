@@ -19,20 +19,19 @@ package sk.upjs.doctororganizer.Form;
 import java.awt.Frame;
 import sk.upjs.doctororganizer.Entities.DoctorOffice;
 import sk.upjs.doctororganizer.Factory.DaoFactory;
-import sk.upjs.doctororganizer.Models.OfficeListModel;
 
 /**
  *
  * @author acer
  */
-public class OfficeEditForm extends javax.swing.JDialog {
+public class OfficeEditDialog extends javax.swing.JDialog {
 
     private final DoctorOffice office;
 
     /**
      * Creates new form SurgeryRegistrationForm
      */
-    public OfficeEditForm(Frame parent, boolean modal, DoctorOffice office) {
+    public OfficeEditDialog(Frame parent, boolean modal, DoctorOffice office) {
         super(parent, modal);
         this.office = office;
         initComponents();
@@ -342,14 +341,18 @@ public class OfficeEditForm extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OfficeEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OfficeEditDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OfficeEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OfficeEditDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OfficeEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OfficeEditDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OfficeEditForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OfficeEditDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

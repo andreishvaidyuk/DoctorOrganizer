@@ -58,8 +58,6 @@ public class DoctorMainForm extends javax.swing.JFrame {
         lastNameTextField = new javax.swing.JTextField();
         emailLabel = new javax.swing.JLabel();
         emailTextField = new javax.swing.JTextField();
-        changeDetailsButton = new javax.swing.JButton();
-        addOfficeButton = new javax.swing.JButton();
         changePasswordButton = new javax.swing.JButton();
         officesListPanel = new javax.swing.JPanel();
         officesScrollPane = new javax.swing.JScrollPane();
@@ -67,6 +65,7 @@ public class DoctorMainForm extends javax.swing.JFrame {
         listTermsButton = new javax.swing.JButton();
         changeOfficeDetailsButton = new javax.swing.JButton();
         deleteOfficeButton = new javax.swing.JButton();
+        addOfficeButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -115,20 +114,6 @@ public class DoctorMainForm extends javax.swing.JFrame {
         emailTextField.setEditable(false);
         emailTextField.setText(loggedInDoctor.getEmail());
 
-        changeDetailsButton.setText("Zmeniť údaje");
-        changeDetailsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changeDetailsButtonActionPerformed(evt);
-            }
-        });
-
-        addOfficeButton.setText("Pridať ordináciu");
-        addOfficeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addOfficeButtonActionPerformed(evt);
-            }
-        });
-
         changePasswordButton.setText("Zmeniť heslo");
         changePasswordButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,31 +125,26 @@ public class DoctorMainForm extends javax.swing.JFrame {
         personalDetailsPanel.setLayout(personalDetailsPanelLayout);
         personalDetailsPanelLayout.setHorizontalGroup(
             personalDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(personalDetailsPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, personalDetailsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(personalDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(personalDetailsPanelLayout.createSequentialGroup()
+                .addGroup(personalDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(changePasswordButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, personalDetailsPanelLayout.createSequentialGroup()
                         .addComponent(personalTitleLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(personalTitleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(nameLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nameTextField))
-                    .addGroup(personalDetailsPanelLayout.createSequentialGroup()
+                        .addComponent(nameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, personalDetailsPanelLayout.createSequentialGroup()
                         .addGroup(personalDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lastNameLabel)
                             .addComponent(emailLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(personalDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lastNameTextField)
-                            .addComponent(emailTextField)))
-                    .addGroup(personalDetailsPanelLayout.createSequentialGroup()
-                        .addComponent(changeDetailsButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(addOfficeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(changePasswordButton)))
+                            .addComponent(emailTextField))))
                 .addContainerGap())
         );
         personalDetailsPanelLayout.setVerticalGroup(
@@ -185,10 +165,7 @@ public class DoctorMainForm extends javax.swing.JFrame {
                     .addComponent(emailLabel)
                     .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(personalDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(changeDetailsButton)
-                    .addComponent(changePasswordButton)
-                    .addComponent(addOfficeButton)))
+                .addComponent(changePasswordButton))
         );
 
         officesListPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Výpis ordinácií"));
@@ -217,6 +194,13 @@ public class DoctorMainForm extends javax.swing.JFrame {
             }
         });
 
+        addOfficeButton.setText("Pridať ordináciu");
+        addOfficeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addOfficeButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout officesListPanelLayout = new javax.swing.GroupLayout(officesListPanel);
         officesListPanel.setLayout(officesListPanelLayout);
         officesListPanelLayout.setHorizontalGroup(
@@ -224,26 +208,28 @@ public class DoctorMainForm extends javax.swing.JFrame {
             .addGroup(officesListPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(officesListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addOfficeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(officesScrollPane)
                     .addComponent(listTermsButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(officesListPanelLayout.createSequentialGroup()
                         .addComponent(changeOfficeDetailsButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                         .addComponent(deleteOfficeButton)))
                 .addContainerGap())
         );
         officesListPanelLayout.setVerticalGroup(
             officesListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(officesListPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(officesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addOfficeButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(officesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(listTermsButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(officesListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(changeOfficeDetailsButton)
                     .addComponent(deleteOfficeButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         logoutButton.setText("Odhlásiť sa");
@@ -274,35 +260,14 @@ public class DoctorMainForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(personalDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(officesListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(officesListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(logoutButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void changeDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeDetailsButtonActionPerformed
-
-        if (!this.personalTitleTextField.isEditable()) {
-            //editMode
-            this.personalTitleTextField.setEditable(true);
-            this.nameTextField.setEditable(true);
-            this.lastNameTextField.setEditable(true);
-            this.emailTextField.setEditable(true);
-            this.changeDetailsButton.setText("Uložiť údaje");
-        } else {
-            //displayMode
-            this.personalTitleTextField.setEditable(false);
-            this.nameTextField.setEditable(false);
-            this.lastNameTextField.setEditable(false);
-            this.emailTextField.setEditable(false);
-            //TODO update changes to DB            
-            this.changeDetailsButton.setText("Zmeniť údaje");
-        }
-
-    }//GEN-LAST:event_changeDetailsButtonActionPerformed
 
     private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
         ChangePasswordDialog chpd = new ChangePasswordDialog(this, true);
@@ -316,7 +281,7 @@ public class DoctorMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_listTermsButtonActionPerformed
 
     private void changeOfficeDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeOfficeDetailsButtonActionPerformed
-        OfficeEditForm oef = new OfficeEditForm(this, true, officesList.getSelectedValue());
+        OfficeEditDialog oef = new OfficeEditDialog(this, true, officesList.getSelectedValue());
         oef.setVisible(true);
         officeListModel.refreshList();
     }//GEN-LAST:event_changeOfficeDetailsButtonActionPerformed
@@ -373,7 +338,6 @@ public class DoctorMainForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addOfficeButton;
-    private javax.swing.JButton changeDetailsButton;
     private javax.swing.JButton changeOfficeDetailsButton;
     private javax.swing.JButton changePasswordButton;
     private javax.swing.JButton deleteOfficeButton;

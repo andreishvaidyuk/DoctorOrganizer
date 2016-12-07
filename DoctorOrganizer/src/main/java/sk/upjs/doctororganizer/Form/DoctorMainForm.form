@@ -44,10 +44,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="personalDetailsPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="officesListPanel" min="-2" max="-2" attributes="0"/>
+              <Component id="officesListPanel" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="logoutButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -99,9 +99,10 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="changePasswordButton" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="personalTitleLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -109,7 +110,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="nameLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="nameTextField" max="32767" attributes="0"/>
+                          <Component id="nameTextField" pref="206" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -121,13 +122,6 @@
                               <Component id="lastNameTextField" max="32767" attributes="0"/>
                               <Component id="emailTextField" max="32767" attributes="0"/>
                           </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="changeDetailsButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="addOfficeButton" pref="124" max="32767" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="changePasswordButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -155,11 +149,7 @@
                       <Component id="emailTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="changeDetailsButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="changePasswordButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="addOfficeButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="changePasswordButton" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -217,22 +207,6 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="changeDetailsButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Zmeni&#x165; &#xfa;daje"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changeDetailsButtonActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="addOfficeButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Prida&#x165; ordin&#xe1;ciu"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addOfficeButtonActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="changePasswordButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Zmeni&#x165; heslo"/>
@@ -255,14 +229,15 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="addOfficeButton" max="32767" attributes="0"/>
                       <Component id="officesScrollPane" max="32767" attributes="0"/>
                       <Component id="listTermsButton" alignment="1" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="changeOfficeDetailsButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="76" max="32767" attributes="0"/>
                           <Component id="deleteOfficeButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -273,8 +248,9 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <Component id="addOfficeButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="officesScrollPane" min="-2" pref="86" max="-2" attributes="0"/>
+                  <Component id="officesScrollPane" pref="102" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="listTermsButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -282,7 +258,7 @@
                       <Component id="changeOfficeDetailsButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="deleteOfficeButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -329,6 +305,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteOfficeButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="addOfficeButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Prida&#x165; ordin&#xe1;ciu"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addOfficeButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

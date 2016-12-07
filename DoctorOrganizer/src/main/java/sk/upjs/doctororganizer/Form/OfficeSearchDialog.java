@@ -16,16 +16,17 @@
  */
 package sk.upjs.doctororganizer.Form;
 
+import java.awt.Frame;
+import sk.upjs.doctororganizer.Entities.DoctorOffice;
+
 /**
  *
  * @author acer
  */
-public class OfficeSearchForm extends javax.swing.JFrame {
+public class OfficeSearchDialog extends javax.swing.JDialog {
 
-    /**
-     * Creates new form PacienMainForm
-     */
-    public OfficeSearchForm() {
+    public OfficeSearchDialog(Frame owner, boolean modal) {
+        super(owner, modal);
         initComponents();
     }
 
@@ -251,7 +252,10 @@ public class OfficeSearchForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
-        NewTermForm.main(null);
+       //mesto new office treba dat zvoleny office z listu
+        NewTermDialog ntd = new NewTermDialog(new DoctorOffice(), this, true);
+        ntd.setVisible(true);
+       
     }//GEN-LAST:event_reserveButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -275,14 +279,22 @@ public class OfficeSearchForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OfficeSearchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OfficeSearchDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OfficeSearchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OfficeSearchDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OfficeSearchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OfficeSearchDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OfficeSearchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OfficeSearchDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -295,7 +307,6 @@ public class OfficeSearchForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OfficeSearchForm().setVisible(true);
             }
         });
     }

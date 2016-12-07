@@ -17,11 +17,8 @@
 package sk.upjs.doctororganizer.Form;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JTextField;
 import sk.upjs.doctororganizer.Entities.Doctor;
 import sk.upjs.doctororganizer.Factory.DaoFactory;
 import sk.upjs.doctororganizer.PasswordHash;

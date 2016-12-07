@@ -50,7 +50,6 @@ public class PatientMainForm extends javax.swing.JFrame {
         termsPanel = new javax.swing.JPanel();
         termsScrollPane = new javax.swing.JScrollPane();
         termsList = new javax.swing.JList<>();
-        editTermButton = new javax.swing.JButton();
         cancelTermButton = new javax.swing.JButton();
         buttonPanel = new javax.swing.JPanel();
         logoutButton = new javax.swing.JButton();
@@ -106,19 +105,7 @@ public class PatientMainForm extends javax.swing.JFrame {
 
         termsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Všetky vytvorené termíny"));
 
-        termsList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         termsScrollPane.setViewportView(termsList);
-
-        editTermButton.setText("Opraviť termín");
-        editTermButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editTermButtonActionPerformed(evt);
-            }
-        });
 
         cancelTermButton.setText("Vymazať - zrušiť termín");
         cancelTermButton.addActionListener(new java.awt.event.ActionListener() {
@@ -135,16 +122,13 @@ public class PatientMainForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(termsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(termsScrollPane)
-                    .addComponent(editTermButton, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
-                    .addComponent(cancelTermButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cancelTermButton, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
                 .addContainerGap())
         );
         termsPanelLayout.setVerticalGroup(
             termsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(termsPanelLayout.createSequentialGroup()
-                .addComponent(termsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(editTermButton)
+                .addComponent(termsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancelTermButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -215,14 +199,9 @@ public class PatientMainForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void editTermButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editTermButtonActionPerformed
-        //miesto null id terminu ktory ideme editovat
-        EditTermForm.main(null);
-    }//GEN-LAST:event_editTermButtonActionPerformed
-
     private void createTermButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTermButtonActionPerformed
-        this.setEnabled(false);
-        OfficeSearchForm.main(null);
+        OfficeSearchDialog osd = new OfficeSearchDialog(this, true);
+        osd.setVisible(true);
 
     }//GEN-LAST:event_createTermButtonActionPerformed
 
@@ -283,7 +262,6 @@ public class PatientMainForm extends javax.swing.JFrame {
     private javax.swing.JButton changePassButton;
     private javax.swing.JPanel createPanel;
     private javax.swing.JButton createTermButton;
-    private javax.swing.JButton editTermButton;
     private javax.swing.JButton logoutButton;
     private javax.swing.JList<String> termsList;
     private javax.swing.JPanel termsPanel;

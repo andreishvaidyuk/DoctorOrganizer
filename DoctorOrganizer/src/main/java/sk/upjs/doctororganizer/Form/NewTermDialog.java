@@ -16,18 +16,20 @@
  */
 package sk.upjs.doctororganizer.Form;
 
-/**
- *
- * @author acer
- */
-public class EditTermForm extends javax.swing.JFrame {
+import javax.swing.JDialog;
+import sk.upjs.doctororganizer.Entities.DoctorOffice;
 
-    /**
-     * Creates new form NewTermForm
-     */
-    public EditTermForm() {
+public class NewTermDialog extends javax.swing.JDialog {
+
+    private DoctorOffice office;
+
+    public NewTermDialog(DoctorOffice office, JDialog owner, boolean modal) {
+        super(owner, modal);
+        this.office = office;
         initComponents();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,7 +42,7 @@ public class EditTermForm extends javax.swing.JFrame {
 
         titlePanel = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
-        selectedOfficePanel = new javax.swing.JPanel();
+        officeDetailsPanel = new javax.swing.JPanel();
         placeLabel = new javax.swing.JLabel();
         placeTextField = new javax.swing.JTextField();
         streetLabel = new javax.swing.JLabel();
@@ -53,11 +55,6 @@ public class EditTermForm extends javax.swing.JFrame {
         hospitalTextField = new javax.swing.JTextField();
         phoneLabel = new javax.swing.JLabel();
         phoneTextField = new javax.swing.JTextField();
-        doctorDetailsPanel = new javax.swing.JPanel();
-        docNameLabel = new javax.swing.JLabel();
-        docNameTextField = new javax.swing.JTextField();
-        docLastNameLabel = new javax.swing.JLabel();
-        docLastNameTextField = new javax.swing.JTextField();
         termDetailsPanel = new javax.swing.JPanel();
         dateLabel = new javax.swing.JLabel();
         dayComboBox = new javax.swing.JComboBox<>();
@@ -65,8 +62,11 @@ public class EditTermForm extends javax.swing.JFrame {
         yearComboBox = new javax.swing.JComboBox<>();
         timeLabel = new javax.swing.JLabel();
         timeComboBox = new javax.swing.JComboBox<>();
+        descriptionLabel = new javax.swing.JLabel();
+        descriptionScrollPane = new javax.swing.JScrollPane();
+        descriptionTextArea = new javax.swing.JTextArea();
         buttonsPanel = new javax.swing.JPanel();
-        editTermButton = new javax.swing.JButton();
+        reserveButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -74,7 +74,7 @@ public class EditTermForm extends javax.swing.JFrame {
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("Oprava termínu");
+        titleLabel.setText("Tvorba nového termínu");
 
         javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
         titlePanel.setLayout(titlePanelLayout);
@@ -93,9 +93,9 @@ public class EditTermForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        selectedOfficePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Vybratá ordinácia"));
+        officeDetailsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Vybratá ordinácia"));
 
-        placeLabel.setText("Mesto/Obec:");
+        placeLabel.setText("Mesto:");
 
         placeTextField.setEditable(false);
 
@@ -119,123 +119,80 @@ public class EditTermForm extends javax.swing.JFrame {
 
         phoneTextField.setEditable(false);
 
-        doctorDetailsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Údaje lekára"));
-
-        docNameLabel.setText("Meno:");
-
-        docNameTextField.setEditable(false);
-
-        docLastNameLabel.setText("Priezvisko:");
-
-        docLastNameTextField.setEditable(false);
-
-        javax.swing.GroupLayout doctorDetailsPanelLayout = new javax.swing.GroupLayout(doctorDetailsPanel);
-        doctorDetailsPanel.setLayout(doctorDetailsPanelLayout);
-        doctorDetailsPanelLayout.setHorizontalGroup(
-            doctorDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(doctorDetailsPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout officeDetailsPanelLayout = new javax.swing.GroupLayout(officeDetailsPanel);
+        officeDetailsPanel.setLayout(officeDetailsPanelLayout);
+        officeDetailsPanelLayout.setHorizontalGroup(
+            officeDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(officeDetailsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(doctorDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(docLastNameLabel)
-                    .addComponent(docNameLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(doctorDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(docNameTextField)
-                    .addComponent(docLastNameTextField))
-                .addContainerGap())
-        );
-        doctorDetailsPanelLayout.setVerticalGroup(
-            doctorDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(doctorDetailsPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(doctorDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(docNameLabel)
-                    .addComponent(docNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(doctorDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(docLastNameLabel)
-                    .addComponent(docLastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout selectedOfficePanelLayout = new javax.swing.GroupLayout(selectedOfficePanel);
-        selectedOfficePanel.setLayout(selectedOfficePanelLayout);
-        selectedOfficePanelLayout.setHorizontalGroup(
-            selectedOfficePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(selectedOfficePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(selectedOfficePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(doctorDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(selectedOfficePanelLayout.createSequentialGroup()
-                        .addGroup(selectedOfficePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(officeDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(officeDetailsPanelLayout.createSequentialGroup()
+                        .addGroup(officeDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(placeLabel)
                             .addComponent(streetLabel))
                         .addGap(18, 18, 18)
-                        .addGroup(selectedOfficePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(officeDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(placeTextField)
-                            .addGroup(selectedOfficePanelLayout.createSequentialGroup()
-                                .addComponent(streetTextField)
+                            .addGroup(officeDetailsPanelLayout.createSequentialGroup()
+                                .addComponent(streetTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(numberLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(numberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(selectedOfficePanelLayout.createSequentialGroup()
+                    .addGroup(officeDetailsPanelLayout.createSequentialGroup()
                         .addComponent(specializationLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(specializationTextField))
-                    .addGroup(selectedOfficePanelLayout.createSequentialGroup()
-                        .addGroup(selectedOfficePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(officeDetailsPanelLayout.createSequentialGroup()
+                        .addGroup(officeDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(hospitalLabel)
                             .addComponent(phoneLabel))
                         .addGap(18, 18, 18)
-                        .addGroup(selectedOfficePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(officeDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(phoneTextField)
                             .addComponent(hospitalTextField))))
                 .addContainerGap())
         );
-        selectedOfficePanelLayout.setVerticalGroup(
-            selectedOfficePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, selectedOfficePanelLayout.createSequentialGroup()
+        officeDetailsPanelLayout.setVerticalGroup(
+            officeDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, officeDetailsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(selectedOfficePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(officeDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(placeLabel)
                     .addComponent(placeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(selectedOfficePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(officeDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(streetLabel)
                     .addComponent(streetTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(numberLabel)
                     .addComponent(numberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(selectedOfficePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(officeDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(specializationLabel)
                     .addComponent(specializationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(selectedOfficePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(officeDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hospitalLabel)
                     .addComponent(hospitalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(selectedOfficePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(officeDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(phoneLabel)
                     .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(doctorDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        termDetailsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Detaily termínu"));
+        termDetailsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Detaily nového termínu"));
 
         dateLabel.setText("Dátum:");
 
-        dayComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        monthComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        yearComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         timeLabel.setText("Čas:");
 
-        timeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        descriptionLabel.setText("Zámer / komentár:");
+
+        descriptionTextArea.setColumns(20);
+        descriptionTextArea.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        descriptionTextArea.setRows(5);
+        descriptionScrollPane.setViewportView(descriptionTextArea);
 
         javax.swing.GroupLayout termDetailsPanelLayout = new javax.swing.GroupLayout(termDetailsPanel);
         termDetailsPanel.setLayout(termDetailsPanelLayout);
@@ -244,18 +201,25 @@ public class EditTermForm extends javax.swing.JFrame {
             .addGroup(termDetailsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(termDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dateLabel)
-                    .addComponent(timeLabel))
-                .addGap(18, 18, 18)
-                .addGroup(termDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(descriptionScrollPane)
                     .addGroup(termDetailsPanelLayout.createSequentialGroup()
-                        .addComponent(dayComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(monthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(yearComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(timeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(101, Short.MAX_VALUE))
+                        .addGroup(termDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(termDetailsPanelLayout.createSequentialGroup()
+                                .addGroup(termDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dateLabel)
+                                    .addComponent(timeLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(termDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(termDetailsPanelLayout.createSequentialGroup()
+                                        .addComponent(dayComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(monthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(yearComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(timeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(descriptionLabel))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         termDetailsPanelLayout.setVerticalGroup(
             termDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,12 +234,16 @@ public class EditTermForm extends javax.swing.JFrame {
                 .addGroup(termDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(timeLabel)
                     .addComponent(timeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(descriptionLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(descriptionScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        editTermButton.setText("Opraviť termín");
+        reserveButton.setText("Rezervovať termín");
 
-        cancelButton.setText("Zrušiť zmeny");
+        cancelButton.setText("Zrušiť");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
@@ -289,7 +257,7 @@ public class EditTermForm extends javax.swing.JFrame {
             .addGroup(buttonsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(buttonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(editTermButton, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                    .addComponent(reserveButton, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -297,7 +265,7 @@ public class EditTermForm extends javax.swing.JFrame {
             buttonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buttonsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(editTermButton)
+                .addComponent(reserveButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancelButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -312,7 +280,7 @@ public class EditTermForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(termDetailsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(selectedOfficePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(officeDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(buttonsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -322,8 +290,8 @@ public class EditTermForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(selectedOfficePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(officeDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(termDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -353,13 +321,13 @@ public class EditTermForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditTermForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewTermDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditTermForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewTermDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditTermForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewTermDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditTermForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NewTermDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -367,7 +335,6 @@ public class EditTermForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditTermForm().setVisible(true);
             }
         });
     }
@@ -377,22 +344,20 @@ public class EditTermForm extends javax.swing.JFrame {
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JComboBox<String> dayComboBox;
-    private javax.swing.JLabel docLastNameLabel;
-    private javax.swing.JTextField docLastNameTextField;
-    private javax.swing.JLabel docNameLabel;
-    private javax.swing.JTextField docNameTextField;
-    private javax.swing.JPanel doctorDetailsPanel;
-    private javax.swing.JButton editTermButton;
+    private javax.swing.JLabel descriptionLabel;
+    private javax.swing.JScrollPane descriptionScrollPane;
+    private javax.swing.JTextArea descriptionTextArea;
     private javax.swing.JLabel hospitalLabel;
     private javax.swing.JTextField hospitalTextField;
     private javax.swing.JComboBox<String> monthComboBox;
     private javax.swing.JLabel numberLabel;
     private javax.swing.JTextField numberTextField;
+    private javax.swing.JPanel officeDetailsPanel;
     private javax.swing.JLabel phoneLabel;
     private javax.swing.JTextField phoneTextField;
     private javax.swing.JLabel placeLabel;
     private javax.swing.JTextField placeTextField;
-    private javax.swing.JPanel selectedOfficePanel;
+    private javax.swing.JButton reserveButton;
     private javax.swing.JLabel specializationLabel;
     private javax.swing.JTextField specializationTextField;
     private javax.swing.JLabel streetLabel;
