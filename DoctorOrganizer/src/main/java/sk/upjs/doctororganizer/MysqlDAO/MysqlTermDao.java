@@ -1,5 +1,6 @@
 package sk.upjs.doctororganizer.MysqlDAO;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,8 +17,10 @@ public class MysqlTermDao implements TermDao {
 
     @Override
     public void add(Term term) {
-        String sql = "INSERT INTO `term` (`id_patient`, `patient`, `id_doctor_office`, `date`, `time` `reason`, `term_condition`) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, term.getId_patient(), term.getPatient(), term.getId_doctor_office(), term.getDate(), term.getTime(), term.getReason(), term.getTerm_condition());
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
+        String date = term.getDate().format(formatter);
+        String sql = "INSERT INTO `term` (`id_patient`, `patient`, `id_doctor_office`, `date`, `time`, `reason`, `term_condition`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, term.getId_patient(), term.getPatient(), term.getId_doctor_office(), date, term.getTime(), term.getReason(), term.getTerm_condition());
     }
 
     @Override
@@ -37,6 +40,13 @@ public class MysqlTermDao implements TermDao {
     @Override
     public List<Term> getTermByDoctorOfficeId(Long doctorOfficeId) {
         String sql = "SELECT id, id_patient, patient, id_doctor_office, date, time, reason, term_condition FROM term WHERE id_doctor_office = " + doctorOfficeId;
+        BeanPropertyRowMapper<Term> bprm = new BeanPropertyRowMapper<>(Term.class);
+        return jdbcTemplate.query(sql, bprm);
+    }
+
+    @Override
+    public List<Term> getTermByDoctorOfficeIdAndDay(Long doctorOfficeId, String date) {
+        String sql = "SELECT id, id_patient, patient, id_doctor_office, date, time, reason, term_condition FROM term WHERE id_doctor_office = " + doctorOfficeId + " && date = \'" + date+"\'";
         BeanPropertyRowMapper<Term> bprm = new BeanPropertyRowMapper<>(Term.class);
         return jdbcTemplate.query(sql, bprm);
     }

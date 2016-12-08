@@ -18,6 +18,7 @@ package sk.upjs.doctororganizer.Form;
 
 import java.awt.Frame;
 import sk.upjs.doctororganizer.Entities.DoctorOffice;
+import sk.upjs.doctororganizer.Entities.Patient;
 
 /**
  *
@@ -25,8 +26,11 @@ import sk.upjs.doctororganizer.Entities.DoctorOffice;
  */
 public class OfficeSearchDialog extends javax.swing.JDialog {
 
-    public OfficeSearchDialog(Frame owner, boolean modal) {
+    private Patient loggedInPatient;
+
+    public OfficeSearchDialog(Frame owner, boolean modal, Patient loggedInPatient) {
         super(owner, modal);
+        this.loggedInPatient = loggedInPatient;
         initComponents();
     }
 
@@ -252,10 +256,20 @@ public class OfficeSearchDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
-       //mesto new office treba dat zvoleny office z listu
-        NewTermDialog ntd = new NewTermDialog(new DoctorOffice(), this, true);
+        //miesto examlpeOffice treba dat zvoleny office z listu
+        DoctorOffice exampleOffice = new DoctorOffice();
+        exampleOffice.setCity("Košice");
+        exampleOffice.setHospital("nemocnicaXY");
+        exampleOffice.setHouse_number(5);
+        exampleOffice.setId(new Long(2));
+        exampleOffice.setSpecialization("Ortopédia");
+        exampleOffice.setStreet("Jesenná");
+        exampleOffice.setPhone_number("0911777888");
+        exampleOffice.setId_doctor(new Long(2));
+        exampleOffice.setOpening_hours("09:30-12:30");
+        NewTermDialog ntd = new NewTermDialog(loggedInPatient, exampleOffice, this, true);
         ntd.setVisible(true);
-       
+
     }//GEN-LAST:event_reserveButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

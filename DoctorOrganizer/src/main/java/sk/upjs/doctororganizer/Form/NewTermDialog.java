@@ -16,20 +16,74 @@
  */
 package sk.upjs.doctororganizer.Form;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JDialog;
+import sk.upjs.doctororganizer.DAO.TermDao;
 import sk.upjs.doctororganizer.Entities.DoctorOffice;
+import sk.upjs.doctororganizer.Entities.Patient;
+import sk.upjs.doctororganizer.Entities.Term;
+import sk.upjs.doctororganizer.Factory.DaoFactory;
+import sk.upjs.doctororganizer.Models.NewTermTimeComboBoxModel;
 
 public class NewTermDialog extends javax.swing.JDialog {
 
-    private DoctorOffice office;
+    private final DoctorOffice office;
+    private final NewTermTimeComboBoxModel newTermTimeComboBoxModel;
+    private final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
+    private final String today = LocalDateTime.now().format(formatter);
+    private final Patient patient;
+    private final TermDao termDao;
 
-    public NewTermDialog(DoctorOffice office, JDialog owner, boolean modal) {
+    public NewTermDialog(Patient patient, DoctorOffice office, JDialog owner, boolean modal) {
         super(owner, modal);
+        termDao = DaoFactory.INSTANCE.getTermDao();
         this.office = office;
+        this.patient = patient;
+        newTermTimeComboBoxModel = new NewTermTimeComboBoxModel(office, today);
         initComponents();
+        setDateForComboBoxes(today);
+        newTermTimeComboBoxModel.refresh(getDateFromComboBoxes());
+        setOfficeInformation();
     }
-    
-    
+
+    private String getDateFromComboBoxes() {
+        return yearComboBox.getSelectedItem() + "-" + monthComboBox.getSelectedItem() + "-"
+                + dayComboBox.getSelectedItem();
+    }
+
+    private void setDateForComboBoxes(String date) {
+        String year = date.substring(0, 4);
+        String month = date.substring(5, 7);
+        String day = date.substring(8, date.length());
+        for (int i = 0; i < dayComboBox.getItemCount(); i++) {
+            if (dayComboBox.getItemAt(i).equals(day)) {
+                dayComboBox.setSelectedIndex(i);
+                break;
+            }
+        }
+        for (int i = 0; i < monthComboBox.getItemCount(); i++) {
+            if (monthComboBox.getItemAt(i).equals(month)) {
+                monthComboBox.setSelectedIndex(i);
+                break;
+            }
+        }
+        for (int i = 0; i < yearComboBox.getItemCount(); i++) {
+            if (yearComboBox.getItemAt(i).equals(year)) {
+                yearComboBox.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+
+    private void setOfficeInformation() {
+        hospitalTextField.setText(office.getHospital());
+        numberTextField.setText(Integer.toString(office.getHouse_number()));
+        phoneTextField.setText(office.getPhone_number());
+        placeTextField.setText(office.getCity());
+        specializationTextField.setText(office.getSpecialization());
+        streetTextField.setText(office.getStreet());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,6 +119,9 @@ public class NewTermDialog extends javax.swing.JDialog {
         descriptionLabel = new javax.swing.JLabel();
         descriptionScrollPane = new javax.swing.JScrollPane();
         descriptionTextArea = new javax.swing.JTextArea();
+        yearLabel = new javax.swing.JLabel();
+        monthLabel = new javax.swing.JLabel();
+        dayLabel = new javax.swing.JLabel();
         buttonsPanel = new javax.swing.JPanel();
         reserveButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
@@ -185,14 +242,43 @@ public class NewTermDialog extends javax.swing.JDialog {
 
         dateLabel.setText("Dátum:");
 
+        dayComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        dayComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dayComboBoxActionPerformed(evt);
+            }
+        });
+
+        monthComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        monthComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monthComboBoxActionPerformed(evt);
+            }
+        });
+
+        yearComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
+        yearComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yearComboBoxActionPerformed(evt);
+            }
+        });
+
         timeLabel.setText("Čas:");
+
+        timeComboBox.setModel(newTermTimeComboBoxModel);
 
         descriptionLabel.setText("Zámer / komentár:");
 
         descriptionTextArea.setColumns(20);
-        descriptionTextArea.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        descriptionTextArea.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         descriptionTextArea.setRows(5);
         descriptionScrollPane.setViewportView(descriptionTextArea);
+
+        yearLabel.setText("Rok:");
+
+        monthLabel.setText("Mesiac:");
+
+        dayLabel.setText("Deň:");
 
         javax.swing.GroupLayout termDetailsPanelLayout = new javax.swing.GroupLayout(termDetailsPanel);
         termDetailsPanel.setLayout(termDetailsPanelLayout);
@@ -201,23 +287,29 @@ public class NewTermDialog extends javax.swing.JDialog {
             .addGroup(termDetailsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(termDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(descriptionScrollPane)
+                    .addComponent(descriptionScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                    .addGroup(termDetailsPanelLayout.createSequentialGroup()
+                        .addComponent(dateLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dayLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dayComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(monthLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(monthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(yearLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(yearComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
                     .addGroup(termDetailsPanelLayout.createSequentialGroup()
                         .addGroup(termDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(descriptionLabel)
                             .addGroup(termDetailsPanelLayout.createSequentialGroup()
-                                .addGroup(termDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dateLabel)
-                                    .addComponent(timeLabel))
+                                .addComponent(timeLabel)
                                 .addGap(18, 18, 18)
-                                .addGroup(termDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(termDetailsPanelLayout.createSequentialGroup()
-                                        .addComponent(dayComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(monthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(yearComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(timeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(descriptionLabel))
+                                .addComponent(timeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -229,7 +321,10 @@ public class NewTermDialog extends javax.swing.JDialog {
                     .addComponent(dateLabel)
                     .addComponent(dayComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(monthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(yearComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(yearComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(yearLabel)
+                    .addComponent(monthLabel)
+                    .addComponent(dayLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(termDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(timeLabel)
@@ -242,6 +337,11 @@ public class NewTermDialog extends javax.swing.JDialog {
         );
 
         reserveButton.setText("Rezervovať termín");
+        reserveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reserveButtonActionPerformed(evt);
+            }
+        });
 
         cancelButton.setText("Zrušiť");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -304,6 +404,32 @@ public class NewTermDialog extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    private void dayComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayComboBoxActionPerformed
+        newTermTimeComboBoxModel.refresh(getDateFromComboBoxes());
+    }//GEN-LAST:event_dayComboBoxActionPerformed
+
+    private void monthComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthComboBoxActionPerformed
+        newTermTimeComboBoxModel.refresh(getDateFromComboBoxes());
+    }//GEN-LAST:event_monthComboBoxActionPerformed
+
+    private void yearComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearComboBoxActionPerformed
+        newTermTimeComboBoxModel.refresh(getDateFromComboBoxes());
+    }//GEN-LAST:event_yearComboBoxActionPerformed
+
+    private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
+        Term newTerm = new Term();
+        newTerm.setDate(LocalDateTime.of(Integer.parseInt(yearComboBox.getSelectedItem().toString()), Integer.parseInt(monthComboBox.getSelectedItem().toString()), Integer.parseInt(dayComboBox.getSelectedItem().toString()), 00, 00));
+        newTerm.setId_doctor_office(office.getId());
+        newTerm.setId_patient(patient.getId());
+        newTerm.setPatient(patient.getName() + " " + patient.getSurname());
+        newTerm.setReason(descriptionTextArea.getText());
+        newTerm.setTerm_condition("neschválený");
+        newTerm.setTime(timeComboBox.getSelectedItem().toString());
+        System.out.println(newTerm.getTime());
+        termDao.add(newTerm);
+        newTermTimeComboBoxModel.refresh(getDateFromComboBoxes());
+    }//GEN-LAST:event_reserveButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -344,12 +470,14 @@ public class NewTermDialog extends javax.swing.JDialog {
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JComboBox<String> dayComboBox;
+    private javax.swing.JLabel dayLabel;
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JScrollPane descriptionScrollPane;
     private javax.swing.JTextArea descriptionTextArea;
     private javax.swing.JLabel hospitalLabel;
     private javax.swing.JTextField hospitalTextField;
     private javax.swing.JComboBox<String> monthComboBox;
+    private javax.swing.JLabel monthLabel;
     private javax.swing.JLabel numberLabel;
     private javax.swing.JTextField numberTextField;
     private javax.swing.JPanel officeDetailsPanel;
@@ -368,5 +496,6 @@ public class NewTermDialog extends javax.swing.JDialog {
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanel;
     private javax.swing.JComboBox<String> yearComboBox;
+    private javax.swing.JLabel yearLabel;
     // End of variables declaration//GEN-END:variables
 }

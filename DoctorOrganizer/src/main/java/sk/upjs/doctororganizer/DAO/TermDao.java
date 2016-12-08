@@ -10,10 +10,13 @@ public interface TermDao {
     List<Term> getAll();
 
     Term getTermById(long id);
-    
+
     List<Term> getTermByDoctorOfficeId(Long doctorOfficeId);
+
+    public List<Term> getTermByDoctorOfficeIdAndDay(Long doctorOfficeId, String date);
 
     void upgrade(Term term);
 
     void delete(long id);
+
 }

@@ -200,7 +200,7 @@ public class PatientMainForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createTermButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTermButtonActionPerformed
-        OfficeSearchDialog osd = new OfficeSearchDialog(this, true);
+        OfficeSearchDialog osd = new OfficeSearchDialog(this, true, loggedInPatient);
         osd.setVisible(true);
 
     }//GEN-LAST:event_createTermButtonActionPerformed
