@@ -17,13 +17,17 @@
 package sk.upjs.doctororganizer.Form;
 
 import java.awt.Frame;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import sk.upjs.doctororganizer.Models.TermListModel;
 import sk.upjs.doctororganizer.Entities.Term;
 
 public class DoctorTermDialog extends javax.swing.JDialog {
 
-    Long officeId;
-    TermListModel termListModel;
+    private final Long officeId;
+    private final TermListModel termListModel;
+    private final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
+    private final String today = LocalDateTime.now().format(formatter);
 
     /**
      * Creates new form DoctorTermForm
@@ -31,8 +35,38 @@ public class DoctorTermDialog extends javax.swing.JDialog {
     public DoctorTermDialog(Frame parent, boolean modal, Long officeId) {
         super(parent, modal);
         this.officeId = officeId;
-        termListModel = new TermListModel(officeId);
+        termListModel = new TermListModel(officeId, today);
         initComponents();
+        setDateForComboBoxes(today);
+    }
+
+    private String getDateFromComboBoxes() {
+        return yearComboBox.getSelectedItem() + "-" + monthComboBox.getSelectedItem() + "-"
+                + dayComboBox.getSelectedItem();
+    }
+
+    private void setDateForComboBoxes(String date) {
+        String year = date.substring(0, 4);
+        String month = date.substring(5, 7);
+        String day = date.substring(8, date.length());
+        for (int i = 0; i < dayComboBox.getItemCount(); i++) {
+            if (dayComboBox.getItemAt(i).equals(day)) {
+                dayComboBox.setSelectedIndex(i);
+                break;
+            }
+        }
+        for (int i = 0; i < monthComboBox.getItemCount(); i++) {
+            if (monthComboBox.getItemAt(i).equals(month)) {
+                monthComboBox.setSelectedIndex(i);
+                break;
+            }
+        }
+        for (int i = 0; i < yearComboBox.getItemCount(); i++) {
+            if (yearComboBox.getItemAt(i).equals(year)) {
+                yearComboBox.setSelectedIndex(i);
+                break;
+            }
+        }
     }
 
     /**
@@ -52,6 +86,9 @@ public class DoctorTermDialog extends javax.swing.JDialog {
         dayComboBox = new javax.swing.JComboBox<>();
         monthComboBox = new javax.swing.JComboBox<>();
         yearComboBox = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         termsPanel = new javax.swing.JPanel();
         termsScrollPane = new javax.swing.JScrollPane();
         termsList = new javax.swing.JList<>();
@@ -88,11 +125,32 @@ public class DoctorTermDialog extends javax.swing.JDialog {
 
         dateLabel.setText("Dátum:");
 
-        dayComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        dayComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        dayComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dayComboBoxActionPerformed(evt);
+            }
+        });
 
-        monthComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        monthComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        monthComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monthComboBoxActionPerformed(evt);
+            }
+        });
 
-        yearComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        yearComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
+        yearComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yearComboBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Deň:");
+
+        jLabel2.setText("Rok:");
+
+        jLabel3.setText("Mesiac:");
 
         javax.swing.GroupLayout filterPanelLayout = new javax.swing.GroupLayout(filterPanel);
         filterPanel.setLayout(filterPanelLayout);
@@ -101,11 +159,17 @@ public class DoctorTermDialog extends javax.swing.JDialog {
             .addGroup(filterPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(dateLabel)
-                .addGap(55, 55, 55)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dayComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(monthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(yearComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -116,7 +180,10 @@ public class DoctorTermDialog extends javax.swing.JDialog {
                     .addComponent(dateLabel)
                     .addComponent(dayComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(monthComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(yearComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(yearComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -213,6 +280,18 @@ public class DoctorTermDialog extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_closeButtonActionPerformed
 
+    private void dayComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayComboBoxActionPerformed
+        termListModel.refreshList(getDateFromComboBoxes());
+    }//GEN-LAST:event_dayComboBoxActionPerformed
+
+    private void monthComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthComboBoxActionPerformed
+        termListModel.refreshList(getDateFromComboBoxes());
+    }//GEN-LAST:event_monthComboBoxActionPerformed
+
+    private void yearComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearComboBoxActionPerformed
+        termListModel.refreshList(getDateFromComboBoxes());
+    }//GEN-LAST:event_yearComboBoxActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -256,6 +335,9 @@ public class DoctorTermDialog extends javax.swing.JDialog {
     private javax.swing.JLabel dateLabel;
     private javax.swing.JComboBox<String> dayComboBox;
     private javax.swing.JPanel filterPanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JComboBox<String> monthComboBox;
     private javax.swing.JButton refuseButton;
     private javax.swing.JList<Term> termsList;

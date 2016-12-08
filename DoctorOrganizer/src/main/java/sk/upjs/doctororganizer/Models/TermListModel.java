@@ -16,29 +16,42 @@
  */
 package sk.upjs.doctororganizer.Models;
 
-import javax.swing.AbstractListModel;
+import java.util.List;
+import javax.swing.DefaultListModel;
 import sk.upjs.doctororganizer.DAO.TermDao;
 import sk.upjs.doctororganizer.Entities.Term;
 import sk.upjs.doctororganizer.Factory.DaoFactory;
 
-public class TermListModel extends AbstractListModel<Term> {
+public class TermListModel extends DefaultListModel<Term> {
 
     TermDao dao;
     Long doctorOfficeId;
-    
-    public TermListModel(Long doctorOfficeId) {
+    String date;
+
+    public TermListModel(Long doctorOfficeId, String date) {
         this.doctorOfficeId = doctorOfficeId;
+        this.date = date;
         dao = DaoFactory.INSTANCE.getTermDao();
     }
 
     @Override
     public int getSize() {
-       return dao.getTermByDoctorOfficeId(doctorOfficeId).size();
+        return dao.getTermByDoctorOfficeIdAndDay(doctorOfficeId, date).size();
     }
 
     @Override
     public Term getElementAt(int index) {
-       return dao.getTermByDoctorOfficeId(doctorOfficeId).get(index);
+        return dao.getTermByDoctorOfficeIdAndDay(doctorOfficeId, date).get(index);
     }
     
+    public void refreshList(String date){
+        List<Term> termList = dao.getTermByDoctorOfficeIdAndDay(doctorOfficeId, date);
+        this.removeAllElements();
+        for (Term term : termList) {
+            this.addElement(term);
+        }
+        this.fireContentsChanged(this, 0, this.getSize());
+    }
+    
+
 }
