@@ -43,8 +43,9 @@ public class TermListModel extends DefaultListModel<Term> {
     public Term getElementAt(int index) {
         return dao.getTermByDoctorOfficeIdAndDay(doctorOfficeId, date).get(index);
     }
-    
-    public void refreshList(String date){
+
+    public void refreshList(String date) {
+        this.date = date;
         List<Term> termList = dao.getTermByDoctorOfficeIdAndDay(doctorOfficeId, date);
         this.removeAllElements();
         for (Term term : termList) {
@@ -52,6 +53,5 @@ public class TermListModel extends DefaultListModel<Term> {
         }
         this.fireContentsChanged(this, 0, this.getSize());
     }
-    
 
 }

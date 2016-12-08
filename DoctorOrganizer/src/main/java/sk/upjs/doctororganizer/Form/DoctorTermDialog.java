@@ -29,44 +29,12 @@ public class DoctorTermDialog extends javax.swing.JDialog {
     private final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
     private final String today = LocalDateTime.now().format(formatter);
 
-    /**
-     * Creates new form DoctorTermForm
-     */
     public DoctorTermDialog(Frame parent, boolean modal, Long officeId) {
         super(parent, modal);
         this.officeId = officeId;
         termListModel = new TermListModel(officeId, today);
         initComponents();
         setDateForComboBoxes(today);
-    }
-
-    private String getDateFromComboBoxes() {
-        return yearComboBox.getSelectedItem() + "-" + monthComboBox.getSelectedItem() + "-"
-                + dayComboBox.getSelectedItem();
-    }
-
-    private void setDateForComboBoxes(String date) {
-        String year = date.substring(0, 4);
-        String month = date.substring(5, 7);
-        String day = date.substring(8, date.length());
-        for (int i = 0; i < dayComboBox.getItemCount(); i++) {
-            if (dayComboBox.getItemAt(i).equals(day)) {
-                dayComboBox.setSelectedIndex(i);
-                break;
-            }
-        }
-        for (int i = 0; i < monthComboBox.getItemCount(); i++) {
-            if (monthComboBox.getItemAt(i).equals(month)) {
-                monthComboBox.setSelectedIndex(i);
-                break;
-            }
-        }
-        for (int i = 0; i < yearComboBox.getItemCount(); i++) {
-            if (yearComboBox.getItemAt(i).equals(year)) {
-                yearComboBox.setSelectedIndex(i);
-                break;
-            }
-        }
     }
 
     /**
@@ -291,6 +259,35 @@ public class DoctorTermDialog extends javax.swing.JDialog {
     private void yearComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yearComboBoxActionPerformed
         termListModel.refreshList(getDateFromComboBoxes());
     }//GEN-LAST:event_yearComboBoxActionPerformed
+
+    private String getDateFromComboBoxes() {
+        return yearComboBox.getSelectedItem() + "-" + monthComboBox.getSelectedItem() + "-"
+                + dayComboBox.getSelectedItem();
+    }
+
+    private void setDateForComboBoxes(String date) {
+        String year = date.substring(0, 4);
+        String month = date.substring(5, 7);
+        String day = date.substring(8, date.length());
+        for (int i = 0; i < dayComboBox.getItemCount(); i++) {
+            if (dayComboBox.getItemAt(i).equals(day)) {
+                dayComboBox.setSelectedIndex(i);
+                break;
+            }
+        }
+        for (int i = 0; i < monthComboBox.getItemCount(); i++) {
+            if (monthComboBox.getItemAt(i).equals(month)) {
+                monthComboBox.setSelectedIndex(i);
+                break;
+            }
+        }
+        for (int i = 0; i < yearComboBox.getItemCount(); i++) {
+            if (yearComboBox.getItemAt(i).equals(year)) {
+                yearComboBox.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
 
     /**
      * @param args the command line arguments

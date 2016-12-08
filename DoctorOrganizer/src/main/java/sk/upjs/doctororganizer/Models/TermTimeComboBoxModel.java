@@ -25,12 +25,12 @@ import sk.upjs.doctororganizer.Entities.Hours;
 import sk.upjs.doctororganizer.Entities.Term;
 import sk.upjs.doctororganizer.Factory.DaoFactory;
 
-public class NewTermTimeComboBoxModel extends DefaultComboBoxModel<String> {
+public class TermTimeComboBoxModel extends DefaultComboBoxModel<String> {
 
     private TermDao dao = DaoFactory.INSTANCE.getTermDao();
     private DoctorOffice office;
 
-    public NewTermTimeComboBoxModel(DoctorOffice office, String date) {
+    public TermTimeComboBoxModel(DoctorOffice office, String date) {
         this.office = office;
         String openingHours = office.getOpening_hours();
         String openingHour = openingHours.substring(0, openingHours.indexOf("-"));

@@ -24,12 +24,12 @@ import sk.upjs.doctororganizer.Entities.DoctorOffice;
 import sk.upjs.doctororganizer.Entities.Patient;
 import sk.upjs.doctororganizer.Entities.Term;
 import sk.upjs.doctororganizer.Factory.DaoFactory;
-import sk.upjs.doctororganizer.Models.NewTermTimeComboBoxModel;
+import sk.upjs.doctororganizer.Models.TermTimeComboBoxModel;
 
 public class NewTermDialog extends javax.swing.JDialog {
 
     private final DoctorOffice office;
-    private final NewTermTimeComboBoxModel newTermTimeComboBoxModel;
+    private final TermTimeComboBoxModel newTermTimeComboBoxModel;
     private final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
     private final String today = LocalDateTime.now().format(formatter);
     private final Patient patient;
@@ -40,7 +40,7 @@ public class NewTermDialog extends javax.swing.JDialog {
         termDao = DaoFactory.INSTANCE.getTermDao();
         this.office = office;
         this.patient = patient;
-        newTermTimeComboBoxModel = new NewTermTimeComboBoxModel(office, today);
+        newTermTimeComboBoxModel = new TermTimeComboBoxModel(office, today);
         initComponents();
         setDateForComboBoxes(today);
         newTermTimeComboBoxModel.refresh(getDateFromComboBoxes());
