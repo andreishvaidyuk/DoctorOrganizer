@@ -9,7 +9,7 @@ public interface DoctorDao {
 
     List<Doctor> getAll();
 
-    Doctor getId(long id);
+    Doctor getDoctorById(long id);
 
     Doctor getDoctorByEmail(String email);
 

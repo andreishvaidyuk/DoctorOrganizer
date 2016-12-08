@@ -16,27 +16,35 @@ public class MysqlDoctorDao implements DoctorDao {
 
     @Override
     public void add(Doctor doctor) {
-        String sql = "INSERT INTO `doctor` (`name`, `surname`, `academic_degree`, `email`, `password`) VALUES (?,?,?,?,?)";
-        jdbcTemplate.update(sql, doctor.getName(), doctor.getSurname(), doctor.getAcademic_degree(), doctor.getEmail(), doctor.getPassword());
+        String sql = "INSERT INTO `doctor` (`name`, `surname`,"
+                + " `academic_degree`, `email`, `password`) VALUES (?,?,?,?,?)";
+        jdbcTemplate.update(sql, doctor.getName(), doctor.getSurname(),
+                doctor.getAcademic_degree(), doctor.getEmail(), doctor.getPassword());
     }
 
     @Override
     public List<Doctor> getAll() {
-        String sql = "SELECT id, name, surname, academic_degree, email, password FROM doctor";
+        String sql = "SELECT id, name, surname, academic_degree, email, password"
+                + " FROM doctor";
         BeanPropertyRowMapper<Doctor> bprm = new BeanPropertyRowMapper<>(Doctor.class);
         return jdbcTemplate.query(sql, bprm);
     }
 
     @Override
-    public Doctor getId(long id) {
-        String sql = "SELECT id, name, surname, academic_degree, email, password FROM doctor WHERE id = " + id;
+    public Doctor getDoctorById(long id) {
+        String sql = "SELECT id, name, surname, academic_degree, email,"
+                + " password FROM doctor WHERE id = " + id;
         BeanPropertyRowMapper<Doctor> bprm = new BeanPropertyRowMapper<>(Doctor.class);
         return jdbcTemplate.query(sql, bprm).get(0);
     }
 
     @Override
     public void upgrade(Doctor doctor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jdbcTemplate.update("UPDATE doctor SET name=?,"
+                + " surname=?, academic_degree=?, email=?,"
+                + " password=? WHERE id=?", doctor.getName(), doctor. getSurname(),
+                doctor.getAcademic_degree(), doctor.getEmail(), doctor.getEmail(),
+                doctor.getPassword(), doctor.getId());
     }
 
     @Override
@@ -47,7 +55,8 @@ public class MysqlDoctorDao implements DoctorDao {
 
     @Override
     public Doctor getDoctorByEmail(String email) {
-        String sql = "SELECT id, name, surname, academic_degree, email, password FROM doctor WHERE email = \'" + email + "\'";
+        String sql = "SELECT id, name, surname, academic_degree, email,"
+                + " password FROM doctor WHERE email = \'" + email + "\'";
         BeanPropertyRowMapper<Doctor> bprm = new BeanPropertyRowMapper<>(Doctor.class);
         List<Doctor> list = jdbcTemplate.query(sql, bprm);
         if (list != null && list.size() > 0) {
@@ -58,7 +67,8 @@ public class MysqlDoctorDao implements DoctorDao {
 
     @Override
     public void upgradePass(Doctor doctor, String newPassword) {
-       String sql = "UPDATE doctor SET password = \'" + newPassword + "\' WHERE id = " + doctor.getId();
+       String sql = "UPDATE doctor SET password = \'" + newPassword + "\'"
+               + " WHERE id = " + doctor.getId();
         jdbcTemplate.execute(sql);
     }
 

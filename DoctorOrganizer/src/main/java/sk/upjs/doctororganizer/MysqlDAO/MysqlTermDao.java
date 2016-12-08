@@ -19,41 +19,59 @@ public class MysqlTermDao implements TermDao {
     public void add(Term term) {
         DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
         String date = term.getDate().format(formatter);
-        String sql = "INSERT INTO `term` (`id_patient`, `patient`, `id_doctor_office`, `date`, `time`, `reason`, `term_condition`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO `term` (`id_patient`, `patient`,"
+                + " `id_doctor_office`, `date`, `time`, `reason`,"
+                + " `term_condition`) VALUES (?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, term.getId_patient(), term.getPatient(), term.getId_doctor_office(), date, term.getTime(), term.getReason(), term.getTerm_condition());
     }
 
     @Override
     public List<Term> getAll() {
-        String sql = "SELECT id, id_patient, patient, id_doctor_office, date, time reason, term_condition FROM term";
+        String sql = "SELECT id, id_patient, patient, id_doctor_office, date,"
+                + " time reason, term_condition FROM term";
         BeanPropertyRowMapper<Term> bprm = new BeanPropertyRowMapper<>(Term.class);
         return jdbcTemplate.query(sql, bprm);
     }
 
     @Override
     public Term getTermById(long id) {
-        String sql = "SELECT id, id_patient, patient, id_doctor_office, date, time, reason, term_condition FROM term WHERE id = " + id;
+        String sql = "SELECT id, id_patient, patient, id_doctor_office, date,"
+                + " time, reason, term_condition FROM term WHERE id = " + id;
         BeanPropertyRowMapper<Term> bprm = new BeanPropertyRowMapper<>(Term.class);
         return jdbcTemplate.query(sql, bprm).get(0);
     }
 
     @Override
     public List<Term> getTermByDoctorOfficeId(Long doctorOfficeId) {
-        String sql = "SELECT id, id_patient, patient, id_doctor_office, date, time, reason, term_condition FROM term WHERE id_doctor_office = " + doctorOfficeId;
+        String sql = "SELECT id, id_patient, patient, id_doctor_office,"
+                + " date, time, reason, term_condition FROM term"
+                + " WHERE id_doctor_office = " + doctorOfficeId;
         BeanPropertyRowMapper<Term> bprm = new BeanPropertyRowMapper<>(Term.class);
         return jdbcTemplate.query(sql, bprm);
     }
 
     @Override
     public List<Term> getTermByDoctorOfficeIdAndDay(Long doctorOfficeId, String date) {
-        String sql = "SELECT id, id_patient, patient, id_doctor_office, date, time, reason, term_condition FROM term WHERE id_doctor_office = " + doctorOfficeId + " && date = \'" + date+"\'";
+        String sql = "SELECT id, id_patient, patient, id_doctor_office,"
+                + " date, time, reason, term_condition FROM term"
+                + " WHERE id_doctor_office = " + doctorOfficeId + " && date = \'" + date + "\'";
         BeanPropertyRowMapper<Term> bprm = new BeanPropertyRowMapper<>(Term.class);
         return jdbcTemplate.query(sql, bprm);
     }
 
     @Override
+    public void setTermCondition(Long termId, String newCondition) {
+        jdbcTemplate.update("UPDATE term SET term_condition = ? WHERE id = ?",
+                newCondition, termId);
+    }
+
+    @Override
     public void upgrade(Term term) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jdbcTemplate.update("UPDATE term SET"
+                + " id_patient = ?, patient = ?, id_doctor_office = ?,"
+                + " date = ?, time = ?, reason = ? , term_condition = ? WHERE id = ?",
+                term.getId_patient(), term.getPatient(), term.getId_doctor_office(),
+                term.getDate(), term.getTime(), term.getReason(), term.getTerm_condition(), term.getId());
     }
 
     @Override

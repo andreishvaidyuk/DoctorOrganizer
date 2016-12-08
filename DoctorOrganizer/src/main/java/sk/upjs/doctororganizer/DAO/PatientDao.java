@@ -9,7 +9,7 @@ public interface PatientDao {
 
     List<Patient> getAll();
 
-    Patient getId(long id);
+    Patient getPatientById(long id);
     
     Patient getPatientByEmail(String email);
 

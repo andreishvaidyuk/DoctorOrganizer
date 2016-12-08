@@ -350,11 +350,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Schv&#xe1;li&#x165; ozna&#x10d;en&#xfd; term&#xed;n"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="approveButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="refuseButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Zamietnu&#x165; ozna&#x10d;en&#xfd; term&#xed;n"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refuseButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

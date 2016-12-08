@@ -13,7 +13,9 @@ public interface TermDao {
 
     List<Term> getTermByDoctorOfficeId(Long doctorOfficeId);
 
-    public List<Term> getTermByDoctorOfficeIdAndDay(Long doctorOfficeId, String date);
+    List<Term> getTermByDoctorOfficeIdAndDay(Long doctorOfficeId, String date);
+    
+    void setTermCondition(Long termId, String newCondition);
 
     void upgrade(Term term);
 
