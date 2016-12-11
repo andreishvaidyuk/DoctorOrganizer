@@ -19,6 +19,7 @@ package sk.upjs.doctororganizer.Form;
 import java.awt.Frame;
 import sk.upjs.doctororganizer.Entities.DoctorOffice;
 import sk.upjs.doctororganizer.Entities.Patient;
+import sk.upjs.doctororganizer.Models.SpecializationComboBoxModel;
 
 /**
  *
@@ -51,9 +52,9 @@ public class OfficeSearchDialog extends javax.swing.JDialog {
         surnameLabel = new javax.swing.JLabel();
         surnameTextField = new javax.swing.JTextField();
         specializationLabel = new javax.swing.JLabel();
-        specializationTextField = new javax.swing.JTextField();
         placeLabel = new javax.swing.JLabel();
         placeTextField = new javax.swing.JTextField();
+        specializationComboBox = new javax.swing.JComboBox<>();
         searchItPanel = new javax.swing.JPanel();
         searchButton = new javax.swing.JButton();
         listPanel = new javax.swing.JPanel();
@@ -97,6 +98,8 @@ public class OfficeSearchDialog extends javax.swing.JDialog {
 
         placeLabel.setText("Mesto:");
 
+        specializationComboBox.setModel(new SpecializationComboBoxModel());
+
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
         searchPanelLayout.setHorizontalGroup(
@@ -111,11 +114,11 @@ public class OfficeSearchDialog extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(surnameLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(surnameTextField))
+                        .addComponent(surnameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
                     .addGroup(searchPanelLayout.createSequentialGroup()
                         .addComponent(specializationLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(specializationTextField))
+                        .addComponent(specializationComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(searchPanelLayout.createSequentialGroup()
                         .addComponent(placeLabel)
                         .addGap(40, 40, 40)
@@ -134,7 +137,7 @@ public class OfficeSearchDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(specializationLabel)
-                    .addComponent(specializationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(specializationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(placeLabel)
@@ -339,8 +342,8 @@ public class OfficeSearchDialog extends javax.swing.JDialog {
     private javax.swing.JButton searchButton;
     private javax.swing.JPanel searchItPanel;
     private javax.swing.JPanel searchPanel;
+    private javax.swing.JComboBox<String> specializationComboBox;
     private javax.swing.JLabel specializationLabel;
-    private javax.swing.JTextField specializationTextField;
     private javax.swing.JLabel surnameLabel;
     private javax.swing.JTextField surnameTextField;
     private javax.swing.JLabel titleLabel;

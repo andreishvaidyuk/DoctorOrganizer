@@ -73,4 +73,11 @@ public class MysqlDoctorOfficeDao implements DoctorOfficeDao {
         String sql = "DELETE FROM doctor_office WHERE id=?";
         jdbcTemplate.update(sql, id);
     }
+
+    @Override
+    public List<DoctorOffice> getSpecializations() {
+        String sql = "SELECT DISTINCT specialization FROM doctor_office";
+        BeanPropertyRowMapper<DoctorOffice> bprm = new BeanPropertyRowMapper<>(DoctorOffice.class);
+        return jdbcTemplate.query(sql, bprm);
+    }
 }

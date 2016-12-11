@@ -16,11 +16,14 @@
  */
 package sk.upjs.doctororganizer.Form;
 
+import java.awt.Color;
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTextField;
 import sk.upjs.doctororganizer.Entities.Patient;
 import sk.upjs.doctororganizer.Factory.DaoFactory;
 import sk.upjs.doctororganizer.PasswordHash;
@@ -32,6 +35,8 @@ import sk.upjs.doctororganizer.PasswordHash;
 public class PatientRegistrationDialog extends javax.swing.JDialog {
 
     java.awt.Frame parentFrame;
+    private List<JTextField> textFieldList = new ArrayList<>();
+    private final String badFormCompletionInfoText = "Polia môžu obsahovať minimálne 1, maximálne 40 znakov";
 
     /**
      * Creates new form PacientRegistrationForm
@@ -40,6 +45,14 @@ public class PatientRegistrationDialog extends javax.swing.JDialog {
         super(parent, modal);
         this.parentFrame = parent;
         initComponents();
+        textFieldList.add(emailTextField);
+        textFieldList.add(jPasswordField1);
+        textFieldList.add(jPasswordField2);
+        textFieldList.add(nameTextField);
+        textFieldList.add(surnameTextField);
+        textFieldList.add(idNumberTextField);
+        textFieldList.add(adressTextField);
+        textFieldList.add(mobilTextField);
     }
 
     /**
@@ -373,6 +386,20 @@ public class PatientRegistrationDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_doctorRadioButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        boolean go = true;
+        for (JTextField textField : textFieldList) {
+            if (textField.getText().length() < 1 || textField.getText().length() > 40) {
+                textField.setBackground(Color.red);
+                go = false;
+            } else {
+                textField.setBackground(Color.white);
+            }
+        }
+        if (!go) {
+            infoLabel.setText(badFormCompletionInfoText);
+            return;
+        }
+        
         if (!(new String(jPasswordField1.getPassword())).equals(new String(jPasswordField2.getPassword()))) {
             infoLabel.setText("Heslá nie sú rovnaké!");
             return;

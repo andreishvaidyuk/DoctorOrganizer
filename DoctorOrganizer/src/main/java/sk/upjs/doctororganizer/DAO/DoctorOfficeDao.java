@@ -16,4 +16,6 @@ public interface DoctorOfficeDao {
     void upgrade(DoctorOffice office);
 
     void delete(long id);
+
+    public List<DoctorOffice> getSpecializations();
 }

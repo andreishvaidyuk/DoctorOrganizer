@@ -112,12 +112,12 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="surnameLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="surnameTextField" max="32767" attributes="0"/>
+                          <Component id="surnameTextField" pref="151" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="specializationLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="specializationTextField" max="32767" attributes="0"/>
+                          <Component id="specializationComboBox" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="placeLabel" min="-2" max="-2" attributes="0"/>
@@ -142,7 +142,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="specializationLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="specializationTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="specializationComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -174,14 +174,22 @@
             <Property name="text" type="java.lang.String" value="&#x160;pecializ&#xe1;cia:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="specializationTextField">
-        </Component>
         <Component class="javax.swing.JLabel" name="placeLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mesto:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="placeTextField">
+        </Component>
+        <Component class="javax.swing.JComboBox" name="specializationComboBox">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new SpecializationComboBoxModel()" type="code"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
