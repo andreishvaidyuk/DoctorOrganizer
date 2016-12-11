@@ -27,6 +27,11 @@ public class TermListModel extends DefaultListModel<Term> {
     TermDao dao;
     Long doctorOfficeId;
     String date;
+    
+    public TermListModel(Long doctorOfficeId) {
+        this.doctorOfficeId = doctorOfficeId;
+        dao = DaoFactory.INSTANCE.getTermDao();
+    }
 
     public TermListModel(Long doctorOfficeId, String date) {
         this.doctorOfficeId = doctorOfficeId;
@@ -42,6 +47,10 @@ public class TermListModel extends DefaultListModel<Term> {
     @Override
     public Term getElementAt(int index) {
         return dao.getTermByDoctorOfficeIdAndDay(doctorOfficeId, date).get(index);
+    }
+    
+    public void refreshList() {
+        fireContentsChanged(this, 0, getSize());
     }
 
     public void refreshList(String date) {

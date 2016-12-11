@@ -18,6 +18,7 @@ package sk.upjs.doctororganizer.Form;
 
 import sk.upjs.doctororganizer.Entities.Doctor;
 import sk.upjs.doctororganizer.Entities.DoctorOffice;
+import sk.upjs.doctororganizer.Factory.DaoFactory;
 import sk.upjs.doctororganizer.Models.OfficeListModel;
 
 /**
@@ -287,7 +288,8 @@ public class DoctorMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_changeOfficeDetailsButtonActionPerformed
 
     private void deleteOfficeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteOfficeButtonActionPerformed
-        
+        DaoFactory.INSTANCE.getDoctorOfficeDao().delete(officesList.getSelectedValue().getId());
+        officeListModel.refreshList();
     }//GEN-LAST:event_deleteOfficeButtonActionPerformed
 
     private void addOfficeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOfficeButtonActionPerformed

@@ -17,6 +17,7 @@
 package sk.upjs.doctororganizer.Form;
 
 import sk.upjs.doctororganizer.Entities.Patient;
+import sk.upjs.doctororganizer.Models.TermListModel;
 
 /**
  *
@@ -25,12 +26,14 @@ import sk.upjs.doctororganizer.Entities.Patient;
 public class PatientMainForm extends javax.swing.JFrame {
 
     private Patient loggedInPatient;
+    private TermListModel termListModel;
 
     /**
      * Creates new form PacientMainForm
      */
     public PatientMainForm(Patient loggedInPatient) {
         this.loggedInPatient = loggedInPatient;
+        termListModel = new TermListModel(loggedInPatient.getId());
         initComponents();
     }
 
@@ -105,6 +108,7 @@ public class PatientMainForm extends javax.swing.JFrame {
 
         termsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Všetky vytvorené termíny"));
 
+        termsList.setModel(termListModel);
         termsScrollPane.setViewportView(termsList);
 
         cancelTermButton.setText("Vymazať - zrušiť termín");
