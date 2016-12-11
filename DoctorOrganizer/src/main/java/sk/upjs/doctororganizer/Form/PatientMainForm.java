@@ -17,6 +17,7 @@
 package sk.upjs.doctororganizer.Form;
 
 import sk.upjs.doctororganizer.Entities.Patient;
+import sk.upjs.doctororganizer.Entities.Term;
 import sk.upjs.doctororganizer.Models.TermListModel;
 
 /**
@@ -267,7 +268,7 @@ public class PatientMainForm extends javax.swing.JFrame {
     private javax.swing.JPanel createPanel;
     private javax.swing.JButton createTermButton;
     private javax.swing.JButton logoutButton;
-    private javax.swing.JList<String> termsList;
+    private javax.swing.JList<Term> termsList;
     private javax.swing.JPanel termsPanel;
     private javax.swing.JScrollPane termsScrollPane;
     private javax.swing.JLabel titleLabel;

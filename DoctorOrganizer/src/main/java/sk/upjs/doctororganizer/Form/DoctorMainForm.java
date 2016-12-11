@@ -29,6 +29,7 @@ public class DoctorMainForm extends javax.swing.JFrame {
 
     private Doctor loggedInDoctor;
     private OfficeListModel officeListModel;
+    private String noElementSelectedFromJListInfoText = "Nebola vybratá žiadna ordinácia";
 
     /**
      * Creates new form DoctorMainForm
@@ -63,10 +64,12 @@ public class DoctorMainForm extends javax.swing.JFrame {
         officesListPanel = new javax.swing.JPanel();
         officesScrollPane = new javax.swing.JScrollPane();
         officesList = new javax.swing.JList<>();
-        listTermsButton = new javax.swing.JButton();
         changeOfficeDetailsButton = new javax.swing.JButton();
         deleteOfficeButton = new javax.swing.JButton();
         addOfficeButton = new javax.swing.JButton();
+        infoPanel = new javax.swing.JPanel();
+        infoLabel = new javax.swing.JLabel();
+        listTermsButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -137,7 +140,7 @@ public class DoctorMainForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(nameLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
+                        .addComponent(nameTextField))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, personalDetailsPanelLayout.createSequentialGroup()
                         .addGroup(personalDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lastNameLabel)
@@ -172,14 +175,12 @@ public class DoctorMainForm extends javax.swing.JFrame {
         officesListPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Výpis ordinácií"));
 
         officesList.setModel(officeListModel);
-        officesScrollPane.setViewportView(officesList);
-
-        listTermsButton.setText("Vypísať termíny");
-        listTermsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listTermsButtonActionPerformed(evt);
+        officesList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                officesListMouseClicked(evt);
             }
         });
+        officesScrollPane.setViewportView(officesList);
 
         changeOfficeDetailsButton.setText("Zmeniť detaily ordinácie");
         changeOfficeDetailsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -202,6 +203,33 @@ public class DoctorMainForm extends javax.swing.JFrame {
             }
         });
 
+        infoLabel.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        infoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
+        infoPanel.setLayout(infoPanelLayout);
+        infoPanelLayout.setHorizontalGroup(
+            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(infoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        infoPanelLayout.setVerticalGroup(
+            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(infoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        listTermsButton.setText("Vypísať termíny");
+        listTermsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listTermsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout officesListPanelLayout = new javax.swing.GroupLayout(officesListPanel);
         officesListPanel.setLayout(officesListPanelLayout);
         officesListPanelLayout.setHorizontalGroup(
@@ -211,11 +239,12 @@ public class DoctorMainForm extends javax.swing.JFrame {
                 .addGroup(officesListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addOfficeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(officesScrollPane)
-                    .addComponent(listTermsButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(officesListPanelLayout.createSequentialGroup()
                         .addComponent(changeOfficeDetailsButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                        .addComponent(deleteOfficeButton)))
+                        .addComponent(deleteOfficeButton))
+                    .addComponent(infoPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(listTermsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         officesListPanelLayout.setVerticalGroup(
@@ -223,14 +252,16 @@ public class DoctorMainForm extends javax.swing.JFrame {
             .addGroup(officesListPanelLayout.createSequentialGroup()
                 .addComponent(addOfficeButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(officesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                .addComponent(officesScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(listTermsButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(officesListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(changeOfficeDetailsButton)
                     .addComponent(deleteOfficeButton))
-                .addContainerGap())
+                .addGap(12, 12, 12))
         );
 
         logoutButton.setText("Odhlásiť sa");
@@ -261,7 +292,7 @@ public class DoctorMainForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(personalDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(officesListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(officesListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(logoutButton)
                 .addContainerGap())
@@ -277,19 +308,31 @@ public class DoctorMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_changePasswordButtonActionPerformed
 
     private void listTermsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listTermsButtonActionPerformed
-        DoctorTermDialog dtd = new DoctorTermDialog(this, true, officesList.getSelectedValue().getId());
-        dtd.setVisible(true);
+        try {
+            DoctorTermDialog dtd = new DoctorTermDialog(this, true, officesList.getSelectedValue().getId());
+            dtd.setVisible(true);
+        } catch (NullPointerException npe) {
+            infoLabel.setText(noElementSelectedFromJListInfoText);
+        }
     }//GEN-LAST:event_listTermsButtonActionPerformed
 
     private void changeOfficeDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeOfficeDetailsButtonActionPerformed
-        OfficeEditDialog oef = new OfficeEditDialog(this, true, officesList.getSelectedValue());
-        oef.setVisible(true);
-        officeListModel.refreshList();
+        try {
+            OfficeEditDialog oef = new OfficeEditDialog(this, true, officesList.getSelectedValue());
+            oef.setVisible(true);
+            officeListModel.refreshList();
+        } catch (NullPointerException npe) {
+            infoLabel.setText(noElementSelectedFromJListInfoText);
+        }
     }//GEN-LAST:event_changeOfficeDetailsButtonActionPerformed
 
     private void deleteOfficeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteOfficeButtonActionPerformed
-        DaoFactory.INSTANCE.getDoctorOfficeDao().delete(officesList.getSelectedValue().getId());
-        officeListModel.refreshList();
+        try {
+            DaoFactory.INSTANCE.getDoctorOfficeDao().delete(officesList.getSelectedValue().getId());
+            officeListModel.refreshList();
+        } catch (NullPointerException npe) {
+            infoLabel.setText(noElementSelectedFromJListInfoText);
+        }
     }//GEN-LAST:event_deleteOfficeButtonActionPerformed
 
     private void addOfficeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOfficeButtonActionPerformed
@@ -304,6 +347,10 @@ public class DoctorMainForm extends javax.swing.JFrame {
         LoginForm lf = new LoginForm();
         lf.setVisible(true);
     }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void officesListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_officesListMouseClicked
+       infoLabel.setText("");
+    }//GEN-LAST:event_officesListMouseClicked
     /**
      * @param args the command line arguments
      */
@@ -345,6 +392,8 @@ public class DoctorMainForm extends javax.swing.JFrame {
     private javax.swing.JButton deleteOfficeButton;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
+    private javax.swing.JLabel infoLabel;
+    private javax.swing.JPanel infoPanel;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JTextField lastNameTextField;
     private javax.swing.JButton listTermsButton;

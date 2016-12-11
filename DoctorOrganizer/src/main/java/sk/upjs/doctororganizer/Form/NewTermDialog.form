@@ -30,7 +30,8 @@
                   <Component id="termDetailsPanel" alignment="1" max="32767" attributes="0"/>
                   <Component id="titlePanel" alignment="0" max="32767" attributes="0"/>
                   <Component id="officeDetailsPanel" alignment="0" max="32767" attributes="0"/>
-                  <Component id="buttonsPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="infoPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="buttonsPanel" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -39,14 +40,17 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="titlePanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="officeDetailsPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="termDetailsPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="infoPanel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="buttonsPanel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -66,10 +70,10 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="titleLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -110,7 +114,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="placeTextField" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="streetTextField" pref="149" max="32767" attributes="0"/>
+                                  <Component id="streetTextField" max="32767" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="numberLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -252,10 +256,10 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="descriptionScrollPane" pref="348" max="32767" attributes="0"/>
+                      <Component id="descriptionScrollPane" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="dateLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="33" max="32767" attributes="0"/>
                           <Component id="dayLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="dayComboBox" min="-2" max="-2" attributes="0"/>
@@ -435,7 +439,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="descriptionLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Z&#xe1;mer / koment&#xe1;r:"/>
+            <Property name="text" type="java.lang.String" value="Z&#xe1;mer:"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="descriptionScrollPane">
@@ -473,6 +477,39 @@
         </Component>
       </SubComponents>
     </Container>
+    <Container class="javax.swing.JPanel" name="infoPanel">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="infoLabel" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="infoLabel" min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="infoLabel">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="3"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
     <Container class="javax.swing.JPanel" name="buttonsPanel">
 
       <Layout>
@@ -481,7 +518,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="reserveButton" pref="360" max="32767" attributes="0"/>
+                      <Component id="reserveButton" max="32767" attributes="0"/>
                       <Component id="cancelButton" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>

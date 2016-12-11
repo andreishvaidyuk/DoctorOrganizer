@@ -32,6 +32,9 @@ public class NewTermDialog extends javax.swing.JDialog {
     private final TermTimeComboBoxModel newTermTimeComboBoxModel;
     private final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
     private final String today = LocalDateTime.now().format(formatter);
+    private final String descriptionBadLengthInfoText = "Zámer návštevy musí mať aspoň 3 maximálne 50 znakov";
+    private final String newTermCreatedInfoText = "Termín bol úspešne zaregistrovaný";
+    private final String errorInfoText = "Chyba počas vytvárania termínu";
     private final Patient patient;
     private final TermDao termDao;
 
@@ -122,6 +125,8 @@ public class NewTermDialog extends javax.swing.JDialog {
         yearLabel = new javax.swing.JLabel();
         monthLabel = new javax.swing.JLabel();
         dayLabel = new javax.swing.JLabel();
+        infoPanel = new javax.swing.JPanel();
+        infoLabel = new javax.swing.JLabel();
         buttonsPanel = new javax.swing.JPanel();
         reserveButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
@@ -144,10 +149,10 @@ public class NewTermDialog extends javax.swing.JDialog {
         );
         titlePanelLayout.setVerticalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(titlePanelLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titlePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(titleLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         officeDetailsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Vybratá ordinácia"));
@@ -191,7 +196,7 @@ public class NewTermDialog extends javax.swing.JDialog {
                         .addGroup(officeDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(placeTextField)
                             .addGroup(officeDetailsPanelLayout.createSequentialGroup()
-                                .addComponent(streetTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                                .addComponent(streetTextField)
                                 .addGap(18, 18, 18)
                                 .addComponent(numberLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -267,7 +272,7 @@ public class NewTermDialog extends javax.swing.JDialog {
 
         timeComboBox.setModel(newTermTimeComboBoxModel);
 
-        descriptionLabel.setText("Zámer / komentár:");
+        descriptionLabel.setText("Zámer:");
 
         descriptionTextArea.setColumns(20);
         descriptionTextArea.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -287,10 +292,10 @@ public class NewTermDialog extends javax.swing.JDialog {
             .addGroup(termDetailsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(termDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(descriptionScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                    .addComponent(descriptionScrollPane)
                     .addGroup(termDetailsPanelLayout.createSequentialGroup()
                         .addComponent(dateLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                         .addComponent(dayLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dayComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -336,6 +341,26 @@ public class NewTermDialog extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        infoLabel.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        infoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
+        infoPanel.setLayout(infoPanelLayout);
+        infoPanelLayout.setHorizontalGroup(
+            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(infoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        infoPanelLayout.setVerticalGroup(
+            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(infoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         reserveButton.setText("Rezervovať termín");
         reserveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -357,7 +382,7 @@ public class NewTermDialog extends javax.swing.JDialog {
             .addGroup(buttonsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(buttonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(reserveButton, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                    .addComponent(reserveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -381,20 +406,24 @@ public class NewTermDialog extends javax.swing.JDialog {
                     .addComponent(termDetailsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(officeDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(officeDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(termDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -417,6 +446,12 @@ public class NewTermDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_yearComboBoxActionPerformed
 
     private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
+        if (descriptionTextArea.getText().length() > 50 || descriptionTextArea.getText().length() < 3) {
+            infoLabel.setText(descriptionBadLengthInfoText);
+            return;
+        } else {
+            infoLabel.setText("");
+        }
         Term newTerm = new Term();
         newTerm.setDate(LocalDateTime.of(Integer.parseInt(yearComboBox.getSelectedItem().toString()), Integer.parseInt(monthComboBox.getSelectedItem().toString()), Integer.parseInt(dayComboBox.getSelectedItem().toString()), 00, 00));
         newTerm.setId_doctor_office(office.getId());
@@ -425,9 +460,16 @@ public class NewTermDialog extends javax.swing.JDialog {
         newTerm.setReason(descriptionTextArea.getText());
         newTerm.setTerm_condition("neschválený");
         newTerm.setTime(timeComboBox.getSelectedItem().toString());
-        System.out.println(newTerm.getTime());
-        termDao.add(newTerm);
-        newTermTimeComboBoxModel.refresh(getDateFromComboBoxes());
+        try {
+            termDao.add(newTerm);
+        } catch (Exception e) {
+            infoLabel.setText(errorInfoText);
+        } finally {
+            newTermTimeComboBoxModel.refresh(getDateFromComboBoxes());
+            infoLabel.setText(newTermCreatedInfoText);
+            cancelButton.setText("Zavrieť");
+            reserveButton.setEnabled(false);
+        }
     }//GEN-LAST:event_reserveButtonActionPerformed
 
     /**
@@ -476,6 +518,8 @@ public class NewTermDialog extends javax.swing.JDialog {
     private javax.swing.JTextArea descriptionTextArea;
     private javax.swing.JLabel hospitalLabel;
     private javax.swing.JTextField hospitalTextField;
+    private javax.swing.JLabel infoLabel;
+    private javax.swing.JPanel infoPanel;
     private javax.swing.JComboBox<String> monthComboBox;
     private javax.swing.JLabel monthLabel;
     private javax.swing.JLabel numberLabel;

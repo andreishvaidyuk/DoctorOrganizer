@@ -26,15 +26,14 @@ import sk.upjs.doctororganizer.Factory.DaoFactory;
 
 public class DoctorTermDialog extends javax.swing.JDialog {
 
-    private final Long officeId;
     private final TermListModel termListModel;
     private final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
     private final String today = LocalDateTime.now().format(formatter);
     private final TermDao termDao;
+    private final String noTermSelectedInfoText = "Žiadny termin nebol označený";
 
     public DoctorTermDialog(Frame parent, boolean modal, Long officeId) {
         super(parent, modal);
-        this.officeId = officeId;
         termDao = DaoFactory.INSTANCE.getTermDao();
         termListModel = new TermListModel(officeId, today);
         initComponents();
@@ -62,6 +61,8 @@ public class DoctorTermDialog extends javax.swing.JDialog {
         akcionsPanel = new javax.swing.JPanel();
         approveButton = new javax.swing.JButton();
         refuseButton = new javax.swing.JButton();
+        infoPanel = new javax.swing.JPanel();
+        infoLabel = new javax.swing.JLabel();
         closeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -157,6 +158,11 @@ public class DoctorTermDialog extends javax.swing.JDialog {
         termsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Výpis termínov"));
 
         termsList.setModel(termListModel);
+        termsList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                termsListMouseClicked(evt);
+            }
+        });
         termsScrollPane.setViewportView(termsList);
 
         akcionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Akcie"));
@@ -182,8 +188,8 @@ public class DoctorTermDialog extends javax.swing.JDialog {
             .addGroup(akcionsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(approveButton)
-                .addGap(18, 18, 18)
-                .addComponent(refuseButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(refuseButton)
                 .addContainerGap())
         );
         akcionsPanelLayout.setVerticalGroup(
@@ -196,6 +202,26 @@ public class DoctorTermDialog extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        infoLabel.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        infoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
+        infoPanel.setLayout(infoPanelLayout);
+        infoPanelLayout.setHorizontalGroup(
+            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(infoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        infoPanelLayout.setVerticalGroup(
+            infoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(infoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout termsPanelLayout = new javax.swing.GroupLayout(termsPanel);
         termsPanel.setLayout(termsPanelLayout);
         termsPanelLayout.setHorizontalGroup(
@@ -204,14 +230,17 @@ public class DoctorTermDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(termsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(termsScrollPane)
-                    .addComponent(akcionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(akcionsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         termsPanelLayout.setVerticalGroup(
             termsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(termsPanelLayout.createSequentialGroup()
-                .addComponent(termsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                .addComponent(termsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(akcionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -270,14 +299,28 @@ public class DoctorTermDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_yearComboBoxActionPerformed
 
     private void approveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveButtonActionPerformed
-        termDao.setTermCondition(termsList.getSelectedValue().getId(), "schválený");
-        termListModel.refreshList(getDateFromComboBoxes());
+        try {
+            termDao.setTermCondition(termsList.getSelectedValue().getId(), "schválený");
+            termListModel.refreshList(getDateFromComboBoxes());
+        } catch (NullPointerException npe) {
+            infoLabel.setText(noTermSelectedInfoText);
+        }
     }//GEN-LAST:event_approveButtonActionPerformed
 
     private void refuseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refuseButtonActionPerformed
-        termDao.setTermCondition(termsList.getSelectedValue().getId(), "zrušený lekárom");
-        termListModel.refreshList(getDateFromComboBoxes());
+        try {
+            termDao.setTermCondition(termsList.getSelectedValue().getId(), "zrušený lekárom");
+            termListModel.refreshList(getDateFromComboBoxes());
+        } catch (NullPointerException npe) {
+            infoLabel.setText(noTermSelectedInfoText);
+        }
     }//GEN-LAST:event_refuseButtonActionPerformed
+
+    private void termsListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_termsListMouseClicked
+        if (termListModel.getSize() != 0) {
+            infoLabel.setText("");
+        }
+    }//GEN-LAST:event_termsListMouseClicked
 
     private String getDateFromComboBoxes() {
         return yearComboBox.getSelectedItem() + "-" + monthComboBox.getSelectedItem() + "-"
@@ -351,6 +394,8 @@ public class DoctorTermDialog extends javax.swing.JDialog {
     private javax.swing.JLabel dateLabel;
     private javax.swing.JComboBox<String> dayComboBox;
     private javax.swing.JPanel filterPanel;
+    private javax.swing.JLabel infoLabel;
+    private javax.swing.JPanel infoPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

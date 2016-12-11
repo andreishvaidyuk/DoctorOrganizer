@@ -208,10 +208,10 @@ public class ChangePasswordDialog extends javax.swing.JDialog {
                     return;
                 }
             }
-
             infoTextLabel.setText(passChangedInfoText);
             cancelButton.setText("Zavrieť");            
         } catch (NoSuchAlgorithmException ex) {
+            infoTextLabel.setText("Nastala chyba počas zmeny hesla");
             Logger.getLogger(ChangePasswordDialog.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }//GEN-LAST:event_changePasswordButtonActionPerformed
