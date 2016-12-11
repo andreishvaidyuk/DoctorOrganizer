@@ -16,7 +16,6 @@
  */
 package sk.upjs.doctororganizer.Models;
 
-import java.util.List;
 import javax.swing.DefaultListModel;
 import sk.upjs.doctororganizer.DAO.TermDao;
 import sk.upjs.doctororganizer.Entities.Term;

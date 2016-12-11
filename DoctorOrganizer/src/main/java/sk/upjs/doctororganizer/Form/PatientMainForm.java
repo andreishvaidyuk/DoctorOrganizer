@@ -18,7 +18,7 @@ package sk.upjs.doctororganizer.Form;
 
 import sk.upjs.doctororganizer.Entities.Patient;
 import sk.upjs.doctororganizer.Entities.Term;
-import sk.upjs.doctororganizer.Models.TermListModel;
+import sk.upjs.doctororganizer.Factory.DaoFactory;
 import sk.upjs.doctororganizer.Models.TermListModelForPatient;
 
 /**
@@ -29,6 +29,7 @@ public class PatientMainForm extends javax.swing.JFrame {
 
     private final Patient loggedInPatient;
     private final TermListModelForPatient termListModel;
+    private final String noElementSelectedFromJListInfoText = "Nebol vybratý žiaden termín";
 
     /**
      * Creates new form PacientMainForm
@@ -57,6 +58,7 @@ public class PatientMainForm extends javax.swing.JFrame {
         termsScrollPane = new javax.swing.JScrollPane();
         termsList = new javax.swing.JList<>();
         deleteTermButton = new javax.swing.JButton();
+        infoLabel = new javax.swing.JLabel();
         buttonPanel = new javax.swing.JPanel();
         logoutButton = new javax.swing.JButton();
         changePassButton = new javax.swing.JButton();
@@ -121,6 +123,9 @@ public class PatientMainForm extends javax.swing.JFrame {
             }
         });
 
+        infoLabel.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        infoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout termsPanelLayout = new javax.swing.GroupLayout(termsPanel);
         termsPanel.setLayout(termsPanelLayout);
         termsPanelLayout.setHorizontalGroup(
@@ -129,7 +134,8 @@ public class PatientMainForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(termsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(termsScrollPane)
-                    .addComponent(deleteTermButton, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
+                    .addComponent(deleteTermButton, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                    .addComponent(infoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         termsPanelLayout.setVerticalGroup(
@@ -138,6 +144,8 @@ public class PatientMainForm extends javax.swing.JFrame {
                 .addComponent(termsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deleteTermButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(infoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -220,6 +228,13 @@ public class PatientMainForm extends javax.swing.JFrame {
 
     private void deleteTermButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteTermButtonActionPerformed
         //dialog: ozaj chcete zrusit termin? nasledne stav terminu prepisat na zruseny pacientom
+        try {
+            DaoFactory.INSTANCE.getTermDao().delete(termsList.getSelectedValue().getId());
+            infoLabel.setText("Termín úspešne odstránený");
+            termListModel.refreshList();
+        } catch (NullPointerException npe) {
+            infoLabel.setText(noElementSelectedFromJListInfoText);
+        }
     }//GEN-LAST:event_deleteTermButtonActionPerformed
 
     private void changePassButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePassButtonActionPerformed
@@ -269,6 +284,7 @@ public class PatientMainForm extends javax.swing.JFrame {
     private javax.swing.JPanel createPanel;
     private javax.swing.JButton createTermButton;
     private javax.swing.JButton deleteTermButton;
+    private javax.swing.JLabel infoLabel;
     private javax.swing.JButton logoutButton;
     private javax.swing.JList<Term> termsList;
     private javax.swing.JPanel termsPanel;

@@ -18,4 +18,8 @@ public interface DoctorOfficeDao {
     void delete(long id);
 
     public List<DoctorOffice> getSpecializations();
+
+    public List<DoctorOffice> getBySpecializationAndCity(String specialization, String city);
+
+    public List<DoctorOffice> getCities();
 }

@@ -26,15 +26,16 @@ import sk.upjs.doctororganizer.Factory.DaoFactory;
  *
  * @author Patrik Rojek
  */
-public class SpecializationComboBoxModel extends DefaultComboBoxModel<String>{
+public class CityComboBoxModel extends DefaultComboBoxModel<String>{
     
     private DoctorOfficeDao doctorOfficeDao = DaoFactory.INSTANCE.getDoctorOfficeDao();
 
-    public SpecializationComboBoxModel() {
-        List<DoctorOffice> specializacie = doctorOfficeDao.getSpecializations();
+    public CityComboBoxModel() {
+        List<DoctorOffice> cities = doctorOfficeDao.getCities();
         
-        for (DoctorOffice specializacia : specializacie ) {
-            this.addElement(specializacia.getSpecialization());
+        for (DoctorOffice city : cities ) {
+            this.addElement(city.getCity());
         }
-    }    
+    }   
+    
 }

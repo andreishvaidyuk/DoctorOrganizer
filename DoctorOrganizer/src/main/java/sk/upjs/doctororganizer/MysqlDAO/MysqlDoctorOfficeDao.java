@@ -8,7 +8,7 @@ import sk.upjs.doctororganizer.Entities.DoctorOffice;
 
 public class MysqlDoctorOfficeDao implements DoctorOfficeDao {
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     public MysqlDoctorOfficeDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -77,6 +77,22 @@ public class MysqlDoctorOfficeDao implements DoctorOfficeDao {
     @Override
     public List<DoctorOffice> getSpecializations() {
         String sql = "SELECT DISTINCT specialization FROM doctor_office";
+        BeanPropertyRowMapper<DoctorOffice> bprm = new BeanPropertyRowMapper<>(DoctorOffice.class);
+        return jdbcTemplate.query(sql, bprm);
+    }
+
+    @Override
+    public List<DoctorOffice> getBySpecializationAndCity(String specialization, String city) {
+        String sql = "SELECT id, city, street, house_number, hospital,"
+                + " specialization, opening_hours, phone_number,"
+                + " id_doctor FROM doctor_office WHERE specialization = '" + specialization + "' AND city = '" + city + "'";
+        BeanPropertyRowMapper<DoctorOffice> bprm = new BeanPropertyRowMapper<>(DoctorOffice.class);
+        return jdbcTemplate.query(sql, bprm);
+    }
+
+    @Override
+    public List<DoctorOffice> getCities() {
+        String sql = "SELECT DISTINCT city FROM doctor_office";
         BeanPropertyRowMapper<DoctorOffice> bprm = new BeanPropertyRowMapper<>(DoctorOffice.class);
         return jdbcTemplate.query(sql, bprm);
     }

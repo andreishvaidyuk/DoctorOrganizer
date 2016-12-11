@@ -19,6 +19,8 @@ package sk.upjs.doctororganizer.Form;
 import java.awt.Frame;
 import sk.upjs.doctororganizer.Entities.DoctorOffice;
 import sk.upjs.doctororganizer.Entities.Patient;
+import sk.upjs.doctororganizer.Models.CityComboBoxModel;
+import sk.upjs.doctororganizer.Models.OfficeListModelForPatient;
 import sk.upjs.doctororganizer.Models.SpecializationComboBoxModel;
 
 /**
@@ -27,12 +29,17 @@ import sk.upjs.doctororganizer.Models.SpecializationComboBoxModel;
  */
 public class OfficeSearchDialog extends javax.swing.JDialog {
 
-    private Patient loggedInPatient;
+    private final Patient loggedInPatient;
+    private OfficeListModelForPatient officeListModelForPatient;
+    private final String noElementSelectedFromJListInfoText = "Nebola vybratá žiadna ordinácia";
+
 
     public OfficeSearchDialog(Frame owner, boolean modal, Patient loggedInPatient) {
         super(owner, modal);
-        this.loggedInPatient = loggedInPatient;
+        this.loggedInPatient = loggedInPatient;   
+        officeListModelForPatient = new OfficeListModelForPatient();
         initComponents();
+        
     }
 
     /**
@@ -47,19 +54,16 @@ public class OfficeSearchDialog extends javax.swing.JDialog {
         titlePanel = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
         searchPanel = new javax.swing.JPanel();
-        nameLabel = new javax.swing.JLabel();
-        nameTextField = new javax.swing.JTextField();
-        surnameLabel = new javax.swing.JLabel();
-        surnameTextField = new javax.swing.JTextField();
         specializationLabel = new javax.swing.JLabel();
         placeLabel = new javax.swing.JLabel();
-        placeTextField = new javax.swing.JTextField();
         specializationComboBox = new javax.swing.JComboBox<>();
+        cityComboBox = new javax.swing.JComboBox<>();
         searchItPanel = new javax.swing.JPanel();
         searchButton = new javax.swing.JButton();
         listPanel = new javax.swing.JPanel();
         listScrollPane = new javax.swing.JScrollPane();
         officesList = new javax.swing.JList<>();
+        infoLabel = new javax.swing.JLabel();
         reserveItPanel = new javax.swing.JPanel();
         reserveButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
@@ -90,15 +94,14 @@ public class OfficeSearchDialog extends javax.swing.JDialog {
 
         searchPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Vyhľadávacie kritériá"));
 
-        nameLabel.setText("Meno:");
-
-        surnameLabel.setText("Priezvisko:");
-
         specializationLabel.setText("Špecializácia:");
 
         placeLabel.setText("Mesto:");
 
         specializationComboBox.setModel(new SpecializationComboBoxModel());
+        specializationComboBox.setToolTipText("");
+
+        cityComboBox.setModel(new CityComboBoxModel());
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
@@ -106,46 +109,35 @@ public class OfficeSearchDialog extends javax.swing.JDialog {
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addComponent(nameLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(surnameLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(surnameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
-                    .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addComponent(specializationLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(specializationComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addComponent(placeLabel)
-                        .addGap(40, 40, 40)
-                        .addComponent(placeTextField)))
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(placeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(specializationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(specializationComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cityComboBox, 0, 267, Short.MAX_VALUE))
                 .addContainerGap())
         );
         searchPanelLayout.setVerticalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameLabel)
-                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(surnameLabel)
-                    .addComponent(surnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(specializationLabel)
-                    .addComponent(specializationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(specializationComboBox)
+                    .addComponent(specializationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(placeLabel)
-                    .addComponent(placeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         searchButton.setText("Vyhľadať");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout searchItPanelLayout = new javax.swing.GroupLayout(searchItPanel);
         searchItPanel.setLayout(searchItPanelLayout);
@@ -158,20 +150,19 @@ public class OfficeSearchDialog extends javax.swing.JDialog {
         );
         searchItPanelLayout.setVerticalGroup(
             searchItPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchItPanelLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchItPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(searchButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         listPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Výsledky vyhľadávania - výber ordinácie"));
 
-        officesList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        officesList.setModel(officeListModelForPatient);
         listScrollPane.setViewportView(officesList);
+
+        infoLabel.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        infoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout listPanelLayout = new javax.swing.GroupLayout(listPanel);
         listPanel.setLayout(listPanelLayout);
@@ -179,14 +170,18 @@ public class OfficeSearchDialog extends javax.swing.JDialog {
             listPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(listPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(listScrollPane)
+                .addGroup(listPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(listScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                    .addComponent(infoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         listPanelLayout.setVerticalGroup(
             listPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(listPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(listScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                .addComponent(listScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(infoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -248,7 +243,7 @@ public class OfficeSearchDialog extends javax.swing.JDialog {
                 .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchItPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(listPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(reserveItPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -259,25 +254,24 @@ public class OfficeSearchDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
-        //miesto examlpeOffice treba dat zvoleny office z listu
-        DoctorOffice exampleOffice = new DoctorOffice();
-        exampleOffice.setCity("Košice");
-        exampleOffice.setHospital("nemocnicaXY");
-        exampleOffice.setHouse_number(5);
-        exampleOffice.setId(new Long(2));
-        exampleOffice.setSpecialization("Ortopédia");
-        exampleOffice.setStreet("Jesenná");
-        exampleOffice.setPhone_number("0911777888");
-        exampleOffice.setId_doctor(new Long(2));
-        exampleOffice.setOpening_hours("09:30-12:30");
-        NewTermDialog ntd = new NewTermDialog(loggedInPatient, exampleOffice, this, true);
-        ntd.setVisible(true);
-
+        try {
+            DoctorOffice exampleOffice;
+            exampleOffice = officesList.getSelectedValue();
+            NewTermDialog ntd = new NewTermDialog(loggedInPatient, exampleOffice, this, true);
+            ntd.setVisible(true);
+        } catch (NullPointerException npe) {
+            infoLabel.setText(noElementSelectedFromJListInfoText);
+        }        
     }//GEN-LAST:event_reserveButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        officeListModelForPatient = new OfficeListModelForPatient(specializationComboBox.getSelectedItem().toString(), cityComboBox.getSelectedItem().toString());
+        officeListModelForPatient.refreshList();
+    }//GEN-LAST:event_searchButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,13 +324,12 @@ public class OfficeSearchDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
+    private javax.swing.JComboBox<String> cityComboBox;
+    private javax.swing.JLabel infoLabel;
     private javax.swing.JPanel listPanel;
     private javax.swing.JScrollPane listScrollPane;
-    private javax.swing.JLabel nameLabel;
-    private javax.swing.JTextField nameTextField;
-    private javax.swing.JList<String> officesList;
+    private javax.swing.JList<DoctorOffice> officesList;
     private javax.swing.JLabel placeLabel;
-    private javax.swing.JTextField placeTextField;
     private javax.swing.JButton reserveButton;
     private javax.swing.JPanel reserveItPanel;
     private javax.swing.JButton searchButton;
@@ -344,8 +337,6 @@ public class OfficeSearchDialog extends javax.swing.JDialog {
     private javax.swing.JPanel searchPanel;
     private javax.swing.JComboBox<String> specializationComboBox;
     private javax.swing.JLabel specializationLabel;
-    private javax.swing.JLabel surnameLabel;
-    private javax.swing.JTextField surnameTextField;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanel;
     // End of variables declaration//GEN-END:variables
