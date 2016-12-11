@@ -80,4 +80,13 @@ public class MysqlTermDao implements TermDao {
         jdbcTemplate.update(sql, id);
     }
 
+    @Override
+    public List<Term> getTermsByPatientId(Long patientId) {
+        String sql = "SELECT id, id_patient, patient, id_doctor_office,"
+                + " date, time, reason, term_condition FROM term"
+                + " WHERE id_patient = " + patientId;
+        BeanPropertyRowMapper<Term> bprm = new BeanPropertyRowMapper<>(Term.class);
+        return jdbcTemplate.query(sql, bprm);
+    }
+
 }

@@ -27,12 +27,13 @@ import sk.upjs.doctororganizer.Models.OfficeListModel;
  */
 public class DoctorMainForm extends javax.swing.JFrame {
 
-    private Doctor loggedInDoctor;
-    private OfficeListModel officeListModel;
-    private String noElementSelectedFromJListInfoText = "Nebola vybratá žiadna ordinácia";
+    private final Doctor loggedInDoctor;
+    private final OfficeListModel officeListModel;
+    private final String noElementSelectedFromJListInfoText = "Nebola vybratá žiadna ordinácia";
 
     /**
      * Creates new form DoctorMainForm
+     * @param loggedInDoctor
      */
     public DoctorMainForm(Doctor loggedInDoctor) {
         this.loggedInDoctor = loggedInDoctor;

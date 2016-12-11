@@ -19,6 +19,7 @@ package sk.upjs.doctororganizer.Form;
 import sk.upjs.doctororganizer.Entities.Patient;
 import sk.upjs.doctororganizer.Entities.Term;
 import sk.upjs.doctororganizer.Models.TermListModel;
+import sk.upjs.doctororganizer.Models.TermListModelForPatient;
 
 /**
  *
@@ -26,15 +27,16 @@ import sk.upjs.doctororganizer.Models.TermListModel;
  */
 public class PatientMainForm extends javax.swing.JFrame {
 
-    private Patient loggedInPatient;
-    private TermListModel termListModel;
+    private final Patient loggedInPatient;
+    private final TermListModelForPatient termListModel;
 
     /**
      * Creates new form PacientMainForm
+     * @param loggedInPatient
      */
     public PatientMainForm(Patient loggedInPatient) {
         this.loggedInPatient = loggedInPatient;
-        termListModel = new TermListModel(loggedInPatient.getId());
+        termListModel = new TermListModelForPatient(loggedInPatient.getId());
         initComponents();
     }
 
@@ -54,7 +56,7 @@ public class PatientMainForm extends javax.swing.JFrame {
         termsPanel = new javax.swing.JPanel();
         termsScrollPane = new javax.swing.JScrollPane();
         termsList = new javax.swing.JList<>();
-        cancelTermButton = new javax.swing.JButton();
+        deleteTermButton = new javax.swing.JButton();
         buttonPanel = new javax.swing.JPanel();
         logoutButton = new javax.swing.JButton();
         changePassButton = new javax.swing.JButton();
@@ -112,10 +114,10 @@ public class PatientMainForm extends javax.swing.JFrame {
         termsList.setModel(termListModel);
         termsScrollPane.setViewportView(termsList);
 
-        cancelTermButton.setText("Vymazať - zrušiť termín");
-        cancelTermButton.addActionListener(new java.awt.event.ActionListener() {
+        deleteTermButton.setText("Vymazať - zrušiť termín");
+        deleteTermButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelTermButtonActionPerformed(evt);
+                deleteTermButtonActionPerformed(evt);
             }
         });
 
@@ -127,7 +129,7 @@ public class PatientMainForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(termsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(termsScrollPane)
-                    .addComponent(cancelTermButton, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
+                    .addComponent(deleteTermButton, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
                 .addContainerGap())
         );
         termsPanelLayout.setVerticalGroup(
@@ -135,7 +137,7 @@ public class PatientMainForm extends javax.swing.JFrame {
             .addGroup(termsPanelLayout.createSequentialGroup()
                 .addComponent(termsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cancelTermButton)
+                .addComponent(deleteTermButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -216,9 +218,9 @@ public class PatientMainForm extends javax.swing.JFrame {
         lf.setVisible(true);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
-    private void cancelTermButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelTermButtonActionPerformed
+    private void deleteTermButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteTermButtonActionPerformed
         //dialog: ozaj chcete zrusit termin? nasledne stav terminu prepisat na zruseny pacientom
-    }//GEN-LAST:event_cancelTermButtonActionPerformed
+    }//GEN-LAST:event_deleteTermButtonActionPerformed
 
     private void changePassButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePassButtonActionPerformed
         ChangePasswordDialog chpd = new ChangePasswordDialog(this, true);
@@ -263,10 +265,10 @@ public class PatientMainForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel buttonPanel;
-    private javax.swing.JButton cancelTermButton;
     private javax.swing.JButton changePassButton;
     private javax.swing.JPanel createPanel;
     private javax.swing.JButton createTermButton;
+    private javax.swing.JButton deleteTermButton;
     private javax.swing.JButton logoutButton;
     private javax.swing.JList<Term> termsList;
     private javax.swing.JPanel termsPanel;

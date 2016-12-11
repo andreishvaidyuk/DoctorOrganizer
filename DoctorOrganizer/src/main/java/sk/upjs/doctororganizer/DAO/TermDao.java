@@ -10,6 +10,8 @@ public interface TermDao {
     List<Term> getAll();
 
     Term getTermById(long id);
+    
+    List<Term> getTermsByPatientId(Long patientId);
 
     List<Term> getTermByDoctorOfficeId(Long doctorOfficeId);
 

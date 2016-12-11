@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 acer
+ * Copyright (C) 2016 Patrik Rojek
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,36 +22,34 @@ import sk.upjs.doctororganizer.DAO.TermDao;
 import sk.upjs.doctororganizer.Entities.Term;
 import sk.upjs.doctororganizer.Factory.DaoFactory;
 
-public class TermListModel extends DefaultListModel<Term> {
+/**
+ *
+ * @author Patrik Rojek
+ */
+public class TermListModelForPatient extends DefaultListModel<Term> {
 
     TermDao dao;
-    Long doctorOfficeId;
+    Long patientId;
     String date;
     
-    public TermListModel(Long doctorOfficeId, String date) {
-        this.doctorOfficeId = doctorOfficeId;
-        this.date = date;
+    public TermListModelForPatient(Long patientId) {
+        this.patientId = patientId;
         dao = DaoFactory.INSTANCE.getTermDao();
     }
 
     @Override
     public int getSize() {
-        return dao.getTermByDoctorOfficeIdAndDay(doctorOfficeId, date).size();
+        return dao.getTermsByPatientId(patientId).size();
     }
 
     @Override
     public Term getElementAt(int index) {
-        return dao.getTermByDoctorOfficeIdAndDay(doctorOfficeId, date).get(index);
+        return dao.getTermsByPatientId(patientId).get(index);
     }
     
-    public void refreshList(String date) {
-        this.date = date;
-        List<Term> termList = dao.getTermByDoctorOfficeIdAndDay(doctorOfficeId, date);
-        this.removeAllElements();
-        for (Term term : termList) {
-            this.addElement(term);
-        }
+    public void refreshList() {
         this.fireContentsChanged(this, 0, this.getSize());
     }
 
 }
+
