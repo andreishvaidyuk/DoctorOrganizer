@@ -43,6 +43,7 @@ public class DoctorRegistrationDialog extends javax.swing.JDialog {
         super(parent, modal);
         this.parentFrame = parent;
         initComponents();
+        this.setLocationRelativeTo(parent);
         textFieldList.add(academicDegreeTextField);
         textFieldList.add(nameTextField);
         textFieldList.add(surnameTextField);

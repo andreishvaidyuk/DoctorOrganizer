@@ -19,6 +19,7 @@ package sk.upjs.doctororganizer.Form;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.UIManager;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import sk.upjs.doctororganizer.Entities.Doctor;
 import sk.upjs.doctororganizer.Entities.Patient;
@@ -34,6 +35,7 @@ public class LoginForm extends javax.swing.JFrame {
      */
     public LoginForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -60,6 +62,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DoctorOrganizer 1.0");
+        setResizable(false);
 
         titleLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -267,9 +270,6 @@ public class LoginForm extends javax.swing.JFrame {
         infoLabel.setText("");
     }//GEN-LAST:event_jPasswordField1MouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -277,12 +277,14 @@ public class LoginForm extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+           /* for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
-            }
+            }*/
+           // Set System L&F
+           javax.swing.UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -294,7 +296,6 @@ public class LoginForm extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginForm().setVisible(true);

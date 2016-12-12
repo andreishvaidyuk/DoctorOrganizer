@@ -37,6 +37,7 @@ public class DoctorTermDialog extends javax.swing.JDialog {
         termDao = DaoFactory.INSTANCE.getTermDao();
         termListModel = new TermListModel(officeId, today);
         initComponents();
+        this.setLocationRelativeTo(parent);
         setDateForComboBoxes(today);
     }
 

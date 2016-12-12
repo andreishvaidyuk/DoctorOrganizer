@@ -33,6 +33,7 @@ public class OfficeRegistrationDialog extends javax.swing.JDialog {
     public OfficeRegistrationDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(parent);
         Hours hours = new Hours();
         List<String> hoursListFrom = hours.getAllHoursList();
         for (String time : hoursListFrom) {

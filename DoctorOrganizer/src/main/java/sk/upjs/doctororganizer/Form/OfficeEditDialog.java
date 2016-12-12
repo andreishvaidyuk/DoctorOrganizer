@@ -36,6 +36,7 @@ public class OfficeEditDialog extends javax.swing.JDialog {
         super(parent, modal);
         this.office = office;
         initComponents();
+        this.setLocationRelativeTo(parent);
         Hours hours = new Hours();
         List<String> hoursListFrom = hours.getAllHoursList();
         for (String time : hoursListFrom) {
@@ -375,7 +376,7 @@ public class OfficeEditDialog extends javax.swing.JDialog {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
             }

@@ -23,10 +23,7 @@ import sk.upjs.doctororganizer.Models.CityComboBoxModel;
 import sk.upjs.doctororganizer.Models.OfficeListModelForPatient;
 import sk.upjs.doctororganizer.Models.SpecializationComboBoxModel;
 
-/**
- *
- * @author acer
- */
+
 public class OfficeSearchDialog extends javax.swing.JDialog {
 
     private final Patient loggedInPatient;
@@ -39,7 +36,7 @@ public class OfficeSearchDialog extends javax.swing.JDialog {
         this.loggedInPatient = loggedInPatient;   
         officeListModelForPatient = new OfficeListModelForPatient();
         initComponents();
-        
+        this.setLocationRelativeTo(owner);        
     }
 
     /**
