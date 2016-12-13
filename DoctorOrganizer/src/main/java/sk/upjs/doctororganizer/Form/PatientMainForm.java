@@ -208,7 +208,7 @@ public class PatientMainForm extends javax.swing.JFrame {
     private void createTermButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createTermButtonActionPerformed
         OfficeSearchDialog osd = new OfficeSearchDialog(this, true, loggedInPatient);
         osd.setVisible(true);
-
+        termListModel.refreshList();
     }//GEN-LAST:event_createTermButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed

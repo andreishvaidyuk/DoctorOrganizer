@@ -267,6 +267,7 @@ public class OfficeSearchDialog extends javax.swing.JDialog {
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         officeListModelForPatient = new OfficeListModelForPatient(specializationComboBox.getSelectedItem().toString(), cityComboBox.getSelectedItem().toString());
+        officesList.setModel(officeListModelForPatient);
         officeListModelForPatient.refreshList();
     }//GEN-LAST:event_searchButtonActionPerformed
 

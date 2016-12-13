@@ -17,6 +17,7 @@
 package sk.upjs.doctororganizer.MysqlDAO;
 
 import java.util.List;
+import java.util.Objects;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -34,27 +35,27 @@ import sk.upjs.doctororganizer.Factory.DaoFactory;
  * @author Patrik Rojek
  */
 public class MysqlDoctorOfficeDaoTest {
-    
+
     private DoctorOfficeDao doctorOfficeDao;
     private DoctorDao doctorDao;
-    
+
     public MysqlDoctorOfficeDaoTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         doctorOfficeDao = DaoFactory.INSTANCE.getDoctorOfficeDao();
         doctorDao = DaoFactory.INSTANCE.getDoctorDao();
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -70,7 +71,7 @@ public class MysqlDoctorOfficeDaoTest {
         doctor.setSurname("Priezvisko");
         doctor.setAcademic_degree("titul");
         doctor.setEmail("email@email.com");
-        doctor.setPassword("0000");        
+        doctor.setPassword("0000");
         doctorDao.add(doctor);
         DoctorOffice office = new DoctorOffice();
         office.setCity("Mesto");
@@ -82,8 +83,8 @@ public class MysqlDoctorOfficeDaoTest {
         office.setPhone_number("0915000111");
         office.setId_doctor(doctorDao.getDoctorByEmail(doctor.getEmail()).getId());
         doctorOfficeDao.add(office);
-        int pocetPo = doctorOfficeDao.getAll().size(); 
-        assertEquals(pocetPred + 1, pocetPo);      
+        int pocetPo = doctorOfficeDao.getAll().size();
+        assertEquals(pocetPred + 1, pocetPo);
     }
 
     /**
@@ -100,14 +101,38 @@ public class MysqlDoctorOfficeDaoTest {
      */
     @Test
     public void testGetByDoctorId() {
-        System.out.println("getByDoctorId");
-        Long id = null;
-        MysqlDoctorOfficeDao instance = null;
-        List<DoctorOffice> expResult = null;
-        List<DoctorOffice> result = instance.getByDoctorId(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Doctor doctor = new Doctor();
+        doctor.setName("Meno1");
+        doctor.setSurname("Priezvisko1");
+        doctor.setAcademic_degree("titul1");
+        doctor.setEmail("email1@email.com");
+        doctor.setPassword("0000");
+        doctorDao.add(doctor);
+        DoctorOffice office = new DoctorOffice();
+        office.setCity("Mesto1");
+        office.setStreet("Ulica1");
+        office.setHouse_number(1);
+        office.setHospital("Nemocnica1");
+        office.setSpecialization("Specializacia1");
+        office.setOpening_hours("8:00-17:00");
+        office.setPhone_number("0915000111");
+        office.setId_doctor(doctorDao.getDoctorByEmail(doctor.getEmail()).getId());
+        doctorOfficeDao.add(office);
+        doctor = doctorDao.getDoctorByEmail(doctor.getEmail());
+        List<DoctorOffice> list = doctorOfficeDao.getByDoctorId(doctor.getId());
+        for (DoctorOffice dO : list) {
+            if (dO.getCity().equals(office.getCity()) && dO.getStreet().equals(office.getStreet())
+                    && dO.getHouse_number() == office.getHouse_number() 
+                    && dO.getHospital().equals(office.getHospital())
+                    && dO.getSpecialization().equals(office.getSpecialization())
+                    && dO.getOpening_hours().equals(office.getOpening_hours())
+                    && dO.getPhone_number().equals(office.getPhone_number())
+                    && Objects.equals(dO.getId_doctor(), office.getId_doctor())) {
+                assertTrue(true);
+                return;
+            }
+        }
+        assertTrue(false);
     }
 
     /**
@@ -128,12 +153,7 @@ public class MysqlDoctorOfficeDaoTest {
      */
     @Test
     public void testDelete() {
-        System.out.println("delete");
-        long id = 0L;
-        MysqlDoctorOfficeDao instance = null;
-        instance.delete(id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -179,5 +199,5 @@ public class MysqlDoctorOfficeDaoTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }
