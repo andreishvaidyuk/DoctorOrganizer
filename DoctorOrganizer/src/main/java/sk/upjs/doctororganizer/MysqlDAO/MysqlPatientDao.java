@@ -36,33 +36,6 @@ public class MysqlPatientDao implements PatientDao {
     }
 
     @Override
-    public Patient getPatientById(long id) {
-        String sql = "SELECT id, name, surname, adress, date_of_birth,"
-                + " id_number, insured_at, phone_number, email, password"
-                + " FROM patient WHERE id = " + id;
-        BeanPropertyRowMapper<Patient> bprm = new BeanPropertyRowMapper<>(Patient.class);
-        return jdbcTemplate.query(sql, bprm).get(0);
-    }
-
-    @Override
-    public void upgrade(Patient patient) {
-         jdbcTemplate.update("UPDATE patient SET name=?,"
-                 + " surname=?, adress=?, date_of_birth=?,"
-                 + " id_number=?, insured_at=?, phone_number=?,"
-                 + " email=?, password=? WHERE id=?", patient.getName(),
-                 patient.getSurname(), patient.getAdress(),
-                 patient.getDate_of_birth(), patient.getId_number(),
-                 patient.getInsured_at(), patient.getPhone_number(),
-                 patient.getEmail(), patient.getPassword(), patient.getId());
-    }
-
-    @Override
-    public void delete(long id) {
-        String sql = "DELETE FROM patient WHERE id=?";
-        jdbcTemplate.update(sql, id);
-    }
-
-    @Override
     public Patient getPatientByEmail(String email) {
         String sql = "SELECT id, name, surname, adress, date_of_birth,"
                 + " id_number, insured_at, phone_number, email, password"

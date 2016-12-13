@@ -9,13 +9,7 @@ public interface DoctorDao {
 
     List<Doctor> getAll();
 
-    Doctor getDoctorById(long id);
-
     Doctor getDoctorByEmail(String email);
 
     void upgradePass(Doctor doctor, String newPassword);
-    
-    void upgrade(Doctor doctor);
-
-    void delete(long id);
 }

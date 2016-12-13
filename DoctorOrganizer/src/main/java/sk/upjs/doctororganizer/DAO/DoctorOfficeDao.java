@@ -8,8 +8,6 @@ public interface DoctorOfficeDao {
     void add(DoctorOffice office);
 
     List<DoctorOffice> getAll();
-
-    DoctorOffice getByOfficeId(Long id);
     
     List<DoctorOffice> getByDoctorId(Long id);
 

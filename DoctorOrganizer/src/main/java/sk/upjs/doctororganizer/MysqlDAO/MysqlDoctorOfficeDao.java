@@ -36,19 +36,6 @@ public class MysqlDoctorOfficeDao implements DoctorOfficeDao {
     }
 
     @Override
-    public DoctorOffice getByOfficeId(Long id) {
-        String sql = "SELECT id, city, street, house_number, hospital,"
-                + " specialization, opening_hours, phone_number,"
-                + " id_doctor FROM doctor_office WHERE id = " + id;
-        BeanPropertyRowMapper<DoctorOffice> bprm = new BeanPropertyRowMapper<>(DoctorOffice.class);
-
-        if (!jdbcTemplate.query(sql, bprm).isEmpty()) {
-            return jdbcTemplate.query(sql, bprm).get(0);
-        }
-        return null;
-    }
-
-    @Override
     public List<DoctorOffice> getByDoctorId(Long id) {
         String sql = "SELECT id, city, street, house_number, hospital,"
                 + " specialization, opening_hours, phone_number,"

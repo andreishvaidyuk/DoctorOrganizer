@@ -31,29 +31,6 @@ public class MysqlDoctorDao implements DoctorDao {
     }
 
     @Override
-    public Doctor getDoctorById(long id) {
-        String sql = "SELECT id, name, surname, academic_degree, email,"
-                + " password FROM doctor WHERE id = " + id;
-        BeanPropertyRowMapper<Doctor> bprm = new BeanPropertyRowMapper<>(Doctor.class);
-        return jdbcTemplate.query(sql, bprm).get(0);
-    }
-
-    @Override
-    public void upgrade(Doctor doctor) {
-        jdbcTemplate.update("UPDATE doctor SET name=?,"
-                + " surname=?, academic_degree=?, email=?,"
-                + " password=? WHERE id=?", doctor.getName(), doctor. getSurname(),
-                doctor.getAcademic_degree(), doctor.getEmail(), doctor.getEmail(),
-                doctor.getPassword(), doctor.getId());
-    }
-
-    @Override
-    public void delete(long id) {
-        String sql = "DELETE FROM doctor WHERE id=?";
-        jdbcTemplate.update(sql, id);
-    }
-
-    @Override
     public Doctor getDoctorByEmail(String email) {
         String sql = "SELECT id, name, surname, academic_degree, email,"
                 + " password FROM doctor WHERE email = \'" + email + "\'";
