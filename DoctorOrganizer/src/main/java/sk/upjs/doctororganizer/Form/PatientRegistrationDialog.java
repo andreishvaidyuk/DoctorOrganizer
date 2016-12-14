@@ -429,7 +429,7 @@ public class PatientRegistrationDialog extends javax.swing.JDialog {
                 + " " + yearComboBox.getSelectedItem().toString());        
         patient.setId_number(new BigInteger(idNumberTextField.getText()));
         patient.setInsured_at(insuredAtComboBox.getSelectedItem().toString());
-        patient.setPhone_number(new BigInteger(mobilTextField.getText()));
+        patient.setPhone_number(mobilTextField.getText());
         patient.setEmail(emailTextField.getText());       
         try {
             patient.setPassword(PasswordHash.hash(new String(jPasswordField1.getPassword())));
@@ -438,6 +438,7 @@ public class PatientRegistrationDialog extends javax.swing.JDialog {
         }
         DaoFactory.INSTANCE.getPatientDao().add(patient);
         infoLabel.setText("Registrácia bola úspešná, stlačte zavrieť");
+        registerButton.setEnabled(false);
         cancelButton.setText("Zavrieť");
     }//GEN-LAST:event_registerButtonActionPerformed
 

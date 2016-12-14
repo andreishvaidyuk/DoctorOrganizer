@@ -39,7 +39,6 @@ public class ChangePasswordDialog extends javax.swing.JDialog {
         this.setLocationRelativeTo(parent);
     }
 
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -200,6 +199,7 @@ public class ChangePasswordDialog extends javax.swing.JDialog {
                 }
             }
             infoTextLabel.setText(passChangedInfoText);
+            changePasswordButton.setEnabled(false);
             cancelButton.setText("Zavrieť");            
         } catch (NoSuchAlgorithmException ex) {
             infoTextLabel.setText("Nastala chyba počas zmeny hesla");

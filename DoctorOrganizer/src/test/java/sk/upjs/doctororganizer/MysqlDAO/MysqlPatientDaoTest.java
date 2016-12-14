@@ -69,7 +69,7 @@ public class MysqlPatientDaoTest {
         patient.setDate_of_birth("1.1.1990");
         patient.setId_number(new BigInteger("9001017777"));
         patient.setInsured_at("Poistovna");
-        patient.setPhone_number(new BigInteger("0915000111"));
+        patient.setPhone_number("0915000111");
         patient.setEmail("email@email.com");
         patient.setPassword("0000");        
         patientDao.add(patient);
@@ -98,7 +98,7 @@ public class MysqlPatientDaoTest {
         patient.setDate_of_birth("1.1.1990");
         patient.setId_number(new BigInteger("9001017777"));
         patient.setInsured_at("Poistovna1");
-        patient.setPhone_number(new BigInteger("0915000111"));
+        patient.setPhone_number("0915000111");
         patient.setEmail("email1@email.com");
         patient.setPassword("1111");        
         patientDao.add(patient);
@@ -118,7 +118,7 @@ public class MysqlPatientDaoTest {
         patient.setDate_of_birth("1.1.1990");
         patient.setId_number(new BigInteger("9001017777"));
         patient.setInsured_at("Poistovna2");
-        patient.setPhone_number(new BigInteger("0915000111"));
+        patient.setPhone_number("0915000111");
         patient.setEmail("email2@email.com");
         patient.setPassword("2222");        
         patientDao.add(patient);

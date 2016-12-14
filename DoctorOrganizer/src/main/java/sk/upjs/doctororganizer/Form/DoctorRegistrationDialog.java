@@ -342,6 +342,7 @@ public class DoctorRegistrationDialog extends javax.swing.JDialog {
         }
         DaoFactory.INSTANCE.getDoctorDao().add(doctor);
         infoLabel.setText("Registrácia bola úspešná, stlačte zavrieť");
+        registerButton.setEnabled(false);
         cancelButton.setText("Zavrieť");
     }//GEN-LAST:event_registerButtonActionPerformed
 

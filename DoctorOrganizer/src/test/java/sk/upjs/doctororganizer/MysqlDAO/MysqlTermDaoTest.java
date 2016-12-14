@@ -114,7 +114,7 @@ public class MysqlTermDaoTest {
         patient.setDate_of_birth("1.1.1990");
         patient.setId_number(new BigInteger("9001017777"));
         patient.setInsured_at("Poistovna");
-        patient.setPhone_number(new BigInteger("0915000111"));
+        patient.setPhone_number("0915000111");
         patient.setEmail("email01@email.com");
         patient.setPassword("0000");
         SimpleJdbcInsert simpleJdbcInsert1 = new SimpleJdbcInsert(jdbcTemplate);
@@ -226,7 +226,7 @@ public class MysqlTermDaoTest {
         patient.setDate_of_birth("1.1.1990");
         patient.setId_number(new BigInteger("9001017777"));
         patient.setInsured_at("Poistovna1");
-        patient.setPhone_number(new BigInteger("0915000111"));
+        patient.setPhone_number("0915000111");
         patient.setEmail("email11@email.com");
         patient.setPassword("0000");
         SimpleJdbcInsert simpleJdbcInsert1 = new SimpleJdbcInsert(jdbcTemplate);
@@ -335,7 +335,7 @@ public class MysqlTermDaoTest {
         patient.setDate_of_birth("1.1.1990");
         patient.setId_number(new BigInteger("9001017777"));
         patient.setInsured_at("Poistovna2");
-        patient.setPhone_number(new BigInteger("0915000111"));
+        patient.setPhone_number("0915000111");
         patient.setEmail("email21@email.com");
         patient.setPassword("0000");
         SimpleJdbcInsert simpleJdbcInsert1 = new SimpleJdbcInsert(jdbcTemplate);
@@ -447,7 +447,7 @@ public class MysqlTermDaoTest {
         patient.setDate_of_birth("1.1.1990");
         patient.setId_number(new BigInteger("9001017777"));
         patient.setInsured_at("Poistovna3");
-        patient.setPhone_number(new BigInteger("0915000111"));
+        patient.setPhone_number("0915000111");
         patient.setEmail("email31@email.com");
         patient.setPassword("0000");
         SimpleJdbcInsert simpleJdbcInsert1 = new SimpleJdbcInsert(jdbcTemplate);
@@ -552,7 +552,7 @@ public class MysqlTermDaoTest {
         patient.setDate_of_birth("1.1.1990");
         patient.setId_number(new BigInteger("9001017777"));
         patient.setInsured_at("Poistovna4");
-        patient.setPhone_number(new BigInteger("0915000111"));
+        patient.setPhone_number("0915000111");
         patient.setEmail("email41@email.com");
         patient.setPassword("0000");
         SimpleJdbcInsert simpleJdbcInsert1 = new SimpleJdbcInsert(jdbcTemplate);
