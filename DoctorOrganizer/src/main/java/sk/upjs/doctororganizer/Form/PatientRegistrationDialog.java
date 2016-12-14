@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
+import sk.upjs.doctororganizer.DAO.PatientDao;
 import sk.upjs.doctororganizer.Entities.Patient;
 import sk.upjs.doctororganizer.Factory.DaoFactory;
 import sk.upjs.doctororganizer.PasswordHash;
@@ -31,12 +32,14 @@ import sk.upjs.doctororganizer.PasswordHash;
 public class PatientRegistrationDialog extends javax.swing.JDialog {
 
     java.awt.Frame parentFrame;
+    private PatientDao patientDao;
     private List<JTextField> textFieldList = new ArrayList<>();
     private final String badFormCompletionInfoText = "Polia môžu obsahovať minimálne 1, maximálne 40 znakov";
 
     public PatientRegistrationDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         this.parentFrame = parent;
+        patientDao = DaoFactory.INSTANCE.getPatientDao();
         initComponents();
         this.setLocationRelativeTo(parent);
         textFieldList.add(emailTextField);
@@ -386,6 +389,19 @@ public class PatientRegistrationDialog extends javax.swing.JDialog {
         }
         if (!go) {
             infoLabel.setText(badFormCompletionInfoText);
+            return;
+        }
+        
+        boolean sameEmail = false;
+        List<Patient> allPatients = patientDao.getAll();
+        for (Patient patient : allPatients) {
+            if (emailTextField.getText().equals(patient.getEmail())) {
+                sameEmail = true;
+                break;
+            }
+        }
+        if (sameEmail) {
+            infoLabel.setText("Zadaný email je už použitý, použite iný");
             return;
         }
         
