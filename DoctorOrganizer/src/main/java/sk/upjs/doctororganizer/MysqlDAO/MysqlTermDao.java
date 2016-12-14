@@ -34,23 +34,6 @@ public class MysqlTermDao implements TermDao {
     }
 
     @Override
-    public Term getTermById(long id) {
-        String sql = "SELECT id, id_patient, patient, id_doctor_office, date,"
-                + " time, reason, term_condition FROM term WHERE id = " + id;
-        BeanPropertyRowMapper<Term> bprm = new BeanPropertyRowMapper<>(Term.class);
-        return jdbcTemplate.query(sql, bprm).get(0);
-    }
-
-    @Override
-    public List<Term> getTermByDoctorOfficeId(Long doctorOfficeId) {
-        String sql = "SELECT id, id_patient, patient, id_doctor_office,"
-                + " date, time, reason, term_condition FROM term"
-                + " WHERE id_doctor_office = " + doctorOfficeId;
-        BeanPropertyRowMapper<Term> bprm = new BeanPropertyRowMapper<>(Term.class);
-        return jdbcTemplate.query(sql, bprm);
-    }
-
-    @Override
     public List<Term> getTermByDoctorOfficeIdAndDay(Long doctorOfficeId, String date) {
         String sql = "SELECT id, id_patient, patient, id_doctor_office,"
                 + " date, time, reason, term_condition FROM term"
@@ -63,15 +46,6 @@ public class MysqlTermDao implements TermDao {
     public void setTermCondition(Long termId, String newCondition) {
         jdbcTemplate.update("UPDATE term SET term_condition = ? WHERE id = ?",
                 newCondition, termId);
-    }
-
-    @Override
-    public void upgrade(Term term) {
-        jdbcTemplate.update("UPDATE term SET"
-                + " id_patient = ?, patient = ?, id_doctor_office = ?,"
-                + " date = ?, time = ?, reason = ? , term_condition = ? WHERE id = ?",
-                term.getId_patient(), term.getPatient(), term.getId_doctor_office(),
-                term.getDate(), term.getTime(), term.getReason(), term.getTerm_condition(), term.getId());
     }
 
     @Override

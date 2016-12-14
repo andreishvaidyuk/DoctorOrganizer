@@ -70,14 +70,14 @@ VALUES
 
 INSERT INTO patient
 VALUES
-(1, 'Marián', 'Babic', 'Jesenná 5, 040 01 Košice', '1985-12-12', '8512127987', 'VZP', '0911222333','ccc@gmail.com', '9AF15B336E6A9619928537DF30B2E6A2376569FCF9D7E773ECCEDE65606529A0'),
-(2, 'Gabriel', 'Mohňanský', 'Jesenná 5, 040 01 Košice', '1989-12-12', '8912127864', 'VZP', '0911555666','ddd@gmail.com', '9AF15B336E6A9619928537DF30B2E6A2376569FCF9D7E773ECCEDE65606529A0')
+(1, 'Marián', 'Babic', 'Jesenná 5, 040 01 Košice', '1985-12-12', '8512127987', 'Všeobecná zdravotná poisťovňa', '0911222333','ccc@gmail.com', '9AF15B336E6A9619928537DF30B2E6A2376569FCF9D7E773ECCEDE65606529A0'),
+(2, 'Gabriel', 'Mohňanský', 'Jesenná 5, 040 01 Košice', '1989-12-12', '8912127864', 'Všeobecná zdravotná poisťovňa', '0911555666','ddd@gmail.com', '9AF15B336E6A9619928537DF30B2E6A2376569FCF9D7E773ECCEDE65606529A0')
 ;
 
 INSERT INTO doctor_office
 VALUES
-(1, 'Košice', 'Jesenná', '5', 'nemocnicaXY', 'Ortopédia', '8:00-17:00', '0911777888', 2),
-(2, 'Košice', 'Jesenná', '5', 'nemocnicaYZ', 'Neurológia', '9:00-12:30','0911999666', 1)
+(1, 'Košice', 'Jesenná', '5', 'nemocnicaXY', 'Ortopédia', '08:00-17:00', '0911777888', 2),
+(2, 'Košice', 'Jesenná', '5', 'nemocnicaYZ', 'Neurológia', '09:00-12:30','0911999666', 1)
 ;
 
 INSERT INTO term

@@ -16,7 +16,10 @@
  */
 package sk.upjs.doctororganizer.MysqlDAO;
 
+import com.mysql.cj.jdbc.MysqlDataSource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -24,6 +27,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import sk.upjs.doctororganizer.DAO.DoctorDao;
 import sk.upjs.doctororganizer.DAO.DoctorOfficeDao;
 import sk.upjs.doctororganizer.Entities.Doctor;
@@ -38,6 +43,7 @@ public class MysqlDoctorOfficeDaoTest {
 
     private DoctorOfficeDao doctorOfficeDao;
     private DoctorDao doctorDao;
+    private JdbcTemplate jdbcTemplate;
 
     public MysqlDoctorOfficeDaoTest() {
     }
@@ -54,6 +60,12 @@ public class MysqlDoctorOfficeDaoTest {
     public void setUp() {
         doctorOfficeDao = DaoFactory.INSTANCE.getDoctorOfficeDao();
         doctorDao = DaoFactory.INSTANCE.getDoctorDao();
+        
+        MysqlDataSource dataSource = new MysqlDataSource();
+            dataSource.setUrl("jdbc:mysql://localhost/doctororganizer?serverTimezone=Europe/Bratislava");
+            dataSource.setUser("root");
+            dataSource.setPassword("heslo");
+            jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @After
@@ -140,12 +152,50 @@ public class MysqlDoctorOfficeDaoTest {
      */
     @Test
     public void testUpgrade() {
-        System.out.println("upgrade");
-        DoctorOffice office = null;
-        MysqlDoctorOfficeDao instance = null;
-        instance.upgrade(office);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       Doctor doctor = new Doctor();
+        doctor.setName("Meno2");
+        doctor.setSurname("Priezvisko2");
+        doctor.setAcademic_degree("titul2");
+        doctor.setEmail("email2@email.com");
+        doctor.setPassword("0000");
+        doctorDao.add(doctor);
+        DoctorOffice office = new DoctorOffice();
+        office.setCity("Mesto2");
+        office.setStreet("Ulica2");
+        office.setHouse_number(3);
+        office.setHospital("Nemocnica2");
+        office.setSpecialization("Specializacia2");
+        office.setOpening_hours("8:00-17:00");
+        office.setPhone_number("0915000111");
+        office.setId_doctor(doctorDao.getDoctorByEmail(doctor.getEmail()).getId());
+        
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        simpleJdbcInsert.withTableName("doctororganizer.doctor_office");
+        simpleJdbcInsert.usingGeneratedKeyColumns("id");
+        simpleJdbcInsert.usingColumns("city", "street", "house_number", "hospital","specialization","opening_hours","phone_number","id_doctor");
+        Map<String,Object> hodnoty = new HashMap<>();
+        hodnoty.put("city", office.getCity());
+        hodnoty.put("street", office.getStreet());
+        hodnoty.put("house_number", office.getHouse_number());
+        hodnoty.put("hospital", office.getHospital());
+        hodnoty.put("specialization", office.getSpecialization());
+        hodnoty.put("opening_hours", office.getOpening_hours());
+        hodnoty.put("phone_number", office.getPhone_number());
+        hodnoty.put("id_doctor", office.getId_doctor());        
+        Long newId = simpleJdbcInsert.executeAndReturnKey(hodnoty).longValue();
+        office.setId(newId);
+        
+        office.setCity("Mesto2Updated");
+        office.setStreet("Ulica2Updated");
+        doctorOfficeDao.upgrade(office);
+        List<DoctorOffice> list = doctorOfficeDao.getByDoctorId(office.getId_doctor());
+        for (DoctorOffice doctorOffice : list) {
+            if (doctorOffice == office) {
+                assertEquals(office, doctorOffice);
+                return;
+            }
+        }
+        assertFalse(false);                
     }
 
     /**
@@ -153,7 +203,43 @@ public class MysqlDoctorOfficeDaoTest {
      */
     @Test
     public void testDelete() {
+        Doctor doctor = new Doctor();
+        doctor.setName("Meno3");
+        doctor.setSurname("Priezvisko3");
+        doctor.setAcademic_degree("titul3");
+        doctor.setEmail("email3@email.com");
+        doctor.setPassword("0000");
+        doctorDao.add(doctor);
+        DoctorOffice office = new DoctorOffice();
+        office.setCity("Mesto3");
+        office.setStreet("Ulica3");
+        office.setHouse_number(3);
+        office.setHospital("Nemocnica3");
+        office.setSpecialization("Specializacia3");
+        office.setOpening_hours("8:00-17:00");
+        office.setPhone_number("0915000111");
+        office.setId_doctor(doctorDao.getDoctorByEmail(doctor.getEmail()).getId());
         
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        simpleJdbcInsert.withTableName("doctororganizer.doctor_office");
+        simpleJdbcInsert.usingGeneratedKeyColumns("id");
+        simpleJdbcInsert.usingColumns("city", "street", "house_number", "hospital","specialization","opening_hours","phone_number","id_doctor");
+        Map<String,Object> hodnoty = new HashMap<>();
+        hodnoty.put("city", office.getCity());
+        hodnoty.put("street", office.getStreet());
+        hodnoty.put("house_number", office.getHouse_number());
+        hodnoty.put("hospital", office.getHospital());
+        hodnoty.put("specialization", office.getSpecialization());
+        hodnoty.put("opening_hours", office.getOpening_hours());
+        hodnoty.put("phone_number", office.getPhone_number());
+        hodnoty.put("id_doctor", office.getId_doctor());        
+        Long newId = simpleJdbcInsert.executeAndReturnKey(hodnoty).longValue();
+        office.setId(newId);
+        
+        int pocetPred = doctorOfficeDao.getAll().size();
+        doctorOfficeDao.delete(newId);
+        int pocetPo = doctorOfficeDao.getAll().size();
+        assertEquals(pocetPred - 1, pocetPo);      
     }
 
     /**
@@ -161,13 +247,47 @@ public class MysqlDoctorOfficeDaoTest {
      */
     @Test
     public void testGetSpecializations() {
-        System.out.println("getSpecializations");
-        MysqlDoctorOfficeDao instance = null;
-        List<DoctorOffice> expResult = null;
-        List<DoctorOffice> result = instance.getSpecializations();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Doctor doctor = new Doctor();
+        doctor.setName("Meno4");
+        doctor.setSurname("Priezvisko4");
+        doctor.setAcademic_degree("titul4");
+        doctor.setEmail("email4@email.com");
+        doctor.setPassword("0000");
+        doctorDao.add(doctor);
+        DoctorOffice office = new DoctorOffice();
+        office.setCity("Mesto4");
+        office.setStreet("Ulica4");
+        office.setHouse_number(4);
+        office.setHospital("Nemocnica4");
+        office.setSpecialization("Specializacia4");
+        office.setOpening_hours("8:00-17:00");
+        office.setPhone_number("0915000111");
+        office.setId_doctor(doctorDao.getDoctorByEmail(doctor.getEmail()).getId());
+        
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        simpleJdbcInsert.withTableName("doctororganizer.doctor_office");
+        simpleJdbcInsert.usingGeneratedKeyColumns("id");
+        simpleJdbcInsert.usingColumns("city", "street", "house_number", "hospital","specialization","opening_hours","phone_number","id_doctor");
+        Map<String,Object> hodnoty = new HashMap<>();
+        hodnoty.put("city", office.getCity());
+        hodnoty.put("street", office.getStreet());
+        hodnoty.put("house_number", office.getHouse_number());
+        hodnoty.put("hospital", office.getHospital());
+        hodnoty.put("specialization", office.getSpecialization());
+        hodnoty.put("opening_hours", office.getOpening_hours());
+        hodnoty.put("phone_number", office.getPhone_number());
+        hodnoty.put("id_doctor", office.getId_doctor());        
+        Long newId = simpleJdbcInsert.executeAndReturnKey(hodnoty).longValue();
+        office.setId(newId);
+        
+        List<DoctorOffice> list = doctorOfficeDao.getSpecializations();
+        for (DoctorOffice doctorOffice : list) {
+            if (doctorOffice.getSpecialization().equals(office.getSpecialization())) {
+                assertTrue(true);
+                return;
+            }
+        }
+        assertFalse(false);       
     }
 
     /**
@@ -175,15 +295,47 @@ public class MysqlDoctorOfficeDaoTest {
      */
     @Test
     public void testGetBySpecializationAndCity() {
-        System.out.println("getBySpecializationAndCity");
-        String specialization = "";
-        String city = "";
-        MysqlDoctorOfficeDao instance = null;
-        List<DoctorOffice> expResult = null;
-        List<DoctorOffice> result = instance.getBySpecializationAndCity(specialization, city);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Doctor doctor = new Doctor();
+        doctor.setName("Meno5");
+        doctor.setSurname("Priezvisko5");
+        doctor.setAcademic_degree("titul5");
+        doctor.setEmail("email5@email.com");
+        doctor.setPassword("0000");
+        doctorDao.add(doctor);
+        DoctorOffice office = new DoctorOffice();
+        office.setCity("Mesto5");
+        office.setStreet("Ulica5");
+        office.setHouse_number(5);
+        office.setHospital("Nemocnica5");
+        office.setSpecialization("Specializacia5");
+        office.setOpening_hours("8:00-17:00");
+        office.setPhone_number("0915000111");
+        office.setId_doctor(doctorDao.getDoctorByEmail(doctor.getEmail()).getId());
+        
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        simpleJdbcInsert.withTableName("doctororganizer.doctor_office");
+        simpleJdbcInsert.usingGeneratedKeyColumns("id");
+        simpleJdbcInsert.usingColumns("city", "street", "house_number", "hospital","specialization","opening_hours","phone_number","id_doctor");
+        Map<String,Object> hodnoty = new HashMap<>();
+        hodnoty.put("city", office.getCity());
+        hodnoty.put("street", office.getStreet());
+        hodnoty.put("house_number", office.getHouse_number());
+        hodnoty.put("hospital", office.getHospital());
+        hodnoty.put("specialization", office.getSpecialization());
+        hodnoty.put("opening_hours", office.getOpening_hours());
+        hodnoty.put("phone_number", office.getPhone_number());
+        hodnoty.put("id_doctor", office.getId_doctor());        
+        Long newId = simpleJdbcInsert.executeAndReturnKey(hodnoty).longValue();
+        office.setId(newId);
+        
+        List<DoctorOffice> list = doctorOfficeDao.getBySpecializationAndCity(office.getSpecialization(), office.getCity());
+        for (DoctorOffice doctorOffice : list) {
+            if (doctorOffice.equals(office)) {
+                assertTrue(true);
+                return;
+            }
+        }
+        assertFalse(false);
     }
 
     /**
@@ -191,13 +343,47 @@ public class MysqlDoctorOfficeDaoTest {
      */
     @Test
     public void testGetCities() {
-        System.out.println("getCities");
-        MysqlDoctorOfficeDao instance = null;
-        List<DoctorOffice> expResult = null;
-        List<DoctorOffice> result = instance.getCities();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Doctor doctor = new Doctor();
+        doctor.setName("Meno6");
+        doctor.setSurname("Priezvisko6");
+        doctor.setAcademic_degree("titul6");
+        doctor.setEmail("email6@email.com");
+        doctor.setPassword("0000");
+        doctorDao.add(doctor);
+        DoctorOffice office = new DoctorOffice();
+        office.setCity("Mesto6");
+        office.setStreet("Ulica6");
+        office.setHouse_number(6);
+        office.setHospital("Nemocnica6");
+        office.setSpecialization("Specializacia6");
+        office.setOpening_hours("8:00-17:00");
+        office.setPhone_number("0915000111");
+        office.setId_doctor(doctorDao.getDoctorByEmail(doctor.getEmail()).getId());
+        
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        simpleJdbcInsert.withTableName("doctororganizer.doctor_office");
+        simpleJdbcInsert.usingGeneratedKeyColumns("id");
+        simpleJdbcInsert.usingColumns("city", "street", "house_number", "hospital","specialization","opening_hours","phone_number","id_doctor");
+        Map<String,Object> hodnoty = new HashMap<>();
+        hodnoty.put("city", office.getCity());
+        hodnoty.put("street", office.getStreet());
+        hodnoty.put("house_number", office.getHouse_number());
+        hodnoty.put("hospital", office.getHospital());
+        hodnoty.put("specialization", office.getSpecialization());
+        hodnoty.put("opening_hours", office.getOpening_hours());
+        hodnoty.put("phone_number", office.getPhone_number());
+        hodnoty.put("id_doctor", office.getId_doctor());        
+        Long newId = simpleJdbcInsert.executeAndReturnKey(hodnoty).longValue();
+        office.setId(newId);
+        
+        List<DoctorOffice> list = doctorOfficeDao.getCities();
+        for (DoctorOffice doctorOffice : list) {
+            if (doctorOffice.getCity().equals(office.getCity())) {
+                assertTrue(true);
+                return;
+            }
+        }
+        assertFalse(false);   
     }
 
 }
